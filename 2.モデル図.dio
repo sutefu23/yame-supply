@@ -1,6 +1,6 @@
 <mxfile host="65bd71144e">
     <diagram id="Ypj5rLJIwxC1mN9q6Cak" name="ページ1">
-        <mxGraphModel dx="1587" dy="991" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1169" pageHeight="827" math="0" shadow="0">
+        <mxGraphModel dx="1000" dy="705" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1169" pageHeight="827" math="0" shadow="0">
             <root>
                 <mxCell id="0"/>
                 <mxCell id="1" parent="0"/>
@@ -9,22 +9,22 @@
                         <mxRectangle x="50" y="130" width="90" height="30" as="alternateBounds"/>
                     </mxGeometry>
                 </mxCell>
-                <mxCell id="3" value="+ ユーザーID&#10;+ ユーザー名&#10;+ 会社名&#10;+ 会社カテゴリ&#10;- パスワード&#10;+ 登録日&#10;+ 変更日&#10;" style="align=left;strokeColor=none;fillColor=none;spacingLeft=4;fontSize=14;verticalAlign=top;resizable=0;rotatable=0;part=1;" parent="2" vertex="1">
+                <mxCell id="3" value="+ ユーザーID&#10;+ 会社名&#10;+ 会社カテゴリ&#10;- パスワード&#10;+ 登録日&#10;+ 変更日&#10;" style="align=left;strokeColor=none;fillColor=none;spacingLeft=4;fontSize=14;verticalAlign=top;resizable=0;rotatable=0;part=1;" parent="2" vertex="1">
                     <mxGeometry y="30" width="180" height="130" as="geometry"/>
                 </mxCell>
                 <mxCell id="4" value="製材" style="swimlane;childLayout=stackLayout;horizontal=1;startSize=30;horizontalStack=0;rounded=0;fontSize=14;fontStyle=0;strokeWidth=2;resizeParent=0;resizeLast=1;shadow=0;dashed=0;align=center;fillColor=#fff2cc;strokeColor=#d6b656;" parent="1" vertex="1">
-                    <mxGeometry x="526" y="180" width="174" height="170" as="geometry">
+                    <mxGeometry x="526" y="180" width="174" height="210" as="geometry">
                         <mxRectangle x="50" y="130" width="90" height="30" as="alternateBounds"/>
                     </mxGeometry>
                 </mxCell>
-                <mxCell id="5" value="+ 製材ID&#10;+ 長さ&#10;+ 幅&#10;+ 厚み&#10;+ 原木末口径 (㎜）&#10;+ 倉庫&#10;+ 材積()" style="align=left;strokeColor=none;fillColor=none;spacingLeft=4;fontSize=14;verticalAlign=top;resizable=0;rotatable=0;part=1;" parent="4" vertex="1">
-                    <mxGeometry y="30" width="174" height="140" as="geometry"/>
+                <mxCell id="5" value="+ 製材ID&#10;+ 長さ (mm)&#10;+ 幅 (mm)&#10;+ 厚み (mm)&#10;+ 原木サイズ (cm）※テキスト&#10;+ 倉庫&#10;+ 摘要&#10;+ 単位（本）&#10;+ 樹種（杉）" style="align=left;strokeColor=none;fillColor=none;spacingLeft=4;fontSize=14;verticalAlign=top;resizable=0;rotatable=0;part=1;" parent="4" vertex="1">
+                    <mxGeometry y="30" width="174" height="180" as="geometry"/>
                 </mxCell>
                 <mxCell id="6" value="&lt;font size=&quot;1&quot;&gt;&lt;b style=&quot;font-size: 22px&quot;&gt;モデル設計&lt;/b&gt;&lt;/font&gt;" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" parent="1" vertex="1">
                     <mxGeometry x="485" y="30" width="200" height="30" as="geometry"/>
                 </mxCell>
                 <mxCell id="8" value="会社カテゴリ" style="swimlane;fontStyle=0;childLayout=stackLayout;horizontal=1;startSize=26;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=1;marginBottom=0;align=center;fontSize=14;rounded=1;fillColor=#fff2cc;strokeColor=#d6b656;" parent="1" vertex="1">
-                    <mxGeometry x="296" y="270" width="130" height="130" as="geometry"/>
+                    <mxGeometry x="296" y="270" width="130" height="154" as="geometry"/>
                 </mxCell>
                 <mxCell id="9" value="製材所  &#10;" style="text;strokeColor=none;fillColor=none;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;fontSize=12;" parent="8" vertex="1">
                     <mxGeometry y="26" width="130" height="26" as="geometry"/>
@@ -35,19 +35,22 @@
                 <mxCell id="11" value="森林組合" style="text;strokeColor=none;fillColor=none;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;fontSize=12;" parent="8" vertex="1">
                     <mxGeometry y="82" width="130" height="24" as="geometry"/>
                 </mxCell>
-                <mxCell id="40" value="事務局" style="text;strokeColor=none;fillColor=none;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;fontSize=12;" parent="8" vertex="1">
+                <mxCell id="67" value="流通" style="text;strokeColor=none;fillColor=none;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;fontSize=12;" vertex="1" parent="8">
                     <mxGeometry y="106" width="130" height="24" as="geometry"/>
+                </mxCell>
+                <mxCell id="40" value="事務局" style="text;strokeColor=none;fillColor=none;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;fontSize=12;" parent="8" vertex="1">
+                    <mxGeometry y="130" width="130" height="24" as="geometry"/>
                 </mxCell>
                 <mxCell id="12" value="" style="edgeStyle=none;html=1;fontSize=14;exitX=0;exitY=0.5;exitDx=0;exitDy=0;entryX=1.017;entryY=0.608;entryDx=0;entryDy=0;entryPerimeter=0;" parent="1" source="10" target="3" edge="1">
                     <mxGeometry relative="1" as="geometry">
                         <Array as="points"/>
                     </mxGeometry>
                 </mxCell>
-                <mxCell id="41" value="ユーザー名ではなく会社メインの方がいいか。" style="shape=callout;whiteSpace=wrap;html=1;perimeter=calloutPerimeter;rounded=1;fontSize=15;position2=0;" parent="1" vertex="1">
-                    <mxGeometry x="196" y="140" width="190" height="70" as="geometry"/>
+                <mxCell id="41" value="ユーザー名ではなく会社メインの方がいいか。&lt;br&gt;→会社単位" style="shape=callout;whiteSpace=wrap;html=1;perimeter=calloutPerimeter;rounded=1;fontSize=15;position2=0;" parent="1" vertex="1">
+                    <mxGeometry x="196" y="90" width="190" height="120" as="geometry"/>
                 </mxCell>
                 <mxCell id="42" value="棟情報" style="swimlane;childLayout=stackLayout;horizontal=1;startSize=30;horizontalStack=0;rounded=0;fontSize=14;fontStyle=0;strokeWidth=2;resizeParent=0;resizeLast=1;shadow=0;dashed=0;align=center;fillColor=#fff2cc;strokeColor=#d6b656;" parent="1" vertex="1">
-                    <mxGeometry x="645" y="540" width="174" height="210" as="geometry">
+                    <mxGeometry x="460" y="540" width="174" height="210" as="geometry">
                         <mxRectangle x="50" y="130" width="90" height="30" as="alternateBounds"/>
                     </mxGeometry>
                 </mxCell>
@@ -57,7 +60,7 @@
                 <mxCell id="43" value="+ 棟ID（自動採番）&#10;+ 現場名&#10;+ 工務店ユーザーID&#10;+ 工務店名&#10;+ 期限（日付型）&#10;+ 登録日&#10;+ 変更日&#10;+ 登録者&#10;+ 変更者" style="align=left;strokeColor=none;fillColor=none;spacingLeft=4;fontSize=14;verticalAlign=top;resizable=0;rotatable=0;part=1;" parent="42" vertex="1">
                     <mxGeometry y="30" width="174" height="180" as="geometry"/>
                 </mxCell>
-                <mxCell id="45" value="IDに意味がある方がいいか" style="shape=callout;whiteSpace=wrap;html=1;perimeter=calloutPerimeter;rounded=1;fontSize=15;position2=0;" parent="1" vertex="1">
+                <mxCell id="45" value="IDに意味がある方がいいか&lt;br&gt;→一旦無くても大丈夫" style="shape=callout;whiteSpace=wrap;html=1;perimeter=calloutPerimeter;rounded=1;fontSize=15;position2=0;" parent="1" vertex="1">
                     <mxGeometry x="652" y="150" width="190" height="70" as="geometry"/>
                 </mxCell>
                 <mxCell id="46" value="倉庫" style="swimlane;childLayout=stackLayout;horizontal=1;startSize=30;horizontalStack=0;rounded=0;fontSize=14;fontStyle=0;strokeWidth=2;resizeParent=0;resizeLast=1;shadow=0;dashed=0;align=center;fillColor=#fff2cc;strokeColor=#d6b656;" parent="1" vertex="1">
@@ -78,7 +81,7 @@
                     <mxGeometry x="480" y="480" width="200" height="30" as="geometry"/>
                 </mxCell>
                 <mxCell id="55" value="ユーザーの工務店カテゴリから選択。工務店がログインしている場合、ログインユーザーが第一選択" style="shape=callout;whiteSpace=wrap;html=1;perimeter=calloutPerimeter;rounded=1;fontSize=15;position2=0;" parent="1" vertex="1">
-                    <mxGeometry x="810" y="510" width="210" height="120" as="geometry"/>
+                    <mxGeometry x="652" y="500" width="210" height="120" as="geometry"/>
                 </mxCell>
                 <mxCell id="57" value="基準在庫" style="swimlane;childLayout=stackLayout;horizontal=1;startSize=30;horizontalStack=0;rounded=0;fontSize=14;fontStyle=0;strokeWidth=2;resizeParent=0;resizeLast=1;shadow=0;dashed=0;align=center;fillColor=#fff2cc;strokeColor=#d6b656;" parent="1" vertex="1">
                     <mxGeometry x="960" y="170" width="174" height="110" as="geometry">
@@ -94,24 +97,24 @@
                         <mxPoint x="960" y="230" as="targetPoint"/>
                     </mxGeometry>
                 </mxCell>
-                <mxCell id="61" value="棟情報明細" style="swimlane;childLayout=stackLayout;horizontal=1;startSize=30;horizontalStack=0;rounded=0;fontSize=14;fontStyle=0;strokeWidth=2;resizeParent=0;resizeLast=1;shadow=0;dashed=0;align=center;fillColor=#fff2cc;strokeColor=#d6b656;" vertex="1" parent="1">
-                    <mxGeometry x="400" y="550" width="174" height="110" as="geometry">
+                <mxCell id="61" value="棟情報明細" style="swimlane;childLayout=stackLayout;horizontal=1;startSize=30;horizontalStack=0;rounded=0;fontSize=14;fontStyle=0;strokeWidth=2;resizeParent=0;resizeLast=1;shadow=0;dashed=0;align=center;fillColor=#fff2cc;strokeColor=#d6b656;" parent="1" vertex="1">
+                    <mxGeometry x="750" y="640" width="174" height="110" as="geometry">
                         <mxRectangle x="50" y="130" width="90" height="30" as="alternateBounds"/>
                     </mxGeometry>
                 </mxCell>
-                <mxCell id="62" style="edgeStyle=none;html=1;fontSize=15;" edge="1" parent="61" source="63" target="61">
+                <mxCell id="62" style="edgeStyle=none;html=1;fontSize=15;" parent="61" source="63" target="61" edge="1">
                     <mxGeometry relative="1" as="geometry"/>
                 </mxCell>
-                <mxCell id="63" value="+ 棟ID（自動採番）&#10;+ 枝番（自動採番）&#10;+ 使用製材ID&#10;+ 使用製材数&#10;" style="align=left;strokeColor=none;fillColor=none;spacingLeft=4;fontSize=14;verticalAlign=top;resizable=0;rotatable=0;part=1;" vertex="1" parent="61">
+                <mxCell id="63" value="+ 棟ID（自動採番）&#10;+ 枝番（自動採番）&#10;+ 使用製材ID&#10;+ 使用製材数&#10;" style="align=left;strokeColor=none;fillColor=none;spacingLeft=4;fontSize=14;verticalAlign=top;resizable=0;rotatable=0;part=1;" parent="61" vertex="1">
                     <mxGeometry y="30" width="174" height="80" as="geometry"/>
                 </mxCell>
-                <mxCell id="64" value="" style="edgeStyle=entityRelationEdgeStyle;fontSize=12;html=1;endArrow=ERoneToMany;" edge="1" parent="1" source="43" target="63">
+                <mxCell id="64" value="" style="edgeStyle=entityRelationEdgeStyle;fontSize=12;html=1;endArrow=ERoneToMany;" parent="1" source="43" target="63" edge="1">
                     <mxGeometry width="100" height="100" relative="1" as="geometry">
                         <mxPoint x="550" y="780" as="sourcePoint"/>
                         <mxPoint x="650" y="680" as="targetPoint"/>
                     </mxGeometry>
                 </mxCell>
-                <mxCell id="65" value="データは削除か不活性か" style="shape=callout;whiteSpace=wrap;html=1;perimeter=calloutPerimeter;rounded=1;fontSize=15;position2=0.63;direction=west;" vertex="1" parent="1">
+                <mxCell id="65" value="データは削除" style="shape=callout;whiteSpace=wrap;html=1;perimeter=calloutPerimeter;rounded=1;fontSize=15;position2=0.63;direction=west;" parent="1" vertex="1">
                     <mxGeometry x="76" y="340" width="190" height="70" as="geometry"/>
                 </mxCell>
             </root>
