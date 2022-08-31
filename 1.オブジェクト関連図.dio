@@ -1,0 +1,73 @@
+<mxfile host="65bd71144e">
+    <diagram id="7GXizOWbPIIPkrGppZ9G" name="ページ1">
+        <mxGraphModel dx="1587" dy="991" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1169" pageHeight="827" math="0" shadow="0">
+            <root>
+                <mxCell id="0"/>
+                <mxCell id="1" parent="0"/>
+                <mxCell id="3" value="&lt;span style=&quot;font-size: 22px&quot;&gt;&lt;b&gt;オブジェクト関連図&lt;/b&gt;&lt;/span&gt;" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontSize=14;" parent="1" vertex="1">
+                    <mxGeometry x="485" y="30" width="245" height="30" as="geometry"/>
+                </mxCell>
+                <mxCell id="4" value="工務店" style="shape=image;verticalLabelPosition=bottom;labelBackgroundColor=#ffffff;verticalAlign=top;aspect=fixed;imageAspect=0;image=https://1.bp.blogspot.com/-__9d8f1X5Ts/UVWMfIVCt-I/AAAAAAAAPIQ/XlXjHIOmM_U/s400/daiku.png;fontSize=20;strokeWidth=1;" parent="1" vertex="1">
+                    <mxGeometry x="80" y="110" width="193.05" height="220" as="geometry"/>
+                </mxCell>
+                <mxCell id="14" value="" style="group" parent="1" vertex="1" connectable="0">
+                    <mxGeometry x="462.5" y="320" width="245" height="143.85000000000002" as="geometry"/>
+                </mxCell>
+                <mxCell id="6" value="" style="shape=image;verticalLabelPosition=bottom;labelBackgroundColor=#ffffff;verticalAlign=top;aspect=fixed;imageAspect=0;image=https://1.bp.blogspot.com/-UoSEVpsQTi0/XSGFvHkdycI/AAAAAAABTjk/rwvmmX-rzOY6-hy6-rjZ9JGo7_XCTaHMgCLcBGAs/s400/mokuzai_kakuzi.png;fontSize=20;" parent="14" vertex="1">
+                    <mxGeometry y="40" width="130" height="83.85" as="geometry"/>
+                </mxCell>
+                <mxCell id="9" value="" style="shape=image;verticalLabelPosition=bottom;labelBackgroundColor=#ffffff;verticalAlign=top;aspect=fixed;imageAspect=0;image=https://1.bp.blogspot.com/-UoSEVpsQTi0/XSGFvHkdycI/AAAAAAABTjk/rwvmmX-rzOY6-hy6-rjZ9JGo7_XCTaHMgCLcBGAs/s400/mokuzai_kakuzi.png;fontSize=20;" parent="14" vertex="1">
+                    <mxGeometry x="45" y="50" width="130" height="83.85" as="geometry"/>
+                </mxCell>
+                <mxCell id="10" value="製材在庫" style="shape=image;verticalLabelPosition=bottom;labelBackgroundColor=#ffffff;verticalAlign=top;aspect=fixed;imageAspect=0;image=https://1.bp.blogspot.com/-UoSEVpsQTi0/XSGFvHkdycI/AAAAAAABTjk/rwvmmX-rzOY6-hy6-rjZ9JGo7_XCTaHMgCLcBGAs/s400/mokuzai_kakuzi.png;fontSize=20;" parent="14" vertex="1">
+                    <mxGeometry x="95" y="60" width="130" height="83.85" as="geometry"/>
+                </mxCell>
+                <mxCell id="12" value="" style="shape=image;verticalLabelPosition=bottom;labelBackgroundColor=#ffffff;verticalAlign=top;aspect=fixed;imageAspect=0;image=https://1.bp.blogspot.com/-UoSEVpsQTi0/XSGFvHkdycI/AAAAAAABTjk/rwvmmX-rzOY6-hy6-rjZ9JGo7_XCTaHMgCLcBGAs/s400/mokuzai_kakuzi.png;fontSize=20;" parent="14" vertex="1">
+                    <mxGeometry x="55" width="130" height="83.85" as="geometry"/>
+                </mxCell>
+                <mxCell id="13" value="" style="shape=image;verticalLabelPosition=bottom;labelBackgroundColor=#ffffff;verticalAlign=top;aspect=fixed;imageAspect=0;image=https://1.bp.blogspot.com/-UoSEVpsQTi0/XSGFvHkdycI/AAAAAAABTjk/rwvmmX-rzOY6-hy6-rjZ9JGo7_XCTaHMgCLcBGAs/s400/mokuzai_kakuzi.png;fontSize=20;" parent="14" vertex="1">
+                    <mxGeometry x="115" y="10" width="124.03" height="80" as="geometry"/>
+                </mxCell>
+                <mxCell id="18" value="製材所" style="shape=image;verticalLabelPosition=bottom;labelBackgroundColor=#ffffff;verticalAlign=top;aspect=fixed;imageAspect=0;image=https://3.bp.blogspot.com/-gbVDnBV8ldg/XJB4xwLVD3I/AAAAAAABR58/hGU53t5Ga6UJ4kT6lWdKsEjuOvLNmUZMACLcBGAs/s400/daiku_nokogiri_kiru.png;fontSize=20;" parent="1" vertex="1">
+                    <mxGeometry x="900" y="100" width="190" height="190" as="geometry"/>
+                </mxCell>
+                <mxCell id="19" value="" style="shape=flexArrow;endArrow=classic;html=1;fontSize=20;fillColor=#3399FF;" parent="1" edge="1">
+                    <mxGeometry width="50" height="50" relative="1" as="geometry">
+                        <mxPoint x="310" y="270" as="sourcePoint"/>
+                        <mxPoint x="390" y="310" as="targetPoint"/>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="20" value="必要な棟情報の登録" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontSize=20;fontColor=#3333FF;" parent="1" vertex="1">
+                    <mxGeometry x="273.05" y="205" width="250" height="30" as="geometry"/>
+                </mxCell>
+                <mxCell id="21" value="" style="shape=flexArrow;endArrow=classic;html=1;fontSize=20;fillColor=#FF99CC;" parent="1" edge="1">
+                    <mxGeometry width="50" height="50" relative="1" as="geometry">
+                        <mxPoint x="360" y="400" as="sourcePoint"/>
+                        <mxPoint x="300" y="370" as="targetPoint"/>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="22" value="現在庫の確認" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontSize=20;fontColor=#FF0080;" parent="1" vertex="1">
+                    <mxGeometry x="190" y="440" width="250" height="30" as="geometry"/>
+                </mxCell>
+                <mxCell id="23" value="" style="shape=flexArrow;endArrow=classic;html=1;fontSize=20;fillColor=#3399FF;" parent="1" edge="1">
+                    <mxGeometry width="50" height="50" relative="1" as="geometry">
+                        <mxPoint x="800" y="280" as="sourcePoint"/>
+                        <mxPoint x="740" y="320" as="targetPoint"/>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="24" value="生産数の登録" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontSize=20;fontColor=#3333FF;" parent="1" vertex="1">
+                    <mxGeometry x="650" y="230" width="250" height="30" as="geometry"/>
+                </mxCell>
+                <mxCell id="25" value="" style="shape=flexArrow;endArrow=classic;html=1;fontSize=20;fillColor=#FF99CC;" parent="1" edge="1">
+                    <mxGeometry width="50" height="50" relative="1" as="geometry">
+                        <mxPoint x="790" y="380" as="sourcePoint"/>
+                        <mxPoint x="850" y="340" as="targetPoint"/>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="26" value="必要生産数の確認" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontSize=20;fontColor=#FF0080;" parent="1" vertex="1">
+                    <mxGeometry x="770" y="399" width="250" height="30" as="geometry"/>
+                </mxCell>
+            </root>
+        </mxGraphModel>
+    </diagram>
+</mxfile>
