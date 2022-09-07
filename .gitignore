@@ -1,0 +1,9 @@
+.htaccess
+/db-data
+*.log
+.env
+.idea
+.ssh/*
+!.gitkeep
+*.sql
+*.sql.gz
