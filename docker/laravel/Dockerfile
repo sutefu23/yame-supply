@@ -25,6 +25,17 @@ RUN apt-get update && \
   composer config -g process-timeout 3600 && \
   composer config -g repos.packagist composer https://packagist.org
 
+RUN curl https://get.volta.sh | bash
+RUN $HOME/.volta/bin/volta install node
+
+
+RUN a2enmod rewrite
+# SSL
+# RUN a2ensite default-ssl
+# RUN a2enmod ssl
+# RUN a2enmod wsgi
+RUN service apache2 restart
+
 ADD ./docker/laravel/config/000-default.conf /etc/apache2/sites-available
 ADD ./docker/laravel/config/default-ssl.conf /etc/apache2/sites-available
 

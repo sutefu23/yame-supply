@@ -21,6 +21,15 @@ install-recommend-packages:
 	docker-compose exec laravel composer require --dev roave/security-advisories:dev-master
 	docker-compose exec laravel php artisan vendor:publish --provider="BeyondCode\DumpServer\DumpServerServiceProvider"
 	docker-compose exec laravel php artisan vendor:publish --provider="Barryvdh\Debugbar\ServiceProvider"
+breeze:
+	docker-compose exec laravel composer require laravel/breeze --dev
+#docker-compose exec laravel php artisan breeze:install api
+vue-init:
+	@breeze
+	docker-compose exec laravel php artisan breeze:install vue
+react-init:
+	@breeze
+	docker-compose exec laravel php artisan breeze:install react
 init:
 	docker-compose up -d --build
 	docker-compose exec laravel composer install
