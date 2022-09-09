@@ -13,14 +13,11 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('users', function (Blueprint $table) {
+        Schema::create('BuildingInfoDetail', function (Blueprint $table) {
             $table->id();
-            $table->string('name')->comment('会社名');
-            $table->string('category')->comment('会社カテゴリ');
-            $table->string('email')->unique();
-            $table->timestamp('email_verified_at')->nullable();
-            $table->string('password');
-            $table->rememberToken();
+            $table->unsignedInteger("build_info_id")->comment("棟情報ID");
+            $table->foreignId("item_id")->comment("使用製材ID")->constrained('Item');
+            $table->unsignedInteger("item_quantity")->comment("使用製材数");
             $table->timestamps();
         });
     }
@@ -32,6 +29,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('users');
+        Schema::dropIfExists('BuildingInfoDetail');
     }
 };
