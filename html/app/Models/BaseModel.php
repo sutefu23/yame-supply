@@ -4,7 +4,10 @@
   use Illuminate\Database\Eloquent\Model;
   use Illuminate\Support\Facades\Auth;
 
-  class BaseModel extends Model {
+  /**
+ * App\Models\BaseModel
+ */
+class BaseModel extends Model {
       /**
        * Event Hooks
        *

@@ -23,7 +23,6 @@ install-recommend-packages:
 	docker-compose exec laravel php artisan vendor:publish --provider="Barryvdh\Debugbar\ServiceProvider"
 breeze:
 	docker-compose exec laravel composer require laravel/breeze --dev
-#docker-compose exec laravel php artisan breeze:install api
 vue-init:
 	@breeze
 	docker-compose exec laravel php artisan breeze:install vue
@@ -54,3 +53,11 @@ fresh:
 	docker-compose exec laravel php artisan migrate:fresh --seed
 test:
 	docker-compose exec laravel php artisan test
+model-library-install:
+	docker-compose exec laravel composer require --dev reliese/laravel
+model:
+# 要make model-library-install及びproviderへの登録
+# 全DBからfield付きmodelを生成
+	docker-compose exec laravel php artisan vendor:publish --tag=reliese-models
+	docker-compose exec laravel php artisan config:clear
+	docker-compose exec laravel php artisan code:models

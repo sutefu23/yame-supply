@@ -13,9 +13,9 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('WoodSpecies', function (Blueprint $table) {
+        Schema::create('UserCategory', function (Blueprint $table) {
             $table->unsignedBigInteger('id', false)->primary();
-            $table->string("name")->unique()->comment("樹種名");
+            $table->string("name")->comment("ユーザーカテゴリ名");
             $table->timestamps();
         });
     }
@@ -27,6 +27,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('WoodSpecies');
+        Schema::dropIfExists('UserCategory');
     }
 };

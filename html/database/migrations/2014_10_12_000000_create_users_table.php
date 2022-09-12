@@ -14,9 +14,10 @@ return new class extends Migration
     public function up()
     {
         Schema::create('users', function (Blueprint $table) {
-            $table->id();
+            $table->unsignedBigInteger('id', false)->primary();
             $table->string('name')->comment('会社名');
-            $table->string('category')->comment('会社カテゴリ');
+            $table->foreignId('user_category_id')->comment('会社カテゴリ')->constrained('UserCategory');
+            $table->string('user_category_name')->comment('会社カテゴリ');
             $table->string('email')->unique();
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');

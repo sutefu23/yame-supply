@@ -14,11 +14,47 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
-        \App\Models\User::factory(10)->create();
+        $categories =
+            [
+                [
+                    'id'    => 1,
+                    'name' => '製材所'
+                ],
+                [
+                    'id'    => 2,
+                    'name' => '工務店'
+                ],
+                [
+                    'id'    => 3,
+                    'name' => '森林組合'
+                ],
+                [
+                    'id'    => 4,
+                    'name' => '流通'
+                ],
+                [
+                    'id'    => 100,
+                    'name' => '事務局'
+                ],
 
-        \App\Models\User::factory()->create([
+            ];
+
+        foreach($categories as $category) {
+            \App\Models\UserCategory::create($category);
+        }
+
+        \App\Models\User::create([
+            'id'    => 1,
             'name' => 'Admin',
+            'user_category_id' => 100,
+            'user_category_name' => "事務局",
+            'password' => bcrypt('password'),
             'email' => 'sutefu23@gmail.com',
+        ]);
+
+        // 他のSeederの呼び出し
+        $this->call([
+            ItemSeeder::class,
         ]);
     }
 }

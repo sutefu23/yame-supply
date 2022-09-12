@@ -14,7 +14,7 @@ return new class extends Migration
     public function up()
     {
         Schema::create('Unit', function (Blueprint $table) {
-            $table->id();
+            $table->unsignedBigInteger('id', false)->primary();
             $table->string("name")->unique()->comment("単位名");
             $table->timestamps();
         });
