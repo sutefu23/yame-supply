@@ -8,6 +8,10 @@ namespace App\Models;
 
 use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Collection;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Foundation\Auth\User as Authenticatable;
+use Illuminate\Notifications\Notifiable;
+use Laravel\Sanctum\HasApiTokens;
 /**
  * Class User
  *
@@ -27,8 +31,9 @@ use Illuminate\Database\Eloquent\Collection;
  * @property Collection|OutStockDetail[] $out_stock_details
  * @property Collection|OutStockInfo[] $out_stock_infos
  */
-class User extends BaseModel
+class User extends Authenticatable
 {
+    use HasApiTokens, HasFactory, Notifiable;
 	protected $table = 'users';
 
 	protected $dates = [

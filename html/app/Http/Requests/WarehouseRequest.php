@@ -3,8 +3,9 @@
 namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Support\Facades\Auth;
 
-class UpdateusersRequest extends FormRequest
+class WarehouseRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -13,7 +14,7 @@ class UpdateusersRequest extends FormRequest
      */
     public function authorize()
     {
-        return false;
+        return Auth::check();
     }
 
     /**
@@ -24,7 +25,8 @@ class UpdateusersRequest extends FormRequest
     public function rules()
     {
         return [
-            //
+            'id' => ['required', 'numeric', 'unique:Warehouse,id'],
+            'name' => ['required', 'string', 'unique:Warehouse,name'],
         ];
     }
 }
