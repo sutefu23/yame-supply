@@ -8,13 +8,13 @@ namespace App\Models;
 
 use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Collection;
+use Illuminate\Database\Eloquent\Model;
 
 /**
  * Class InStockInfo
  *
  * @property int $id
  * @property int $produce_user_id
- * @property string $produce_user_name
  * @property Carbon $import_date
  * @property string $reason
  * @property int $create_user_id
@@ -25,6 +25,18 @@ use Illuminate\Database\Eloquent\Collection;
  * @property Collection|InStockDetail[] $in_stock_details
  * @package App\Models
  * @property-read int|null $in_stock_details_count
+ * @method static \Illuminate\Database\Eloquent\Builder|InStockInfo newModelQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|InStockInfo newQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|InStockInfo query()
+ * @method static \Illuminate\Database\Eloquent\Builder|InStockInfo whereCreateUserId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|InStockInfo whereCreatedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|InStockInfo whereId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|InStockInfo whereImportDate($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|InStockInfo whereProduceUserId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|InStockInfo whereReason($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|InStockInfo whereUpdateUserId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|InStockInfo whereUpdatedAt($value)
+ * @mixin \Eloquent
  */
 class InStockInfo extends BaseModel
 {
@@ -42,7 +54,6 @@ class InStockInfo extends BaseModel
 
 	protected $fillable = [
 		'produce_user_id',
-		'produce_user_name',
 		'import_date',
 		'reason',
 		'create_user_id',

@@ -17,7 +17,6 @@ return new class extends Migration
             $table->id();
             $table->string("field_name",255)->comment("現場名");
             $table->foreignId("builder_user_id")->comment("工務店ユーザーID")->constrained('users');
-            $table->string("builder_user_name",100)->comment("工務店名");
             $table->date("time_limit")->comment("期限");
             $table->foreignId("create_user_id")->comment("登録者")->constrained('users');
             $table->foreignId("update_user_id")->comment("変更者")->constrained('users');

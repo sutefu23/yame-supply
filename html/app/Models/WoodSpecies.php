@@ -17,6 +17,15 @@ use Illuminate\Database\Eloquent\Collection;
  * @property Carbon|null $created_at
  * @property Carbon|null $updated_at
  * @property Collection|Item[] $items
+ * @property-read int|null $items_count
+ * @method static \Illuminate\Database\Eloquent\Builder|WoodSpecies newModelQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|WoodSpecies newQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|WoodSpecies query()
+ * @method static \Illuminate\Database\Eloquent\Builder|WoodSpecies whereCreatedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|WoodSpecies whereId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|WoodSpecies whereName($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|WoodSpecies whereUpdatedAt($value)
+ * @mixin \Eloquent
  */
 class WoodSpecies extends BaseModel
 {

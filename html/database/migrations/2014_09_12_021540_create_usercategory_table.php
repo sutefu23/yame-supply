@@ -15,7 +15,7 @@ return new class extends Migration
     {
         Schema::create('UserCategory', function (Blueprint $table) {
             $table->unsignedBigInteger('id', false)->primary();
-            $table->string("name")->comment("ユーザーカテゴリ名");
+            $table->string("name")->unique()->comment("ユーザーカテゴリ名");
             $table->timestamps();
         });
     }

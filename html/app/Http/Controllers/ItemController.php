@@ -3,18 +3,20 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\ItemRequest;
+use App\Models\Item;
 use Illuminate\Http\Request;
+use Illuminate\Http\Resources\Json\JsonResource;
 
 class ItemController extends Controller
 {
     /**
      * Display a listing of the resource.
      *
-     * @return \Illuminate\Http\Response
+     * @return JsonResource
      */
     public function index()
     {
-        //
+        return new JsonResource(Item::query()->all());
     }
 
     /**
@@ -32,11 +34,11 @@ class ItemController extends Controller
      * Display the specified resource.
      *
      * @param  int  $id
-     * @return \Illuminate\Http\Response
+     * @return JsonResource
      */
     public function show($id)
     {
-        //
+        return new JsonResource(Item::query()->findOrFail($id));
     }
 
     /**
@@ -55,10 +57,10 @@ class ItemController extends Controller
      * Remove the specified resource from storage.
      *
      * @param  int  $id
-     * @return \Illuminate\Http\Response
+     * @return JsonResource
      */
     public function destroy($id)
     {
-        //
+        return new JsonResource(Item::destroy($id));
     }
 }

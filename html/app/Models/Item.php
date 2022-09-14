@@ -8,6 +8,7 @@ namespace App\Models;
 
 use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Collection;
+use Illuminate\Database\Eloquent\Model;
 
 /**
  * Class Item
@@ -18,14 +19,11 @@ use Illuminate\Database\Eloquent\Collection;
  * @property int $thickness
  * @property string $raw_wood_size
  * @property int $warehouse_id
- * @property string $warehouse_name
  * @property string $memo
  * @property int $quantity
  * @property int $essential_quantity
  * @property int $unit_id
- * @property string $unit_name
  * @property int $wood_species_id
- * @property string $wood_species_name
  * @property Carbon|null $created_at
  * @property Carbon|null $updated_at
  * @property Unit $unit
@@ -38,13 +36,31 @@ use Illuminate\Database\Eloquent\Collection;
  * @property-read int|null $building_info_details_count
  * @property-read int|null $in_stock_details_count
  * @property-read int|null $out_stock_details_count
+ * @method static \Illuminate\Database\Eloquent\Builder|Item newModelQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|Item newQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|Item query()
+ * @method static \Illuminate\Database\Eloquent\Builder|Item whereCreatedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Item whereEssentialQuantity($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Item whereId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Item whereLength($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Item whereMemo($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Item whereQuantity($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Item whereRawWoodSize($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Item whereThickness($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Item whereUnitId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Item whereUpdatedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Item whereWarehouseId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Item whereWidth($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Item whereWoodSpeciesId($value)
+ * @mixin \Eloquent
  */
 class Item extends BaseModel
 {
 	protected $table = 'Item';
+	public $incrementing = false;
 
 	protected $casts = [
-        'id'    => 'int',
+		'id' => 'int',
 		'length' => 'int',
 		'width' => 'int',
 		'thickness' => 'int',
@@ -56,20 +72,16 @@ class Item extends BaseModel
 	];
 
 	protected $fillable = [
-        'id',
 		'length',
 		'width',
 		'thickness',
 		'raw_wood_size',
 		'warehouse_id',
-		'warehouse_name',
 		'memo',
 		'quantity',
 		'essential_quantity',
 		'unit_id',
-		'unit_name',
-		'wood_species_id',
-		'wood_species_name'
+		'wood_species_id'
 	];
 
 	public function unit()

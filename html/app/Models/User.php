@@ -6,6 +6,7 @@
 
 namespace App\Models;
 
+use Barryvdh\LaravelIdeHelper\Eloquent;
 use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
@@ -30,6 +31,31 @@ use Laravel\Sanctum\HasApiTokens;
  * @property Collection|InStockInfo[] $in_stock_infos
  * @property Collection|OutStockDetail[] $out_stock_details
  * @property Collection|OutStockInfo[] $out_stock_infos
+ * @property-read int|null $building_infos_count
+ * @property-read int|null $in_stock_details_count
+ * @property-read int|null $in_stock_infos_count
+ * @property-read \Illuminate\Notifications\DatabaseNotificationCollection|\Illuminate\Notifications\DatabaseNotification[] $notifications
+ * @property-read int|null $notifications_count
+ * @property-read int|null $out_stock_details_count
+ * @property-read int|null $out_stock_infos_count
+ * @property-read Collection|\Laravel\Sanctum\PersonalAccessToken[] $tokens
+ * @property-read int|null $tokens_count
+ * @property-read \App\Models\UserCategory $user_category
+ * @method static \Database\Factories\UserFactory factory(...$parameters)
+ * @method static \Illuminate\Database\Eloquent\Builder|User newModelQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|User newQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|User query()
+ * @method static \Illuminate\Database\Eloquent\Builder|User whereCreatedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|User whereEmail($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|User whereEmailVerifiedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|User whereId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|User whereName($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|User wherePassword($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|User whereRememberToken($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|User whereUpdatedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|User whereUserCategoryId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|User whereUserCategoryName($value)
+ * @mixin Eloquent
  */
 class User extends Authenticatable
 {

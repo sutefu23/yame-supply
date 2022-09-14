@@ -7,6 +7,7 @@
 namespace App\Models;
 
 use Carbon\Carbon;
+use Illuminate\Database\Eloquent\Model;
 
 /**
  * Class OutStockDetail
@@ -22,6 +23,19 @@ use Carbon\Carbon;
  * @property User $user
  * @property Item $item
  * @property OutStockInfo $out_stock_info
+ * @package App\Models
+ * @method static \Illuminate\Database\Eloquent\Builder|OutStockDetail newModelQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|OutStockDetail newQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|OutStockDetail query()
+ * @method static \Illuminate\Database\Eloquent\Builder|OutStockDetail whereCreateUserId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|OutStockDetail whereCreatedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|OutStockDetail whereId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|OutStockDetail whereItemId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|OutStockDetail whereItemQuantity($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|OutStockDetail whereOutStockId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|OutStockDetail whereUpdateUserId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|OutStockDetail whereUpdatedAt($value)
+ * @mixin \Eloquent
  */
 class OutStockDetail extends BaseModel
 {

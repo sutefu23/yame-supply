@@ -16,7 +16,6 @@ return new class extends Migration
         Schema::create('InStockInfo', function (Blueprint $table) {
             $table->id();
             $table->foreignId("produce_user_id")->comment("製材所ユーザーID")->constrained('users');
-            $table->string("produce_user_name",100)->comment("製材所名");
             $table->date("import_date")->comment("入庫日");
             $table->string("reason",255)->comment("理由");
             $table->foreignId("create_user_id")->comment("登録者")->constrained('users');

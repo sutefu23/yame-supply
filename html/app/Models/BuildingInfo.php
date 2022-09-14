@@ -7,6 +7,7 @@
 namespace App\Models;
 
 use Carbon\Carbon;
+use Illuminate\Database\Eloquent\Model;
 
 /**
  * Class BuildingInfo
@@ -14,7 +15,6 @@ use Carbon\Carbon;
  * @property int $id
  * @property string $field_name
  * @property int $builder_user_id
- * @property string $builder_user_name
  * @property Carbon $time_limit
  * @property int $create_user_id
  * @property int $update_user_id
@@ -22,6 +22,18 @@ use Carbon\Carbon;
  * @property Carbon|null $updated_at
  * @property User $user
  * @package App\Models
+ * @method static \Illuminate\Database\Eloquent\Builder|BuildingInfo newModelQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|BuildingInfo newQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|BuildingInfo query()
+ * @method static \Illuminate\Database\Eloquent\Builder|BuildingInfo whereBuilderUserId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|BuildingInfo whereCreateUserId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|BuildingInfo whereCreatedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|BuildingInfo whereFieldName($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|BuildingInfo whereId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|BuildingInfo whereTimeLimit($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|BuildingInfo whereUpdateUserId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|BuildingInfo whereUpdatedAt($value)
+ * @mixin \Eloquent
  */
 class BuildingInfo extends BaseModel
 {
@@ -40,7 +52,6 @@ class BuildingInfo extends BaseModel
 	protected $fillable = [
 		'field_name',
 		'builder_user_id',
-		'builder_user_name',
 		'time_limit',
 		'create_user_id',
 		'update_user_id'

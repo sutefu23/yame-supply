@@ -16,7 +16,6 @@ return new class extends Migration
         Schema::create('OutStockInfo', function (Blueprint $table) {
             $table->id();
             $table->foreignId("builder_user_id")->nullable()->comment("工務店ユーザーID")->constrained('users');
-            $table->foreignId("builder_user_name",100)->nullable()->comment("工務店名");
             $table->date("export_date")->comment("出庫日");
             $table->string("reason",255)->comment("理由");
             $table->foreignId("create_user_id")->comment("登録者")->constrained('users');

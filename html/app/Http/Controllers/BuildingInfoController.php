@@ -3,7 +3,6 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\BuildingInfoRequest;
-use App\Http\Resources\UserCollection;
 use App\Models\User;
 use Illuminate\Http\Request;
 
@@ -16,7 +15,6 @@ class BuildingInfoController extends Controller
      */
     public function index()
     {
-        UserCollection::collection(User::all());
     }
 
     /**

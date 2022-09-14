@@ -21,6 +21,20 @@ use Carbon\Carbon;
  * @property Carbon|null $expires_at
  * @property Carbon|null $created_at
  * @property Carbon|null $updated_at
+ * @method static \Illuminate\Database\Eloquent\Builder|PersonalAccessToken newModelQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|PersonalAccessToken newQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|PersonalAccessToken query()
+ * @method static \Illuminate\Database\Eloquent\Builder|PersonalAccessToken whereAbilities($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|PersonalAccessToken whereCreatedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|PersonalAccessToken whereExpiresAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|PersonalAccessToken whereId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|PersonalAccessToken whereLastUsedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|PersonalAccessToken whereName($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|PersonalAccessToken whereToken($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|PersonalAccessToken whereTokenableId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|PersonalAccessToken whereTokenableType($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|PersonalAccessToken whereUpdatedAt($value)
+ * @mixin \Eloquent
  */
 class PersonalAccessToken extends BaseModel
 {

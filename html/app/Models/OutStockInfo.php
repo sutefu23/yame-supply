@@ -8,13 +8,13 @@ namespace App\Models;
 
 use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Collection;
+use Illuminate\Database\Eloquent\Model;
 
 /**
  * Class OutStockInfo
  *
  * @property int $id
  * @property int|null $builder_user_id
- * @property int|null $builder_user_name
  * @property Carbon $export_date
  * @property string $reason
  * @property int $create_user_id
@@ -23,6 +23,20 @@ use Illuminate\Database\Eloquent\Collection;
  * @property Carbon|null $updated_at
  * @property User $user
  * @property Collection|OutStockDetail[] $out_stock_details
+ * @package App\Models
+ * @property-read int|null $out_stock_details_count
+ * @method static \Illuminate\Database\Eloquent\Builder|OutStockInfo newModelQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|OutStockInfo newQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|OutStockInfo query()
+ * @method static \Illuminate\Database\Eloquent\Builder|OutStockInfo whereBuilderUserId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|OutStockInfo whereCreateUserId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|OutStockInfo whereCreatedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|OutStockInfo whereExportDate($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|OutStockInfo whereId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|OutStockInfo whereReason($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|OutStockInfo whereUpdateUserId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|OutStockInfo whereUpdatedAt($value)
+ * @mixin \Eloquent
  */
 class OutStockInfo extends BaseModel
 {
@@ -30,7 +44,6 @@ class OutStockInfo extends BaseModel
 
 	protected $casts = [
 		'builder_user_id' => 'int',
-		'builder_user_name' => 'int',
 		'create_user_id' => 'int',
 		'update_user_id' => 'int'
 	];
@@ -41,7 +54,6 @@ class OutStockInfo extends BaseModel
 
 	protected $fillable = [
 		'builder_user_id',
-		'builder_user_name',
 		'export_date',
 		'reason',
 		'create_user_id',

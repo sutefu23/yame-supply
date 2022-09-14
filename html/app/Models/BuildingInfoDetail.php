@@ -7,6 +7,7 @@
 namespace App\Models;
 
 use Carbon\Carbon;
+use Illuminate\Database\Eloquent\Model;
 
 /**
  * Class BuildingInfoDetail
@@ -19,6 +20,16 @@ use Carbon\Carbon;
  * @property Carbon|null $updated_at
  * @property Item $item
  * @package App\Models
+ * @method static \Illuminate\Database\Eloquent\Builder|BuildingInfoDetail newModelQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|BuildingInfoDetail newQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|BuildingInfoDetail query()
+ * @method static \Illuminate\Database\Eloquent\Builder|BuildingInfoDetail whereBuildInfoId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|BuildingInfoDetail whereCreatedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|BuildingInfoDetail whereId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|BuildingInfoDetail whereItemId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|BuildingInfoDetail whereItemQuantity($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|BuildingInfoDetail whereUpdatedAt($value)
+ * @mixin \Eloquent
  */
 class BuildingInfoDetail extends BaseModel
 {

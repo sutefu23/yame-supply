@@ -37,4 +37,5 @@ class ItemRequest extends FormRequest
             'wood_species_id' => ['required', 'numeric', 'exists:WoodSpecies,id'],
         ];
     }
+
 }

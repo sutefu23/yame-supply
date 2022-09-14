@@ -2,18 +2,20 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\UserCategory;
 use Illuminate\Http\Request;
+use Illuminate\Http\Resources\Json\JsonResource;
 
 class UserCategoryController extends Controller
 {
     /**
      * Display a listing of the resource.
      *
-     * @return \Illuminate\Http\Response
+     * @return JsonResource
      */
     public function index()
     {
-        //
+        return new JsonResource(UserCategory::all());
     }
 
     /**
@@ -31,11 +33,11 @@ class UserCategoryController extends Controller
      * Display the specified resource.
      *
      * @param  int  $id
-     * @return \Illuminate\Http\Response
+     * @return JsonResource
      */
     public function show($id)
     {
-        //
+        return new JsonResource(UserCategory::query()->findOrFail($id));
     }
 
     /**
@@ -54,10 +56,10 @@ class UserCategoryController extends Controller
      * Remove the specified resource from storage.
      *
      * @param  int  $id
-     * @return \Illuminate\Http\Response
+     * @return JsonResource
      */
     public function destroy($id)
     {
-        //
+        return new JsonResource(UserCategory::destroy($id));
     }
 }

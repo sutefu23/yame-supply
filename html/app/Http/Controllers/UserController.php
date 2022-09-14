@@ -3,43 +3,32 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\UserRequest;
-use App\Http\Resources\UserCollection;
 use App\Models\User;
-use Illuminate\Http\Request;
 use Illuminate\Http\Resources\Json\AnonymousResourceCollection;
+use Illuminate\Http\Resources\Json\JsonResource;
+use Illuminate\Support\Facades\Auth;
 
 class UserController extends Controller
 {
     /**
      * Display a listing of the resource.
      *
-     * @return AnonymousResourceCollection
+     * @return AnonymousResourceCollection|JsonResource
      */
     public function index()
     {
-        return UserCollection::collection(User::all());
-    }
-
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param UserRequest $request
-     * @return \Illuminate\Http\Response
-     */
-    public function store(UserRequest $request)
-    {
-        //
+        return new JsonResource(\App\Models\User::all());
     }
 
     /**
      * Display the specified resource.
      *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
+     * @param int $id
+     * @return JsonResource
      */
-    public function show($id)
+    public function show()
     {
-        //
+        return new JsonResource(User::query()->findOrFail(Auth::id()));
     }
 
     /**
@@ -52,16 +41,18 @@ class UserController extends Controller
     public function update(UserRequest $request, $id)
     {
         //
+
     }
 
     /**
-     * Remove the specified resource from storage.
+     * Remove the specified resou
+     * rce from storage.
      *
      * @param  int  $id
-     * @return \Illuminate\Http\Response
+     * @return JsonResource
      */
-    public function destroy($id)
+    public function destroy(int $id)
     {
-        //
+        return new JsonResource(User::destroy($id));
     }
 }

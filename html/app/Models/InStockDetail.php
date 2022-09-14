@@ -7,6 +7,7 @@
 namespace App\Models;
 
 use Carbon\Carbon;
+use Illuminate\Database\Eloquent\Model;
 
 /**
  * Class InStockDetail
@@ -23,6 +24,18 @@ use Carbon\Carbon;
  * @property InStockInfo $in_stock_info
  * @property Item $item
  * @package App\Models
+ * @method static \Illuminate\Database\Eloquent\Builder|InStockDetail newModelQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|InStockDetail newQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|InStockDetail query()
+ * @method static \Illuminate\Database\Eloquent\Builder|InStockDetail whereCreateUserId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|InStockDetail whereCreatedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|InStockDetail whereId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|InStockDetail whereInStockId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|InStockDetail whereItemId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|InStockDetail whereItemQuantity($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|InStockDetail whereUpdateUserId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|InStockDetail whereUpdatedAt($value)
+ * @mixin \Eloquent
  */
 class InStockDetail extends BaseModel
 {

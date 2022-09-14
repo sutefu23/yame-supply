@@ -43,13 +43,12 @@ class DatabaseSeeder extends Seeder
             \App\Models\UserCategory::create($category);
         }
 
-        \App\Models\User::create([
+        \App\Models\User::query()->create([
             'id'    => 1,
             'name' => 'Admin',
             'user_category_id' => 100,
-            'user_category_name' => "事務局",
-            'password' => bcrypt('password'),
-            'email' => 'sutefu23@gmail.com',
+            'password' => bcrypt(env('DEFAULT_USER_PASS')),
+            'email' => env('DEFAULT_USER_MAIL'),
         ]);
 
         // 他のSeederの呼び出し
