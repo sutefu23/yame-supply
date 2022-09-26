@@ -1,17 +1,22 @@
 <script setup lang="ts">
-import { onMounted, ref } from 'vue';
+import { InputHTMLAttributes, onMounted, ref } from 'vue';
 
 defineProps(['modelValue']);
 
 defineEmits(['update:modelValue']);
 
-const input = ref(null);
+interface InputAttributes extends InputHTMLAttributes {
+    hasAttribute : (name: string) => boolean,
+    focus : () => void,
+}
+const input = ref<InputAttributes|null>(null);
 
 onMounted(() => {
-    if (input.value.hasAttribute('autofocus')) {
+    if (input.value && input.value.hasAttribute('autofocus')) {
         input.value.focus();
     }
 });
+
 </script>
 
 <template>

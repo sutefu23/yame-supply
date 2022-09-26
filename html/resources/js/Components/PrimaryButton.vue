@@ -1,7 +1,9 @@
 <script setup lang="ts">
+import { PropType, ButtonHTMLAttributes } from 'vue'
+
 defineProps({
     type: {
-        type: String,
+        type: String as PropType<ButtonHTMLAttributes['type']>,
         default: 'submit',
     },
 });

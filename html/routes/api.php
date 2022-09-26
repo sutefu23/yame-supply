@@ -25,7 +25,7 @@ use Illuminate\Support\Facades\Route;
         return $request->user();
     });
 
-    Route::middleware(['auth', 'api'])->group(function () {
+    Route::middleware('auth:sanctum')->group(function () {
         Route::get('/users/me', function (){
             return new JsonResource(User::query()->findOrFail(Auth()->id()));
         });
@@ -40,7 +40,7 @@ use Illuminate\Support\Facades\Route;
 
     });
 
-    Route::middleware(['auth', 'api'])->group(function () {
+    Route::middleware('auth:sanctum')->group(function () {
         Route::get('/items', function (){
             return new JsonResource(Item::all());
         });
