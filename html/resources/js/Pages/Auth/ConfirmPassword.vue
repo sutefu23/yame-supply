@@ -1,9 +1,9 @@
 <script setup lang="ts">
 import GuestLayout from '@/Layouts/GuestLayout.vue';
-import InputError from '@/Components/InputError.vue';
-import InputLabel from '@/Components/InputLabel.vue';
-import PrimaryButton from '@/Components/PrimaryButton.vue';
-import TextInput from '@/Components/TextInput.vue';
+import InputError from '@/Components/Input/InputError.vue';
+import InputLabel from '@/Components/Input/InputLabel.vue';
+import PrimaryButton from '@/Components/Button/PrimaryButton.vue';
+import TextInput from '@/Components/Input/TextInput.vue';
 import { Head, useForm } from '@inertiajs/inertia-vue3';
 
 const form = useForm({
@@ -22,7 +22,7 @@ const submit = () => {
         <Head title="Confirm Password" />
 
         <div class="mb-4 text-sm text-gray-600">
-            This is a secure area of the application. Please confirm your password before continuing.
+            続行する前にパスワードを再入力してください。
         </div>
 
         <form @submit.prevent="submit">

@@ -3,7 +3,7 @@ defineProps(['value']);
 </script>
 
 <template>
-    <label class="block font-medium text-sm text-gray-700">
+    <label class="text-gray-800 text-sm font-bold leading-tight tracking-normal">
         <span v-if="value">{{ value }}</span>
         <span v-else><slot /></span>
     </label>
