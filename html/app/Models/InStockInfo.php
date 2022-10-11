@@ -16,15 +16,19 @@ use Illuminate\Database\Eloquent\Model;
  * @property int $id
  * @property int $produce_user_id
  * @property Carbon $import_date
+ * @property int $warehouse_id
  * @property string $reason
  * @property int $create_user_id
  * @property int $update_user_id
  * @property Carbon|null $created_at
  * @property Carbon|null $updated_at
+ *
  * @property User $user
+ * @property Warehouse $warehouse
  * @property Collection|InStockDetail[] $in_stock_details
+ *
  * @package App\Models
- * @property-read int|null $in_stock_details_count
+ *  * @property-read int|null $in_stock_details_count
  * @method static \Illuminate\Database\Eloquent\Builder|InStockInfo newModelQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|InStockInfo newQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|InStockInfo query()
@@ -44,6 +48,7 @@ class InStockInfo extends BaseModel
 
 	protected $casts = [
 		'produce_user_id' => 'int',
+		'warehouse_id' => 'int',
 		'create_user_id' => 'int',
 		'update_user_id' => 'int'
 	];
@@ -55,6 +60,7 @@ class InStockInfo extends BaseModel
 	protected $fillable = [
 		'produce_user_id',
 		'import_date',
+		'warehouse_id',
 		'reason',
 		'create_user_id',
 		'update_user_id'
@@ -63,6 +69,11 @@ class InStockInfo extends BaseModel
 	public function user()
 	{
 		return $this->belongsTo(User::class, 'update_user_id');
+	}
+
+	public function warehouse()
+	{
+		return $this->belongsTo(Warehouse::class, 'warehouse_id');
 	}
 
 	public function in_stock_details()

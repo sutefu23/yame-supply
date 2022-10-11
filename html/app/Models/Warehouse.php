@@ -17,7 +17,9 @@ use Illuminate\Database\Eloquent\Model;
  * @property string $name
  * @property Carbon|null $created_at
  * @property Carbon|null $updated_at
+ * @property Collection|InStockInfo[] $in_stock_infos
  * @property Collection|Item[] $items
+ * @property Collection|OutStockInfo[] $out_stock_infos
  * @package App\Models
  * @property-read int|null $items_count
  * @method static \Illuminate\Database\Eloquent\Builder|Warehouse newModelQuery()
@@ -42,8 +44,18 @@ class Warehouse extends BaseModel
 		'name'
 	];
 
+	public function in_stock_infos()
+	{
+		return $this->hasMany(InStockInfo::class, 'warehouse_id');
+	}
+
 	public function items()
 	{
 		return $this->hasMany(Item::class, 'warehouse_id');
+	}
+
+	public function out_stock_infos()
+	{
+		return $this->hasMany(OutStockInfo::class, 'warehouse_id');
 	}
 }

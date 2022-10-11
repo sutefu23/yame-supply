@@ -15,6 +15,7 @@ use Illuminate\Database\Eloquent\Model;
  *
  * @property int $id
  * @property int|null $builder_user_id
+ * @property int $warehouse_id
  * @property Carbon $export_date
  * @property string $reason
  * @property int $create_user_id
@@ -22,6 +23,7 @@ use Illuminate\Database\Eloquent\Model;
  * @property Carbon|null $created_at
  * @property Carbon|null $updated_at
  * @property User $user
+ * @property Warehouse $warehouse
  * @property Collection|OutStockDetail[] $out_stock_details
  * @package App\Models
  * @property-read int|null $out_stock_details_count
@@ -44,6 +46,7 @@ class OutStockInfo extends BaseModel
 
 	protected $casts = [
 		'builder_user_id' => 'int',
+		'warehouse_id' => 'int',
 		'create_user_id' => 'int',
 		'update_user_id' => 'int'
 	];
@@ -54,6 +57,7 @@ class OutStockInfo extends BaseModel
 
 	protected $fillable = [
 		'builder_user_id',
+		'warehouse_id',
 		'export_date',
 		'reason',
 		'create_user_id',
@@ -63,6 +67,11 @@ class OutStockInfo extends BaseModel
 	public function user()
 	{
 		return $this->belongsTo(User::class, 'update_user_id');
+	}
+
+	public function warehouse()
+	{
+		return $this->belongsTo(Warehouse::class, 'warehouse_id');
 	}
 
 	public function out_stock_details()
