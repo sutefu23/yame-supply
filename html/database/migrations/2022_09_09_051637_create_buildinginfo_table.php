@@ -15,7 +15,7 @@ return new class extends Migration
     {
         Schema::create('BuildingInfo', function (Blueprint $table) {
             $table->id();
-            $table->string("field_name",255)->comment("現場名");
+            $table->string("field_name",255)->comment("現場名")->nullable();
             $table->foreignId("builder_user_id")->comment("工務店ユーザーID")->constrained('users');
             $table->date("time_limit")->comment("期限");
             $table->foreignId("create_user_id")->comment("登録者")->constrained('users');

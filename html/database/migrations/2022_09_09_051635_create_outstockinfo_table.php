@@ -18,7 +18,7 @@ return new class extends Migration
             $table->foreignId("builder_user_id")->nullable()->comment("工務店ユーザーID")->constrained('users');
             $table->foreignId('warehouse_id')->comment('倉庫ID')->constrained('Warehouse');
             $table->date("export_date")->comment("出庫日");
-            $table->string("reason",255)->comment("理由");
+            $table->string("reason",255)->comment("理由")->nullable();
             $table->foreignId("create_user_id")->comment("登録者")->constrained('users');
             $table->foreignId("update_user_id")->comment("変更者")->constrained('users');
             $table->timestamps();

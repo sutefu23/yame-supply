@@ -78,6 +78,6 @@ class InStockInfo extends BaseModel
 
 	public function in_stock_details()
 	{
-		return $this->hasMany(InStockDetail::class, 'in_stock_id');
+		return $this->hasMany(InStockDetail::class, 'in_stock_id')->with(['item']);
 	}
 }

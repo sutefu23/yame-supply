@@ -51,6 +51,21 @@ class DatabaseSeeder extends Seeder
             'email' => env('DEFAULT_USER_MAIL'),
         ]);
 
+        \App\Models\User::query()->create([
+            'id'    => 2,
+            'name' => '製材所1',
+            'user_category_id' => 1,
+            'password' => bcrypt(env('DEFAULT_USER_PASS')),
+            'email' => 'test2@test.jp',
+        ]);
+        \App\Models\User::query()->create([
+            'id'    => 3,
+            'name' => '工務店1',
+            'user_category_id' => 2,
+            'password' => bcrypt(env('DEFAULT_USER_PASS')),
+            'email' => 'test3@test.jp',
+        ]);
+
         // 他のSeederの呼び出し
         $this->call([
             ItemSeeder::class,

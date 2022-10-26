@@ -68,6 +68,7 @@ class User extends Authenticatable
 
     protected $casts = [
         'id' => 'int',
+        'user_category_id' => 'int',
     ];
 
 	protected $hidden = [
@@ -78,7 +79,7 @@ class User extends Authenticatable
 	protected $fillable = [
         'id',
         'name',
-		'category',
+		'user_category_id',
 		'email',
 		'email_verified_at',
 		'password',

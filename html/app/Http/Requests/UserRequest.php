@@ -24,12 +24,21 @@ class UserRequest extends FormRequest
      */
     public function rules()
     {
-        return [
-            'id' => ['required', 'string'],
-            'email' => ['required', 'string', 'email:rfc,dns'],
-            'password' => ['required', 'string', 'min:8'],
-            'user_category_id' => ['required', 'numeric','exists:UserCategory.id'],
-            'user_category_name' => ['required', 'numeric','exists:UserCategory.name'],
-        ];
+        if ($this->method() == 'POST') {
+            return [
+                'id' => ['required', 'unique:users,id','string'],
+                'email' => ['required', 'string', 'email:rfc,dns'],
+                'password' => ['required', 'string', 'min:8'],
+                'user_category_id' => ['required', 'numeric','exists:UserCategory,id'],
+            ];
+        }else{
+            return [
+                'id' => ['unique:users,id','string'],
+                'email' => ['string', 'email:rfc,dns'],
+                'password' => ['string', 'min:8'],
+                'user_category_id' => ['numeric','exists:UserCategory,id'],
+            ];
+
+        }
     }
 }

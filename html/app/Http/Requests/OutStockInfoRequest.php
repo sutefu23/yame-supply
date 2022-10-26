@@ -27,14 +27,14 @@ class OutStockInfoRequest extends FormRequest
     {
         return [
             'builder_user_id'   =>  ['numeric',
-                Rule::exists('User.id')->where(function($query){
+                Rule::exists('users','id')->where(function($query){
                     return $query->where('user_category_id', 2);//工務店のみ
                 })],
             'export_date'   =>  ['required', 'date'],
             'reason'   =>  ['string', 'max:255'],
-            'OutStockDetails' => ['required', 'array'],
-            'OutStockDetails.*.item_id' => ['required', 'numeric','exists:Item,id'],
-            'OutStockDetails.*.item_quantity' => ['required', 'numeric', 'min:0'],
+            'out_stock_details' => ['required', 'array'],
+            'out_stock_details.*.item_id' => ['required', 'numeric','exists:Item,id'],
+            'out_stock_details.*.item_quantity' => ['required', 'numeric', 'min:0'],
         ];
     }
 }

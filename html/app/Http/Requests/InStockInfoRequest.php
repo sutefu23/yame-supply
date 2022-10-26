@@ -27,14 +27,15 @@ class InStockInfoRequest extends FormRequest
     {
         return [
             'produce_user_id'   =>  ['required', 'numeric',
-                Rule::exists('User.id')->where(function($query){
+                Rule::exists('users','id')->where(function($query){
                     return $query->where('user_category_id', 1);//製材所のみ
                 })],
+            'reason'   =>  ['string', 'nullable', 'max:255'],
             'import_date'   =>  ['required', 'date'],
-            'reason'   =>  ['string', 'max:255'],
-            'InStockDetails' => ['required', 'array'],
-            'InStockDetails.*.item_id' => ['required', 'numeric','exists:Item,id'],
-            'InStockDetails.*.item_quantity' => ['required', 'numeric', 'min:0'],
+            'warehouse_id'   =>  ['required', 'numeric', 'exists:Warehouse,id'],
+            'in_stock_details' => ['required', 'array'],
+            'in_stock_details.*.item_id' => ['required', 'numeric','exists:Item,id'],
+            'in_stock_details.*.item_quantity' => ['required', 'numeric', 'min:0'],
         ];
     }
 }

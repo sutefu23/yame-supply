@@ -20,7 +20,7 @@ return new class extends Migration
             $table->unsignedInteger("thickness")->comment("厚み");
             $table->string("raw_wood_size",100)->comment("原木サイズ");
             $table->foreignId("warehouse_id")->comment("倉庫ID")->constrained('Warehouse');
-            $table->string("memo",255)->comment("摘要");
+            $table->string("memo",255)->comment("摘要")->nullable();
             $table->unsignedInteger("quantity")->comment("数量");
             $table->unsignedInteger("essential_quantity")->comment("基準数量");
             $table->foreignId("unit_id")->comment("単位ID")->constrained('Unit');

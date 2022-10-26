@@ -1,25 +1,27 @@
 module.exports = {
   root: true,
   env: {
-    node: true,
+    node: true
   },
   extends: [
-    "plugin:vue/vue3-essential",
-    "plugin:vue/vue3-recommended",
     "eslint:recommended",
+    "plugin:vue/vue3-essential",
     "@vue/typescript/recommended",
-    "@vue/prettier",
-    "@vue/prettier/@typescript-eslint",
+    "prettier"
   ],
   parserOptions: {
-    ecmaVersion: 2020,
+    ecmaVersion: 2020
+  },
+  globals: {
+    route: true,
+    Ziggy: true,
+    ValidationError: true
   },
   rules: {
     "no-console": process.env.NODE_ENV === "production" ? "warn" : "off",
     "no-debugger": process.env.NODE_ENV === "production" ? "warn" : "off",
     complexity: ["error", 10],
     "max-depth": ["error", 4],
-    camelcase: "error",
     eqeqeq: "error",
     yoda: "error",
     "consistent-this": ["error", "self"],
@@ -38,14 +40,15 @@ module.exports = {
     "no-invalid-this": "error",
     "no-unexpected-multiline": "error",
     "func-style": "error",
+    "vue/multi-word-component-names": "off"
   },
   overrides: [
     {
-      files: ["**/*.ts?(x)"],
+      files: ["**/*.(ts|vue)"],
       parser: "@typescript-eslint/parser",
       parserOptions: {
         project: "./tsconfig.json",
-        tsconfigRootDir: ".",
+        tsconfigRootDir: "."
       },
       plugins: ["@typescript-eslint"],
       rules: {
@@ -56,40 +59,41 @@ module.exports = {
           "error",
           {
             allowExpressions: true,
-            allowTypedFunctionExpressions: true,
-          },
+            allowTypedFunctionExpressions: true
+          }
         ],
+
         camelcase: "off",
         "@typescript-eslint/naming-convention": [
           "error",
           {
             selector: "default",
-            format: ["camelCase"],
+            format: ["camelCase"]
           },
           {
             selector: ["enum", "enumMember"],
-            format: ["UPPER_CASE"],
+            format: ["UPPER_CASE"]
           },
           {
             selector: ["variableLike", "memberLike"],
-            format: ["strictCamelCase"],
+            format: ["strictCamelCase"]
           },
           {
             selector: ["variable", "parameter"],
             format: ["strictCamelCase", "StrictPascalCase"],
-            leadingUnderscore: "allow",
+            leadingUnderscore: "allow"
           },
           {
             selector: ["function", "method"],
             format: ["camelCase"],
-            leadingUnderscore: "allow",
+            leadingUnderscore: "allow"
           },
           {
             selector: "typeLike",
-            format: ["PascalCase"],
-          },
-        ],
-      },
-    },
-  ],
+            format: ["PascalCase"]
+          }
+        ]
+      }
+    }
+  ]
 };
