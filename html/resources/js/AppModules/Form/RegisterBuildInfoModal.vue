@@ -2,14 +2,14 @@
 import Modal from '@/Components/Alert/Modal.vue';
 import InputLabel from '@/Components/Input/InputLabel.vue';
 import TextInput from '@/Components/Input/TextInput.vue';
-import ProducerSelect from '@/AppModules/Input/ProducerSelect.vue';
+import BuilderSelect from '@/AppModules/Input/BuilderSelect.vue';
 import WarehouseSelect from '../Input/WarehouseSelect.vue';
-import useInStock from '@/hooks/api/useInStock'
+import useBuildingInfo from '@/hooks/api/useBuildingInfo'
 import { GetItemData } from '@/hooks/api/useItems';
 const prop = defineProps<{ show: boolean, items: GetItemData[] }>()
 const emit = defineEmits(["close", "onSuccess"])
 
-const { form, post, InvalidError } = useInStock(prop.items)
+const { form, post, InvalidError } = useBuildingInfo(prop.items)
 const submit = async () => {
   await post(form)
   emit('onSuccess')
@@ -17,27 +17,24 @@ const submit = async () => {
 
 </script>
 <template>
-  <Modal button-ok="確定" :show="show" modal-title="在庫登録" @emit:close="$emit('close')" @emit:ok="submit">
+  <Modal button-ok="確定" :show="show" modal-title="現場情報登録" @emit:close="$emit('close')" @emit:ok="submit">
     <div class="container mx-auto grid sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-2 xl:grid-cols-2 pt-6 gap-8">
       <div class="h-full">
-        <InputLabel for="producer">生産所</InputLabel>
-        <InvalidError field="produce_user_id" />
-        <ProducerSelect v-model="form.produce_user_id"></ProducerSelect>
-        <InputLabel>入荷日</InputLabel>
-        <InvalidError field="import_date" />
-        <TextInput type="date" id="importDate" v-model="form.import_date" />
+        <InputLabel for="field_name">現場名</InputLabel>
+        <InvalidError field="field_name" />
+        <TextInput id="field_name" placeholder="現場名" v-model="form.field_name" />
+        <InputLabel for="producer">工務店</InputLabel>
+        <InvalidError field="builder_user_id" />
+        <BuilderSelect v-model="form.builder_user_id"></BuilderSelect>
       </div>
       <div class="h-full">
-        <InputLabel for="warehouse">倉庫</InputLabel>
-        <InvalidError field="warehouse_id" />
-        <WarehouseSelect v-model="form.warehouse_id"></WarehouseSelect>
-        <InputLabel for="reason">備考</InputLabel>
-        <InvalidError field="reason" />
-        <TextInput id="reason" placeholder="備考" v-model="form.reason" />
+        <InputLabel>有効期限</InputLabel>
+        <InvalidError field="time_limit" />
+        <TextInput type="date" id="importDate" v-model="form.time_limit" />
       </div>
     </div>
     <div class="w-full h-full mb-10">
-      <InvalidError field="in_stock_details" />
+      <InvalidError field="building_info_details" />
       <table class="w-full whitespace-nowrap overflow-y-scroll h-96">
         <thead>
           <tr tabindex="0" class="
@@ -71,7 +68,7 @@ const submit = async () => {
             <td class="border-r border-gray-200">
               <div class="flex items-center justify-center">
                 <TextInput name="quantity" class="w-12" v-if="form"
-                  v-model="form.in_stock_details[index].item_quantity">
+                  v-model="form.building_info_details[index].item_quantity">
                 </TextInput>
                 <div class="h-full">{{ item.unit.name }}</div>
               </div>

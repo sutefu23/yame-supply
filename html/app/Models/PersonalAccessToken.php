@@ -36,7 +36,7 @@ use Carbon\Carbon;
  * @method static \Illuminate\Database\Eloquent\Builder|PersonalAccessToken whereUpdatedAt($value)
  * @mixin \Eloquent
  */
-class PersonalAccessToken extends BaseModel
+class PersonalAccessToken extends Model
 {
 	protected $table = 'personal_access_tokens';
 

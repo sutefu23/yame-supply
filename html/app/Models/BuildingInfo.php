@@ -61,4 +61,9 @@ class BuildingInfo extends BaseModel
 	{
 		return $this->belongsTo(User::class, 'update_user_id');
 	}
+
+    public function building_info_details()
+    {
+        return $this->hasMany(BuildingInfoDetail::class, 'build_info_id')->with(['item']);
+    }
 }

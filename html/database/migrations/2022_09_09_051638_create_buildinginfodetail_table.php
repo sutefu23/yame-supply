@@ -15,9 +15,11 @@ return new class extends Migration
     {
         Schema::create('BuildingInfoDetail', function (Blueprint $table) {
             $table->id();
-            $table->unsignedInteger("build_info_id")->comment("棟情報ID");
+            $table->foreignId("build_info_id")->comment("棟情報ID")->constrained('BuildingInfo');
             $table->foreignId("item_id")->comment("使用製材ID")->constrained('Item');
             $table->unsignedInteger("item_quantity")->comment("使用製材数");
+            $table->foreignId("create_user_id")->comment("登録者")->constrained('users');
+            $table->foreignId("update_user_id")->comment("変更者")->constrained('users');
             $table->timestamps();
         });
     }

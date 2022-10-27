@@ -31,7 +31,7 @@ use Illuminate\Database\Eloquent\Model;
  * @method static \Illuminate\Database\Eloquent\Builder|Warehouse whereUpdatedAt($value)
  * @mixin \Eloquent
  */
-class Warehouse extends BaseModel
+class Warehouse extends Model
 {
 	protected $table = 'Warehouse';
 	public $incrementing = false;

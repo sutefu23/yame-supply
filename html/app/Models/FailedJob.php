@@ -5,7 +5,7 @@
  */
 
 namespace App\Models;
-
+use Illuminate\Database\Eloquent\Model;
 use Carbon\Carbon;
 
 /**
@@ -31,7 +31,7 @@ use Carbon\Carbon;
  * @method static \Illuminate\Database\Eloquent\Builder|FailedJob whereUuid($value)
  * @mixin \Eloquent
  */
-class FailedJob extends BaseModel
+class FailedJob extends Model
 {
 	protected $table = 'failed_jobs';
 	public $timestamps = false;

@@ -158,11 +158,14 @@ return [
         'reason'   => '備考',
         'warehouse_id'  =>  '倉庫',
         'in_stock_details'  => '明細',
-        'InStockDetails'  => '明細',
-        'OutStockDetails'  => '明細',
-        'BuildingInfoDetails'  => '明細',
         'out_stock_details'  => '明細',
         'building_info_details'  => '明細',
+        'field_name'  => '現場名',
+        'builder_user_id'  => '工務店',
+        'time_limit'    => '有効期限',
+        'today'    => '本日',
+        'import_date'    => '入荷日',
+        'export_date'    => '出荷日',
     ],
 
 ];

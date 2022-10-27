@@ -29,7 +29,7 @@ use Illuminate\Database\Eloquent\Model;
  * @method static \Illuminate\Database\Eloquent\Builder|UserCategory whereUpdatedAt($value)
  * @mixin \Eloquent
  */
-class UserCategory extends BaseModel
+class UserCategory extends Model
 {
 	protected $table = 'UserCategory';
 	public $incrementing = false;

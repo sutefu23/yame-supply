@@ -22,7 +22,7 @@ use Carbon\Carbon;
  * @method static \Illuminate\Database\Eloquent\Builder|PasswordReset whereToken($value)
  * @mixin \Eloquent
  */
-class PasswordReset extends BaseModel
+class PasswordReset extends Model
 {
 	protected $table = 'password_resets';
 	public $incrementing = false;

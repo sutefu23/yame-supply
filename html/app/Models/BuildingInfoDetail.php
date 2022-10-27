@@ -38,17 +38,26 @@ class BuildingInfoDetail extends BaseModel
 	protected $casts = [
 		'build_info_id' => 'int',
 		'item_id' => 'int',
-		'item_quantity' => 'int'
+		'item_quantity' => 'int',
+        'create_user_id' => 'int',
+        'update_user_id' => 'int'
 	];
 
 	protected $fillable = [
 		'build_info_id',
 		'item_id',
-		'item_quantity'
+		'item_quantity',
+        'create_user_id' => 'int',
+        'update_user_id' => 'int'
 	];
 
 	public function item()
 	{
 		return $this->belongsTo(Item::class, 'item_id');
 	}
+
+    public function building_info()
+    {
+        return $this->belongsTo(BuildingInfo::class, 'build_info_id');
+    }
 }

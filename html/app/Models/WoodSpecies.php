@@ -8,6 +8,7 @@ namespace App\Models;
 
 use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Collection;
+use Illuminate\Database\Eloquent\Model;
 
 /**
  * Class WoodSpecies
@@ -27,7 +28,7 @@ use Illuminate\Database\Eloquent\Collection;
  * @method static \Illuminate\Database\Eloquent\Builder|WoodSpecies whereUpdatedAt($value)
  * @mixin \Eloquent
  */
-class WoodSpecies extends BaseModel
+class WoodSpecies extends Model
 {
 	protected $table = 'WoodSpecies';
 

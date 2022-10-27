@@ -4,6 +4,8 @@ import AuthenticatedLayout from '@/Layouts/AuthenticatedLayout.vue';
 import { Head } from '@inertiajs/inertia-vue3';
 import RegisterBuildingInfoStockModal from '../AppModules/Form/RegisterBuildInfoModal.vue';
 import useItems, { GetItemData } from '@/hooks/api/useItems';
+import useBuildingInfo, { GetBuilingInfoData } from '@/hooks/api/useBuildingInfo';
+import dayjs from 'dayjs';
 const showModal = ref(false)
 const modalOpen = () => {
   showModal.value = true
@@ -12,14 +14,19 @@ const { fetch: fetchItems } = useItems()
 
 const items = ref<GetItemData[]>([])
 
+const { fetch: fetchInfos } = useBuildingInfo(items.value)
+
+const buidingInfos = ref<GetBuilingInfoData[]>([])
+
+
 onBeforeMount(async () => {
   items.value = await fetchItems()
+  buidingInfos.value = await fetchInfos()
 })
 
 const onSubmitSuccess = async () => {
   alert("登録しました。")
   showModal.value = false
-  items.value = await fetchItems()
 }
 </script>
 <template>
@@ -30,7 +37,7 @@ const onSubmitSuccess = async () => {
     <AuthenticatedLayout>
       <template #header>
         <h2 class="font-semibold text-l text-gray-800 leading-tight">
-          在庫TOP
+          棟情報一覧
         </h2>
       </template>
       <div class="py-5">
@@ -40,7 +47,7 @@ const onSubmitSuccess = async () => {
             <div class="p-6 bg-white border-b border-gray-200">
               <button
                 class="mx-2 my-2 bg-green-700 transition duration-150 ease-in-out hover:bg-green-600 rounded text-white px-8 py-3 text-sm focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-green-600"
-                @click="modalOpen">棟情報登録</button>
+                @click="modalOpen">詳細</button>
 
               <table class="w-full whitespace-nowrap">
                 <thead>
@@ -52,18 +59,15 @@ const onSubmitSuccess = async () => {
                       leading-none
                       text-gray-800
                       ">
-                    <th>名称</th>
-                    <th colspan="5">製材寸法</th>
-                    <th>原木末口径(mm)</th>
-                    <th>在庫本数</th>
-                    <th>棟登録合計</th>
-                    <th>予定必要本数</th>
-                    <th>不足本数</th>
+                    <th>現場名</th>
+                    <th>工務店</th>
+                    <th>期限</th>
+                    <th>登録日</th>
                   </tr>
                 </thead>
                 <tbody class="w-full">
 
-                  <tr v-for="item in items" :key="item.id" tabindex="0" class="
+                  <tr v-for="info in buidingInfos" :key="info.id" tabindex="0" class="
                           focus:outline-none
                           h-16
                           text-gray-800
@@ -72,34 +76,12 @@ const onSubmitSuccess = async () => {
                           text-center
                           border-b border-t border-gray-100
                       ">
-                    <td class="border-r border-l border-gray-200">{{ item.wood_species.name }}</td>
-                    <td class="border-l border-gray-200">{{ item.length }}</td>
-                    <td>×</td>
-                    <td>{{ item.width }}</td>
-                    <td>×</td>
-                    <td class="border-r border-gray-200">{{ item.thickness }}</td>
-                    <td class="border-r border-gray-200">{{ item.raw_wood_size }}</td>
-                    <td class="border-r border-gray-200">{{ item.quantity }}</td>
-                    <td class="border-r border-gray-200">0</td>
-                    <td class="border-r border-gray-200 bg-gray-100 font-semibold hover:bg-indigo-100">
-                      {{ item.essential_quantity }}</td>
-                    <td class="border-r border-gray-200">0</td>
+                    <td class="border-r border-l border-gray-200">{{ info.field_name }}</td>
+                    <td class="border-r border-gray-200">{{ info.user.name }}</td>
+                    <td class="border-r border-gray-200">{{ dayjs(info.time_limit).format('YYYY-MM-DD') }}</td>
+                    <td class="border-r border-gray-200">{{ dayjs(info.created_at).format('YYYY-MM-DD') }}</td>
                   </tr>
-
-
                 </tbody>
-                <tfoot>
-                  <tr tabindex="0" class="
-                                        h-16
-                                        w-full
-                                        text-center
-                                        text-gray-800
-                                        ">
-                    <td colspan="8"></td>
-                    <td class="border-l border-b border-r border-gray-200 font-bold bg-gray-100">200</td>
-                    <td class="border-l border-b border-r border-gray-200 font-semibold">400</td>
-                  </tr>
-                </tfoot>
               </table>
             </div>
           </div>

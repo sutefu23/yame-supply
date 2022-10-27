@@ -54,7 +54,7 @@ use Illuminate\Database\Eloquent\Model;
  * @method static \Illuminate\Database\Eloquent\Builder|Item whereWoodSpeciesId($value)
  * @mixin \Eloquent
  */
-class Item extends BaseModel
+class Item extends Model
 {
 	protected $table = 'Item';
 	public $incrementing = false;

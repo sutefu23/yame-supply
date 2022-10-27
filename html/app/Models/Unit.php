@@ -29,7 +29,7 @@ use Illuminate\Database\Eloquent\Model;
  * @method static \Illuminate\Database\Eloquent\Builder|Unit whereUpdatedAt($value)
  * @mixin \Eloquent
  */
-class Unit extends BaseModel
+class Unit extends Model
 {
 	protected $table = 'Unit';
 	public $incrementing = false;

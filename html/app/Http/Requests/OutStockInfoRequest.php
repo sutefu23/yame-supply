@@ -31,7 +31,7 @@ class OutStockInfoRequest extends FormRequest
                     return $query->where('user_category_id', 2);//工務店のみ
                 })],
             'export_date'   =>  ['required', 'date'],
-            'reason'   =>  ['string', 'max:255'],
+            'reason'   =>  ['string', 'nullable','max:255'],
             'out_stock_details' => ['required', 'array'],
             'out_stock_details.*.item_id' => ['required', 'numeric','exists:Item,id'],
             'out_stock_details.*.item_quantity' => ['required', 'numeric', 'min:0'],
