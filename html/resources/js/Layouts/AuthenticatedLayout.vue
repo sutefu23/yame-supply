@@ -4,10 +4,22 @@ import Dropdown from '@/Components/Navi/Dropdown.vue';
 import DropdownLink from '@/Components/Navi/DropdownLink.vue';
 import NavLink from '@/Components/Navi/NavLink.vue';
 import ResponsiveNavLink from '@/Components/Navi/ResponsiveNavLink.vue';
+import RegisterInStockModal from '@/AppModules/Form/RegisterInStockModal.vue';
+import RegisterOutStockModal from '@/AppModules/Form/RegisterOutStockModal.vue';
+import RegisterBuildInfoModal from '@/AppModules/Form/RegisterBuildInfoModal.vue';
 import { Link } from '@inertiajs/inertia-vue3';
 
 const showingNavigationDropdown = ref(false);
+const showInStock = ref(false)
+const showOutStock = ref(false)
+const showBuildInfo = ref(false)
 
+const onSuccessSubmit = () => {
+  alert("登録しました。")
+  showInStock.value = false
+  showOutStock.value = false
+  showBuildInfo.value = false
+}
 </script>
 
 <template>
@@ -49,12 +61,14 @@ const showingNavigationDropdown = ref(false);
                   </template>
 
                   <template #content>
-                    <DropdownLink :href="route('logout')" as="button">
+                    <p class="block w-full px-4 py-2 text-left text-sm leading-5 text-gray-700 hover:bg-gray-100 focus:outline-none focus:bg-gray-100 transition duration-150 ease-in-out"
+                      @click="showInStock = true">
                       在庫入荷
-                    </DropdownLink>
-                    <DropdownLink :href="route('logout')" as="button">
+                    </p>
+                    <p class="block w-full px-4 py-2 text-left text-sm leading-5 text-gray-700 hover:bg-gray-100 focus:outline-none focus:bg-gray-100 transition duration-150 ease-in-out"
+                      @click="showOutStock = true">
                       在庫出荷
-                    </DropdownLink>
+                    </p>
                   </template>
                 </Dropdown>
                 <Dropdown>
@@ -74,9 +88,10 @@ const showingNavigationDropdown = ref(false);
                   </template>
 
                   <template #content>
-                    <DropdownLink :href="route('logout')" as="button">
+                    <p class="block w-full px-4 py-2 text-left text-sm leading-5 text-gray-700 hover:bg-gray-100 focus:outline-none focus:bg-gray-100 transition duration-150 ease-in-out"
+                      @click="showBuildInfo = true">
                       棟情報登録
-                    </DropdownLink>
+                    </p>
                     <DropdownLink :href="route('BuildInfoList')" as="button">
                       棟情報確認・編集
                     </DropdownLink>
@@ -196,6 +211,9 @@ const showingNavigationDropdown = ref(false);
       <main>
         <slot />
       </main>
+      <RegisterInStockModal :show="showInStock" @close="showInStock = false" @on-success="onSuccessSubmit" />
+      <RegisterOutStockModal :show="showOutStock" @close="showOutStock = false" @on-success="onSuccessSubmit" />
+      <RegisterBuildInfoModal :show="showBuildInfo" @close="showBuildInfo = false" @on-success="onSuccessSubmit" />
     </div>
   </div>
 </template>

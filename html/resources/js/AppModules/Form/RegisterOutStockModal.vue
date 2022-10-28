@@ -6,10 +6,14 @@ import BuilderSelect from '@/AppModules/Input/BuilderSelect.vue';
 import WarehouseSelect from '../Input/WarehouseSelect.vue';
 import useOutStock from '@/hooks/api/useOutStock'
 import { GetItemData } from '@/hooks/api/useItems';
-const prop = defineProps<{ show: boolean, items: GetItemData[] }>()
+import { usePage } from '@inertiajs/inertia-vue3';
+defineProps<{ show: boolean }>()
 const emit = defineEmits(["close", "onSuccess"])
 
-const { form, post, InvalidError } = useOutStock(prop.items)
+const { props } = usePage<{ Items: GetItemData[] }>()
+const items = props.value.Items
+
+const { form, post, InvalidError } = useOutStock()
 const submit = async () => {
   await post()
   form.reset()
