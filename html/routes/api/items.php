@@ -5,7 +5,8 @@
     use App\Http\Requests\ItemRequest;
     use App\Http\Requests\OutStockInfoRequest;
     use App\Models\BuildingInfo;
-     use App\Models\InStockInfo;
+    use App\Models\BuildingInfoDetail;
+    use App\Models\InStockInfo;
     use App\Models\Item;
     use App\Models\OutStockInfo;
     use Carbon\Carbon;
@@ -48,11 +49,29 @@
         return new JsonResource($outStockInfo);
     })->name('OutStockInfo.post');
 
-
-    Route::get('/BuildingInfo/{id?}', function (Request $request, int|null $id){
-        $beforeMonth = Carbon::today()->subMonth();
-        return new JsonResource(BuildingInfo::whereDate('time_limit','>', $beforeMonth)::find($id)::with(['user'])->get());
+    Route::get('/BuildingInfo/', function (Request $request){
+        return new JsonResource(BuildingInfo::with(['user','building_info_details'])->where(function($query) use ($request){
+            $id = $request->query('id');
+            $beforeMonth = Carbon::today()->subMonth();
+            $query->whereDate('time_limit','>', $beforeMonth);
+            if($id){
+                $query->whereId($id);
+            }
+        })->orderBy("time_limit", "desc")->get());
     });
+
+    Route::patch('/BuildingInfo/{id}', function (BuildingInfoRequest $request, int $id){
+        $data = $request->validated();
+        DB::beginTransaction();
+        foreach ($data['building_info_details'] as $info_detail){
+            BuildingInfoDetail::where(['build_info_id' => $id, 'item_id' => $info_detail['item_id']])->update(['item_quantity' => $info_detail['item_quantity']]);
+        }
+        unset($data['building_info_details']);
+        BuildingInfo::whereId($id)->update($data);
+        DB::commit();
+        return true;
+    })->name('BuildingInfo.post');
+
 
     Route::post('/BuildingInfo', function (BuildingInfoRequest $request){
         $data = $request->validated();

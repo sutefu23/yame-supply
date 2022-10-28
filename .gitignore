@@ -8,4 +8,4 @@
 *.sql
 *.sql.gz
 ~*
-*.dtmt
+*.dtmp

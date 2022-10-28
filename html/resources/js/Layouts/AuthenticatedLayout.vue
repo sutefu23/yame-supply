@@ -77,7 +77,7 @@ const showingNavigationDropdown = ref(false);
                     <DropdownLink :href="route('logout')" as="button">
                       棟情報登録
                     </DropdownLink>
-                    <DropdownLink :href="route('logout')" as="button">
+                    <DropdownLink :href="route('BuildInfoList')" as="button">
                       棟情報確認・編集
                     </DropdownLink>
                   </template>

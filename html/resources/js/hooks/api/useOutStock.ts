@@ -1,6 +1,6 @@
 import useApi from './useApi';
 import { GetItemData } from './useItems';
-import { useForm as useInertiaForm } from '@inertiajs/inertia-vue3';
+import { useForm as useInertiaForm, usePage } from '@inertiajs/inertia-vue3';
 import useDisplayError, { isValidationError } from '../useDisplayError';
 import { defineComponent, h, ref } from 'vue';
 import dayjs from 'dayjs';
@@ -21,10 +21,12 @@ export type OutStockData = {
 export type QueryParam = Partial<OutStockData>
 export type InvalidError = ValidationError<OutStockData>
 
-const useOutStockData = (items?:GetItemData[]) => {
+const useOutStockData = () => {
 
   const { fetch: fetchApi, create: createApi} = useApi('InStockInfo');
- 
+  const { props } = usePage<{ Items: GetItemData[] }>()
+  const items = props.value.Items
+   
   const DisplayError = useDisplayError<OutStockData>()
 
   const error = ref<InvalidError|undefined>(undefined)
@@ -35,16 +37,16 @@ const useOutStockData = (items?:GetItemData[]) => {
       import_date: dayjs().format('YYYY-MM-DD'),
       warehouse_id: 0,
       reason: "",
-      out_stock_details: (items??[]).map(item => ({
+      out_stock_details: items.map(item => ({
         item_id: item.id,
         item_quantity: 0
       }))
     })
   
 
-  const post = async (formData: typeof form) => {
+  const post = async () => {
     try{
-      return await createApi<OutStockData>(formData)
+      return await createApi<OutStockData>(form)
     }catch(e){
       if(isValidationError<OutStockData>(e)){
         error.value = e

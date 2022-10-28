@@ -6,12 +6,17 @@ import ProducerSelect from '@/AppModules/Input/ProducerSelect.vue';
 import WarehouseSelect from '../Input/WarehouseSelect.vue';
 import useInStock from '@/hooks/api/useInStock'
 import { GetItemData } from '@/hooks/api/useItems';
-const prop = defineProps<{ show: boolean, items: GetItemData[] }>()
+import { usePage } from '@inertiajs/inertia-vue3';
+const prop = defineProps<{ show: boolean }>()
 const emit = defineEmits(["close", "onSuccess"])
 
-const { form, post, InvalidError } = useInStock(prop.items)
+const { props } = usePage<{ Items: GetItemData[] }>()
+const items = props.value.Items
+
+const { form, post, InvalidError } = useInStock()
 const submit = async () => {
-  await post(form)
+  await post()
+  form.reset()
   emit('onSuccess')
 }
 

@@ -93,7 +93,7 @@ class User extends Authenticatable
 
 	public function building_infos()
 	{
-		return $this->hasMany(BuildingInfo::class, 'update_user_id');
+		return $this->hasMany(BuildingInfo::class, 'builder_user_id');
 	}
 
 	public function in_stock_details()
@@ -103,7 +103,7 @@ class User extends Authenticatable
 
 	public function in_stock_infos()
 	{
-		return $this->hasMany(InStockInfo::class, 'update_user_id');
+		return $this->hasMany(InStockInfo::class, 'produce_user_id');
 	}
 
 	public function out_stock_details()
@@ -113,6 +113,6 @@ class User extends Authenticatable
 
 	public function out_stock_infos()
 	{
-		return $this->hasMany(OutStockInfo::class, 'update_user_id');
+		return $this->hasMany(OutStockInfo::class, 'builder_user_id');
 	}
 }

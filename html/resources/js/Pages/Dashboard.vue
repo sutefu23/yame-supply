@@ -106,8 +106,7 @@ const onSubmitSuccess = async () => {
         </div>
       </div>
     </AuthenticatedLayout>
-    <RegisterBuildingInfoStockModal v-if="items.length" :items="items" :show="showModal" @close="showModal = false"
-      @on-success="onSubmitSuccess" />
+    <RegisterBuildingInfoStockModal :show="showModal" @close="showModal = false" @on-success="onSubmitSuccess" />
   </div>
 
 

@@ -1,9 +1,8 @@
 import useApi from './useApi';
 import { GetItemData } from './useItems';
-import { useForm as useInertiaForm } from '@inertiajs/inertia-vue3';
+import { useForm as useInertiaForm, usePage } from '@inertiajs/inertia-vue3';
 import useDisplayError, { isValidationError } from '../useDisplayError';
 import { defineComponent, h, ref } from 'vue';
-import dayjs from 'dayjs';
 import { UserData } from './useUsers';
 
 export type BuildingInfoData = {
@@ -27,10 +26,13 @@ export type GetBuilingInfoData = BuildingInfoData & { user: UserData} & { readon
 export type UpdateBuilingInfoData = Partial<Omit<BuildingInfoData, "id">>
 export type InvalidError = ValidationError<BuildingInfoData>
 
-const useBuildingInfoData = (items?:GetItemData[]) => {
+const useBuildingInfoData = () => {
 
-  const { fetch: fetchApi, create: createApi} = useApi('BuildingInfo');
- 
+  const { fetch: fetchApi, update: updateApi, create: createApi} = useApi('BuildingInfo');
+
+  const { props } = usePage<{Items:GetItemData[]}>()
+  const items = props.value.Items
+
   const DisplayError = useDisplayError<BuildingInfoData>()
 
   const error = ref<InvalidError|undefined>(undefined)
@@ -40,16 +42,26 @@ const useBuildingInfoData = (items?:GetItemData[]) => {
       field_name: "",
       builder_user_id: 0,
       time_limit: "",
-      building_info_details: (items??[]).map(item => ({
+      building_info_details: items.map(item => ({
         item_id: item.id,
         item_quantity: 0
       }))
     })
   
-
-  const post = async (formData: typeof form) => {
+  const update = async (id: BuildingInfoData["id"]) => {
     try{
-      return await createApi<UpdateBuilingInfoData>(formData)
+      return await updateApi<UpdateBuilingInfoData>(form, id)
+    }catch(e){
+      if(isValidationError<UpdateBuilingInfoData>(e)){
+        error.value = e
+      }
+      throw e
+    }
+  }
+
+  const post = async () => {
+    try{
+      return await createApi<UpdateBuilingInfoData>(form)
     }catch(e){
       if(isValidationError<UpdateBuilingInfoData>(e)){
         error.value = e
@@ -64,6 +76,7 @@ const useBuildingInfoData = (items?:GetItemData[]) => {
   return {
     fetch,
     form,
+    update,
     post,
     InvalidError
   };

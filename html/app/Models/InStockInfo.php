@@ -68,7 +68,7 @@ class InStockInfo extends BaseModel
 
 	public function user()
 	{
-		return $this->belongsTo(User::class, 'update_user_id');
+		return $this->belongsTo(User::class, 'produce_user_id');
 	}
 
 	public function warehouse()

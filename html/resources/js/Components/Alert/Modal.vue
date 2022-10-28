@@ -18,6 +18,10 @@ defineProps({
   buttonCancel: {
     type: String,
     default: "キャンセル",
+  },
+  disable: {
+    type: Boolean,
+    default: false
   }
 });
 
@@ -37,7 +41,7 @@ const emit = defineEmits<EmitType>();
       <div class="relative py-8 px-5 md:px-10 bg-white shadow-md rounded border border-gray-400">
         <h1 class="text-gray-800 font-lg font-bold tracking-normal leading-tight mb-4">{{ modalTitle }}</h1>
         <slot />
-        <div class="flex items-center justify-center w-full">
+        <div v-if="!disable" class="flex items-center justify-center w-full">
           <button
             class="focus:outline-none transition duration-150 ease-in-out hover:bg-green-600 bg-green-700 rounded text-white px-8 py-2 text-sm"
             @click="emit('emit:ok')">{{ buttonOk }}</button>

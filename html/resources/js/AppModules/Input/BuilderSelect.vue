@@ -15,10 +15,7 @@ onBeforeMount(async () => {
 })
 </script>
 <template>
-  <SelectInput id="builder" :model-value="modelValue" @update:modelValue="$emit('update:modelValue', $event)">
-    <option value="" />
-    <option v-for="builder in builders" :key="builder.id" :value="builder.id">
-      {{ builder.name }}
-    </option>
+  <SelectInput id="builder" :model-value="modelValue" @update:modelValue="$emit('update:modelValue', $event)"
+    :options="builders.map(builder => ({ key: builder.id, name: builder.name }))">
   </SelectInput>
 </template>

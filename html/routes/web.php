@@ -1,6 +1,7 @@
 <?php
 
-use App\Models\UserCategory;
+    use App\Models\Item;
+    use App\Models\UserCategory;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
 
@@ -23,9 +24,21 @@ Route::get('/', function () {
 });
 
 Route::get('/dashboard', function () {
-    return Inertia::render('Dashboard'
-        ,["UserCategory"    =>  UserCategory::all()]
+    return Inertia::render('Dashboard',
+        [
+            "UserCategory"    =>  UserCategory::all(),
+            "Items" => Item::with(['wood_species','unit','warehouse'])->get()
+        ]
     );
 })->middleware(['auth', 'verified'])->name('dashboard');
+
+Route::get('/BuildInfoList', function () {
+    return Inertia::render('BuildInfoList',
+        [
+            "UserCategory"    =>  UserCategory::all(),
+            "Items" => Item::with(['wood_species','unit','warehouse'])->get()
+        ]
+    );
+})->middleware(['auth', 'verified'])->name('BuildInfoList');
 
 require __DIR__.'/auth.php';

@@ -19,8 +19,8 @@ window.axios.interceptors.request.use(
     return config;
   },
   function (error) {
-    if (error.request.message) {
-      alert(error.request.message);
+    if (error.message) {
+      alert(error.message);
     }
     console.error(error);
     return Promise.reject(error.request);
@@ -32,7 +32,11 @@ window.axios.interceptors.response.use(
     return response;
   },
   function (error) {
-    alert(error.response?.data.message);
+    if (error.response?.data.message) {
+      alert(error.response?.data.message);
+    } else {
+      alert(error.message);
+    }
     console.error(error);
     return Promise.reject(error.response);
   }

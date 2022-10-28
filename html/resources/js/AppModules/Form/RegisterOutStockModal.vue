@@ -11,7 +11,8 @@ const emit = defineEmits(["close", "onSuccess"])
 
 const { form, post, InvalidError } = useOutStock(prop.items)
 const submit = async () => {
-  await post(form)
+  await post()
+  form.reset()
   emit('onSuccess')
 }
 
