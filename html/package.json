@@ -12,7 +12,6 @@
     "lint-staged": {
         "*.{ts,vue}": [
             "yarn lint",
-            "yarn format",
             "yarn lint:fix"
         ]
     },
