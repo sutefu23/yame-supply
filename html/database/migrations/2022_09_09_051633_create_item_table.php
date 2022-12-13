@@ -14,7 +14,7 @@ return new class extends Migration
     public function up()
     {
         Schema::create('Item', function (Blueprint $table) {
-            $table->unsignedBigInteger('id', false)->primary();
+            $table->id();
             $table->unsignedInteger("length")->comment("長さ");
             $table->unsignedInteger("width")->comment("幅");
             $table->unsignedInteger("thickness")->comment("厚み");

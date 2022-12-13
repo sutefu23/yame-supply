@@ -18,11 +18,13 @@ const items = page.props.value.Items
 
 const { form, fetch, update, post, InvalidError } = useBuildingInfo()
 
+const title = !props.editId ? "現場情報登録" : "現場情報確認/編集"
+
 onBeforeMount(async () => {
   if (props.editId) {
     form.reset()
     const editData = await fetch({ id: props.editId })
-    form.builder_user_id = 3
+    form.builder_user_id = editData[0].builder_user_id
     form.field_name = editData[0].field_name
     form.time_limit = dayjs(editData[0].time_limit).format('YYYY-MM-DD')
     form.building_info_details = editData[0].building_info_details
@@ -37,8 +39,8 @@ const submit = async () => {
 
 </script>
 <template>
-  <Modal button-ok="確定" :show="show" modal-title="現場情報登録" @emit:close="$emit('close')" @emit:ok="submit"
-    :disable="disable">
+  <Modal button-ok="確定" :show="show" :modal-title="title" :is-over-screen-height="true" @emit:close="$emit('close')"
+    @emit:ok="submit" :disable="disable">
     <div class="container mx-auto grid sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-2 xl:grid-cols-2 pt-6 gap-8">
       <div class="h-full">
         <InputLabel for="field_name">現場名</InputLabel>

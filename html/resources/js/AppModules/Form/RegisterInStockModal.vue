@@ -22,7 +22,8 @@ const submit = async () => {
 
 </script>
 <template>
-  <Modal button-ok="確定" :show="show" modal-title="在庫登録" @emit:close="$emit('close')" @emit:ok="submit">
+  <Modal button-ok="確定" :show="show" modal-title="在庫登録" :is-over-screen-height="true" @emit:close="$emit('close')"
+    @emit:ok="submit">
     <div class="container mx-auto grid sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-2 xl:grid-cols-2 pt-6 gap-8">
       <div class="h-full">
         <InputLabel for="producer">生産所</InputLabel>

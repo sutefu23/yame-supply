@@ -24,9 +24,15 @@ class WarehouseRequest extends FormRequest
      */
     public function rules()
     {
-        return [
-            'id' => ['required', 'numeric', 'unique:Warehouse,id'],
-            'name' => ['required', 'string', 'unique:Warehouse,name'],
-        ];
+        if ($this->method() == 'POST') {
+            return [
+                'id' => ['required', 'numeric', 'unique:Warehouse,id'],
+                'name' => ['required', 'string', 'unique:Warehouse,name'],
+            ];
+        }else{
+            return [
+                'name' => ['string'],
+            ];
+        }
     }
 }

@@ -39,6 +39,7 @@ const onSubmitSuccess = async () => {
   alert("登録しました。")
   buidingInfos.value = await fetchInfos()
   showModal.value = false
+  window.location.reload()
 }
 </script>
 <template>

@@ -10,7 +10,8 @@ export type ItemData = {
   warehouse_id: number
   memo: string
   quantity: number
-  essential_quantity: number
+  essential_quantity: number,
+  build_quantity: number,
   unit_id: number
   wood_species_id: number
 }

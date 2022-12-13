@@ -19,6 +19,7 @@ const onSuccessSubmit = () => {
   showInStock.value = false
   showOutStock.value = false
   showBuildInfo.value = false
+  window.location.reload()
 }
 </script>
 
@@ -144,16 +145,13 @@ const onSuccessSubmit = () => {
                   </template>
 
                   <template #content>
-                    <DropdownLink :href="route('logout')" method="post" as="button">
+                    <DropdownLink :href="route('UsersMaster')" as="button">
                       ユーザー管理
                     </DropdownLink>
-                    <DropdownLink :href="route('logout')" method="post" as="button">
+                    <DropdownLink :href="route('ItemsMaster')" as="button">
                       基準在庫管理
                     </DropdownLink>
-                    <DropdownLink :href="route('logout')" method="post" as="button">
-                      製材マスタ
-                    </DropdownLink>
-                    <DropdownLink :href="route('logout')" method="post" as="button">
+                    <DropdownLink :href="route('WarehouseMaster')" as="button">
                       倉庫管理
                     </DropdownLink>
                   </template>

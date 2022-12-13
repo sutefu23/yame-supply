@@ -24,9 +24,15 @@ class WoodSpeciesRequest extends FormRequest
      */
     public function rules()
     {
-        return [
-            'id' => ['required', 'numeric', 'unique:WoodSpecies,id'],
-            'name' => ['required', 'string', 'unique:WoodSpecies,name'],
-        ];
+        if ($this->method() == 'POST') {
+            return [
+                'id' => ['required', 'numeric', 'unique:WoodSpecies,id'],
+                'name' => ['required', 'string', 'unique:WoodSpecies,name'],
+            ];
+        }else{
+            return [
+                'name' => ['string'],
+            ];
+        }
     }
 }

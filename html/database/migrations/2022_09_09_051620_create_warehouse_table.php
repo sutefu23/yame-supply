@@ -14,7 +14,7 @@ return new class extends Migration
     public function up()
     {
         Schema::create('Warehouse', function (Blueprint $table) {
-            $table->unsignedBigInteger('id', false)->primary();
+            $table->id();
             $table->string("name")->unique()->comment("倉庫名");
             $table->timestamps();
         });

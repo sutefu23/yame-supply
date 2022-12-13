@@ -6,7 +6,7 @@ const useApi = (endPoint: string) => {
     return res.data.data
   }
 
-  const update = async <TParam, VReturn = void> (param:TParam, id: number): Promise<VReturn> => {
+  const update = async <TParam, VReturn = void> (param:TParam, id?: number): Promise<VReturn> => {
     const res = await axios.patch(`/api/${endPoint}/${id}`, param);
     return res.data.data
   }

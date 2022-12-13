@@ -4,9 +4,12 @@ namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Validation\Rules;
 
 class UserRequest extends FormRequest
 {
+    private mixed $email;
+
     /**
      * Determine if the user is authorized to make this request.
      *
@@ -26,19 +29,20 @@ class UserRequest extends FormRequest
     {
         if ($this->method() == 'POST') {
             return [
-                'id' => ['required', 'unique:users,id','string'],
-                'email' => ['required', 'string', 'email:rfc,dns'],
-                'password' => ['required', 'string', 'min:8'],
-                'user_category_id' => ['required', 'numeric','exists:UserCategory,id'],
+                'id'    => 'unique:users,id',
+                'name' => 'required|string|max:255',
+                'email' => 'required|string|email|max:255|unique:users',
+                'password' => ['required', 'confirmed', Rules\Password::defaults()],
+                'user_category_id' => ['required', 'numeric', 'exists:UserCategory,id'],
             ];
         }else{
             return [
-                'id' => ['unique:users,id','string'],
-                'email' => ['string', 'email:rfc,dns'],
-                'password' => ['string', 'min:8'],
+                'id' => ['numeric', 'exists:users,id'],
+                'name'  => ['string'],
+                'email' => ['string', 'email'],
+                'password' => ['string', 'nullable','confirmed', Rules\Password::defaults()],
                 'user_category_id' => ['numeric','exists:UserCategory,id'],
             ];
-
         }
     }
 }

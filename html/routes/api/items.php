@@ -2,8 +2,12 @@
 
     use App\Http\Requests\BuildingInfoRequest;
     use App\Http\Requests\InStockInfoRequest;
+    use App\Http\Requests\ItemEssentialPatchRequest;
+    use App\Http\Requests\ItemOffsetPatchRequest;
     use App\Http\Requests\ItemRequest;
     use App\Http\Requests\OutStockInfoRequest;
+    use App\Http\Service\ItemService;
+    use App\Http\Service\StockService;
     use App\Models\BuildingInfo;
     use App\Models\BuildingInfoDetail;
     use App\Models\InStockInfo;
@@ -15,23 +19,35 @@
     use Illuminate\Http\Request;
 
     Route::get('/items', function (){
-        return new JsonResource(Item::with(['wood_species','unit','warehouse'])->get());
+        return new JsonResource(ItemService::getItemWithActiveBuildInfo());
     });
 
     Route::post('/items', function (ItemRequest $request){
         return new JsonResource(Item::create($request->validated()));
-    });
+    })->name('Items.post');
+
+
+    Route::patch('/items/essential', function (ItemEssentialPatchRequest $request){
+        $data = $request->validated();
+        ItemService::offsetQuentity($data['items']);
+        return new JsonResource(Item::with(['wood_species','unit','warehouse'])->get());
+    })->name('Items.post');
+
+
+    Route::patch('/items/quantity', function (ItemOffsetPatchRequest $request){
+        $data = $request->validated();
+        ItemService::modifyEssential($data['items']);
+        return new JsonResource(Item::with(['wood_species','unit','warehouse'])->get());
+    })->name('Items.post');
 
     Route::get('/InStockInfo', function (){
         return new JsonResource(InStockInfo::with(['in_stock_details','user', 'warehouse'])->get());
     });
 
+
     Route::post('/InStockInfo', function (InStockInfoRequest $request){
         $data = $request->validated();
-        DB::beginTransaction();
-        $inStockInfo = InStockInfo::create($data);
-        $inStockInfo->in_stock_details()->createMany($data['in_stock_details']);
-        DB::commit();
+        $inStockInfo = StockService::inStock($data);
         return new JsonResource($inStockInfo);
     })->name('InStockInfo.post');
 
@@ -42,10 +58,7 @@
 
     Route::post('/OutStockInfo', function (OutStockInfoRequest $request){
         $data = $request->validated();
-        DB::beginTransaction();
-        $outStockInfo = OutStockInfo::create($data);
-        $outStockInfo->out_stock_details()->createMany($data['out_stock_details']);
-        DB::commit();
+        $outStockInfo = StockService::outStock($data);
         return new JsonResource($outStockInfo);
     })->name('OutStockInfo.post');
 

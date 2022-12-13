@@ -22,6 +22,10 @@ defineProps({
   disable: {
     type: Boolean,
     default: false
+  },
+  isOverScreenHeight: {//画面より高さが大きい場合true
+    type: Boolean,
+    default: false
   }
 });
 
@@ -36,7 +40,7 @@ const emit = defineEmits<EmitType>();
 <template>
   <div v-if="show"
     class="py-12 bg-gray-700 bg-opacity-50 transition duration-150 ease-in-out z-10 absolute top-0 right-0 bottom-0 left-0"
-    id="modal">
+    :class="[isOverScreenHeight ? 'h-fit' : 'h-screen']" id="modal">
     <div role="alert" class="container mx-auto">
       <div class="relative py-8 px-5 md:px-10 bg-white shadow-md rounded border border-gray-400">
         <h1 class="text-gray-800 font-lg font-bold tracking-normal leading-tight mb-4">{{ modalTitle }}</h1>

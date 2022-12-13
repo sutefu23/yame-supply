@@ -66,9 +66,5 @@
                 'email' => 'test3@test.jp',
             ]);
 
-            // 他のSeederの呼び出し
-            $this->call([
-                ItemSeeder::class,
-            ]);
         }
     }

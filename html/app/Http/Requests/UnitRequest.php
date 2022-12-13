@@ -24,9 +24,15 @@ class UnitRequest extends FormRequest
      */
     public function rules()
     {
-        return [
-            'id' => ['required', 'numeric', 'unique:Unit,id'],
-            'name' => ['required', 'string', 'unique:Unit,name'],
-        ];
+        if ($this->method() == 'POST') {
+            return [
+                'id' => ['required', 'numeric', 'unique:Unit,id'],
+                'name' => ['required', 'string', 'unique:Unit,name'],
+            ];
+        }else{
+            return [
+                'name' => ['string'],
+            ];
+        }
     }
 }

@@ -14,7 +14,7 @@ return new class extends Migration
     public function up()
     {
         Schema::create('users', function (Blueprint $table) {
-            $table->unsignedBigInteger('id', false)->primary();
+            $table->id();
             $table->string('name')->unique()->comment('会社名');
             $table->foreignId('user_category_id')->comment('会社カテゴリ')->constrained('UserCategory');
             $table->string('email')->unique();
