@@ -70,7 +70,8 @@ const onSubmit = async () => {
                     <td class="border-r border-gray-200">{{ item.thickness }}</td>
                     <td class="border-r border-gray-200">
                       <div class="flex items-center justify-center">
-                        <TextInput name="quantity" class="w-12" v-model="form.items[index].essential_quantity">
+                        <TextInput name="quantity" type="number" class="w-16"
+                          v-model="form.items[index].essential_quantity">
                         </TextInput>
                         <div class="h-full">{{ item.unit.name }}</div>
                       </div>

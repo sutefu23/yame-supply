@@ -7,7 +7,7 @@ import dayjs from 'dayjs';
 
 export type OutStockData = {
   builder_user_id: number
-  import_date: string
+  export_date: string
   warehouse_id: number
   reason: string
   out_stock_details:
@@ -23,7 +23,7 @@ export type InvalidError = ValidationError<OutStockData>
 
 const useOutStockData = () => {
 
-  const { fetch: fetchApi, create: createApi} = useApi('InStockInfo');
+  const { fetch: fetchApi, create: createApi} = useApi('OutStockInfo');
   const { props } = usePage<{ Items: GetItemData[] }>()
   const items = props.value.Items
    
@@ -34,7 +34,7 @@ const useOutStockData = () => {
 
   const form = useInertiaForm<OutStockData>({
       builder_user_id: 0,
-      import_date: dayjs().format('YYYY-MM-DD'),
+      export_date: dayjs().format('YYYY-MM-DD'),
       warehouse_id: 0,
       reason: "",
       out_stock_details: items.map(item => ({

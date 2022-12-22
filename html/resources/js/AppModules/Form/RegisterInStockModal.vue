@@ -22,7 +22,7 @@ const submit = async () => {
 
 </script>
 <template>
-  <Modal button-ok="確定" :show="show" modal-title="在庫登録" :is-over-screen-height="true" @emit:close="$emit('close')"
+  <Modal button-ok="確定" :show="show" modal-title="在庫入荷" :is-over-screen-height="true" @emit:close="$emit('close')"
     @emit:ok="submit">
     <div class="container mx-auto grid sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-2 xl:grid-cols-2 pt-6 gap-8">
       <div class="h-full">
@@ -76,7 +76,7 @@ const submit = async () => {
             <td class="border-r border-gray-200">{{ item.thickness }}</td>
             <td class="border-r border-gray-200">
               <div class="flex items-center justify-center">
-                <TextInput name="quantity" class="w-12" v-if="form"
+                <TextInput name="quantity" type="number" class="w-16" v-if="form"
                   v-model="form.in_stock_details[index].item_quantity">
                 </TextInput>
                 <div class="h-full">{{ item.unit.name }}</div>

@@ -33,7 +33,9 @@
           $updatedItems = [];
           DB::beginTransaction();
           foreach ($items as $item){
-              $updatedItems[] = Item::whereId($item['id'])->update(['essential_quantity'    =>  $item['essential_quantity']]);
+              if($item['offset_quantity']){
+                  $updatedItems[] = Item::whereId($item['id'])->update(['quantity'    =>  DB::raw('quantity+'.$item['offset_quantity'])]);
+              }
           }
           DB::commit();
           return $updatedItems;

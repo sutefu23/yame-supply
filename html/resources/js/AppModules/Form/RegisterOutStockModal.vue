@@ -29,9 +29,9 @@ const submit = async () => {
         <InputLabel for="producer">工務店</InputLabel>
         <InvalidError field="builder_user_id" />
         <BuilderSelect v-model="form.builder_user_id"></BuilderSelect>
-        <InputLabel>入荷日</InputLabel>
-        <InvalidError field="import_date" />
-        <TextInput type="date" id="importDate" v-model="form.import_date" />
+        <InputLabel>出荷日</InputLabel>
+        <InvalidError field="export_date" />
+        <TextInput type="date" id="exportDate" v-model="form.export_date" />
       </div>
       <div class="h-full">
         <InputLabel for="warehouse">倉庫</InputLabel>
@@ -76,7 +76,7 @@ const submit = async () => {
             <td class="border-r border-gray-200">{{ item.thickness }}</td>
             <td class="border-r border-gray-200">
               <div class="flex items-center justify-center">
-                <TextInput name="quantity" class="w-12" v-if="form"
+                <TextInput name="quantity" type="number" class="w-16" v-if="form"
                   v-model="form.out_stock_details[index].item_quantity">
                 </TextInput>
                 <div class="h-full">{{ item.unit.name }}</div>
