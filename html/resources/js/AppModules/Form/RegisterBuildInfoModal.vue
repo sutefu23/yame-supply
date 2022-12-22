@@ -26,7 +26,7 @@ onBeforeMount(async () => {
     const editData = await fetch({ id: props.editId })
     form.builder_user_id = editData[0].builder_user_id
     form.field_name = editData[0].field_name
-    form.time_limit = dayjs(editData[0].time_limit).format('YYYY-MM-DD')
+    form.export_expected_date = dayjs(editData[0].export_expected_date).format('YYYY-MM-DD')
     form.building_info_details = editData[0].building_info_details
   }
 })
@@ -51,9 +51,9 @@ const submit = async () => {
         <BuilderSelect :disabled="disable" v-model="form.builder_user_id"></BuilderSelect>
       </div>
       <div class="h-full">
-        <InputLabel>有効期限</InputLabel>
-        <InvalidError field="time_limit" />
-        <TextInput :disabled="disable" type="date" id="importDate" v-model="form.time_limit" />
+        <InputLabel>出荷予定日</InputLabel>
+        <InvalidError field="export_expected_date" />
+        <TextInput :disabled="disable" type="date" id="importDate" v-model="form.export_expected_date" />
       </div>
     </div>
     <div class="w-full h-full mb-10">

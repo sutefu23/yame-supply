@@ -28,11 +28,9 @@ const onSubmitSuccess = async () => {
 const computeItems = computed(() => (items.value.map((item) => ({
   ...item,
   required_count: 0 + item.essential_quantity * essentialBuildNum.value,
-  shortage_count: item.quantity - (0 + item.essential_quantity * essentialBuildNum.value)
+  shortage_count_for_producer: Number(item.quantity ?? 0) - Number(item.build_quantity ?? 0),
+  shortage_count_for_builder: item.quantity - (0 + item.essential_quantity * essentialBuildNum.value)
 }))))
-
-const buildQuantitySum = computed(() => (items.value.reduce<number>((bldQtySum, item) => Number(bldQtySum) + Number(item.build_quantity), 0)))
-const essentialQuantitySum = computed(() => (items.value.reduce<number>((estQtySum, item) => Number(estQtySum) + (Number(item.essential_quantity) * Number(essentialBuildNum.value)), 0)))
 
 </script>
 <template>
@@ -64,20 +62,28 @@ const essentialQuantitySum = computed(() => (items.value.reduce<number>((estQtyS
                       leading-none
                       text-gray-800
                       ">
-                    <th>名称</th>
+                    <th>樹種</th>
                     <th colspan="5">製材寸法</th>
-                    <th>原木末口径(mm)</th>
-                    <th>在庫本数</th>
-                    <th>棟登録合計</th>
-                    <th>1棟当基準数
-                      <div class="flex items-center justify-center">
-                        <TextInput name="quantity" type="number" class="w-16" v-model="essentialBuildNum">
-                        </TextInput>
-                        <div class="h-full">棟分</div>
+                    <!-- <th>原木末口径(mm)</th> -->
+                    <th>在庫本数<br />①</th>
+                    <th>必要見込本数<br />〇棟②
+                    </th>
+                    <th>
+                      不足本数<br />
+                      ①-②
+                    </th>
+                    <th>
+                      <div class="flex items-center justify-center flex-col">
+                        <div>
+                          <TextInput name="quantity" type="number" class="w-16 mb-0" v-model="essentialBuildNum">
+                          </TextInput>棟分
+                        </div>
+                        <div>必要本数③</div>
                       </div>
                     </th>
-                    <th>予定必要本数</th>
-                    <th>不足本数</th>
+                    <th>不足本数<br />
+                      ①-③
+                    </th>
                   </tr>
                 </thead>
                 <tbody class="w-full">
@@ -90,40 +96,27 @@ const essentialQuantitySum = computed(() => (items.value.reduce<number>((estQtyS
                           text-center
                           border-b border-t border-gray-100
                       ">
-                    <td class="border-r border-l border-gray-200">{{ item.wood_species.name }}</td>
-                    <td class="border-l border-gray-200">{{ item.length }}</td>
+                    <td class="border-r border-l border-gray-200 px-3">{{ item.wood_species.name }}</td>
+                    <td class="border-l border-gray-200 pl-2">{{ item.length }}</td>
                     <td>×</td>
                     <td>{{ item.width }}</td>
                     <td>×</td>
-                    <td class="border-r border-gray-200">{{ item.thickness }}</td>
-                    <td class="border-r border-gray-200">{{ item.raw_wood_size }}</td>
-                    <td class="border-r border-gray-200 font-bold">{{ item.quantity }}</td>
-                    <td class="border-r border-gray-200">{{ item.build_quantity }}</td>
+                    <td class="border-r border-gray-200 pr-2">{{ item.thickness }}</td>
+                    <!-- <td class="border-r border-gray-200">{{ item.raw_wood_size }}</td> -->
+                    <td class="border-r border-gray-200 bg-gray-100 font-bold">{{ item.quantity }}</td>
+                    <td class="border-r border-gray-200">{{ item.build_quantity ?? 0 }}</td>
+                    <td class="border-r border-gray-200 font-bold"
+                      :class="item.shortage_count_for_producer < 0 ? 'text-red-500' : ''">{{
+                          item.shortage_count_for_producer
+                      }}</td>
                     <td class="border-r border-gray-200">{{ item.essential_quantity * Number(essentialBuildNum) }}
                     </td>
-                    <td class="border-r border-gray-200 bg-gray-100 font-semibold hover:bg-indigo-100">
-                      {{ item.required_count }}</td>
                     <td class="border-r border-gray-200 font-bold"
-                      :class="item.shortage_count < 0 ? 'text-red-500' : ''">
-                      {{ item.shortage_count }}
+                      :class="item.shortage_count_for_builder < 0 ? 'text-red-500' : ''">
+                      {{ item.shortage_count_for_builder }}
                     </td>
                   </tr>
                 </tbody>
-                <tfoot>
-                  <tr tabindex="0" class="
-                                        h-16
-                                        w-full
-                                        text-center
-                                        text-gray-800
-                                        ">
-                    <td colspan="8"></td>
-                    <td class="border-l border-b border-r border-gray-200 font-bold bg-gray-100">{{ buildQuantitySum
-                    }}
-                    </td>
-                    <td class="border-l border-b border-r border-gray-200 font-semibold">{{ essentialQuantitySum }}
-                    </td>
-                  </tr>
-                </tfoot>
               </table>
             </div>
           </div>

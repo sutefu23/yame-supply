@@ -1,15 +1,19 @@
 <script setup lang="ts">
-import { InputHTMLAttributes, onMounted, ref } from 'vue';
+import { InputHTMLAttributes, onMounted, ref, computed } from 'vue';
+import { twMerge } from 'tailwind-merge';
 
-defineProps(['modelValue']);
+const props = defineProps(['modelValue', 'class']);
 
 defineEmits(['update:modelValue']);
 
 interface InputAttributes extends InputHTMLAttributes {
-    hasAttribute : (name: string) => boolean,
-    focus : () => void,
+    hasAttribute: (name: string) => boolean,
+    focus: () => void,
 }
-const input = ref<InputAttributes|null>(null);
+
+const input = ref<InputAttributes | null>(null);
+
+const className = computed(() => twMerge("mb-5 mt-2 text-gray-600 focus:outline-none focus:border focus:border-indigo-700 font-normal w-full h-10 flex items-center pl-3 text-sm border-gray-300 rounded border", props.class))
 
 onMounted(() => {
     if (input.value && input.value.hasAttribute('autofocus')) {
@@ -20,5 +24,6 @@ onMounted(() => {
 </script>
 
 <template>
-    <input class="mb-5 mt-2 text-gray-600 focus:outline-none focus:border focus:border-indigo-700 font-normal w-full h-10 flex items-center pl-3 text-sm border-gray-300 rounded border" :value="modelValue" @input="$emit('update:modelValue', $event?.target?.value)" ref="input">
+    <input :class="className" :value="modelValue" @input="$emit('update:modelValue', $event?.target?.value)"
+        ref="input">
 </template>

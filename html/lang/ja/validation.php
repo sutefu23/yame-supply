@@ -162,7 +162,7 @@ return [
         'building_info_details'  => '明細',
         'field_name'  => '現場名',
         'builder_user_id'  => '工務店',
-        'time_limit'    => '有効期限',
+        'export_expected_date'    => '出荷予定日',
         'today'    => '本日',
         'import_date'    => '入荷日',
         'export_date'    => '出荷日',

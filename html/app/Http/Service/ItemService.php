@@ -50,7 +50,7 @@
           $build_quantities = DB::table("item")->select(['item_id as id', DB::raw('sum(item_quantity) as build_quantity')])
               ->from('BuildingInfoDetail')
               ->leftJoin('BuildingInfo', 'BuildingInfoDetail.build_info_id', '=', 'BuildingInfo.id')
-              ->whereDate('BuildingInfo.time_limit', '>=', Carbon::today())
+              ->where('BuildingInfo.is_exported')
               ->groupBy(['item_id'])
               ->get()->toArray();
           return array_map(function ($item, $build_quantity)

@@ -9,7 +9,8 @@ export type BuildingInfoData = {
   id: number,
   field_name: string
   builder_user_id: number
-  time_limit: string
+  export_expected_date: string
+  is_exported: boolean
   building_info_details:
   {
     item_id: number
@@ -23,7 +24,7 @@ export type QueryParam = {
 }
 
 export type GetBuilingInfoData = BuildingInfoData & { user: UserData} & { readonly created_at: Date }
-export type UpdateBuilingInfoData = Partial<Omit<BuildingInfoData, "id">>
+export type UpdateBuilingInfoData = Partial<Omit<BuildingInfoData, "id"|"is_exported">>
 export type InvalidError = ValidationError<BuildingInfoData>
 
 const useBuildingInfoData = () => {
@@ -41,7 +42,7 @@ const useBuildingInfoData = () => {
   const form = useInertiaForm<UpdateBuilingInfoData>({
       field_name: "",
       builder_user_id: 0,
-      time_limit: "",
+      export_expected_date: "",
       building_info_details: items.map(item => ({
         item_id: item.id,
         item_quantity: 0

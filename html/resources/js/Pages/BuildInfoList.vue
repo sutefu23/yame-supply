@@ -24,12 +24,7 @@ const modalOpen = () => {
   showModal.value = true
 }
 
-const isOverLimit = (dateString: string) => dayjs(dateString).isBefore(dayjs(), 'date')
-
-const isDisable = computed(() => {
-  const limit = buidingInfos.value.find((info) => info.id === selectedId.value)?.time_limit
-  return limit ? isOverLimit(limit) : false
-})
+const isDisable = computed(() => buidingInfos.value.find((info) => info.id === selectedId.value)?.is_exported)
 
 onBeforeMount(async () => {
   buidingInfos.value = await fetchInfos()
@@ -75,7 +70,7 @@ const onSubmitSuccess = async () => {
                     <th></th>
                     <th>現場名</th>
                     <th>工務店</th>
-                    <th>期限</th>
+                    <th>出荷予定日</th>
                     <th>登録日</th>
                   </tr>
                 </thead>
@@ -88,23 +83,22 @@ const onSubmitSuccess = async () => {
                           text-center
                           border-b border-t border-gray-100
                           cursor-pointer
-                      " :class="isOverLimit(info.time_limit) ? 'text-gray-400' : 'text-gray-800'"
-                    @click="(selectedId = info.id)">
+                      " :class="info.is_exported ? 'text-gray-400' : 'text-gray-800'" @click="(selectedId = info.id)">
                     <td class="border-r border-l border-gray-200">
                       <label
                         class="text-center w-full h-full cursor-pointer transition-all opacity-75 hover:opacity-50">
-                        <input :class="isOverLimit(info.time_limit) ? 'opacity-40' : ''" type="radio" name="infoId"
+                        <input :class="info.is_exported ? 'opacity-40' : ''" type="radio" name="infoId"
                           :checked="(info.id === selectedId)">
                       </label>
                     </td>
                     <td class="border-r border-gray-200">{{ info.field_name }}</td>
                     <td class="border-r border-gray-200">{{ info.user.name }}</td>
-                    <td class="border-r border-gray-200">{{ dayjs(info.time_limit).format('YYYY-MM-DD') }}</td>
+                    <td class="border-r border-gray-200">{{ dayjs(info.export_expected_date).format('YYYY-MM-DD') }}
+                    </td>
                     <td class="border-r border-gray-200">{{ dayjs(info.created_at).format('YYYY-MM-DD') }}</td>
                   </tr>
                 </tbody>
               </table>
-              <div class="text-red-500 text-sm text-right">※期限切れは一か月間表示します。</div>
             </div>
           </div>
         </div>

@@ -1182,13 +1182,13 @@
                 <mxCell id="Al-KzFWUEsVlSLGrZ1Te-63" value="24" style="strokeWidth=1;shadow=0;dashed=0;align=center;html=1;shape=mxgraph.mockup.forms.rrect;rSize=0;strokeColor=#ff0000;fontColor=#ffffff;strokeWidth=2;fillColor=#008cff;" parent="Al-KzFWUEsVlSLGrZ1Te-11" vertex="1">
                     <mxGeometry x="40.625" y="74.05714285714286" width="16.25" height="13.714285714285715" as="geometry"/>
                 </mxCell>
-                <mxCell id="Al-KzFWUEsVlSLGrZ1Te-68" value="掲載期限を入力&lt;br&gt;期限を過ぎると自動削除" style="shape=callout;whiteSpace=wrap;html=1;perimeter=calloutPerimeter;rounded=1;fontSize=15;position2=0.57;fillColor=#fff2cc;strokeColor=#d6b656;base=20;fontColor=#000000;size=20;position=0.38;direction=south;" parent="wCpGsoM7F04KCxqtBRDd-21" vertex="1">
+                <mxCell id="Al-KzFWUEsVlSLGrZ1Te-68" value="掲載出荷予定日を入力&lt;br&gt;出荷予定日を過ぎると自動削除" style="shape=callout;whiteSpace=wrap;html=1;perimeter=calloutPerimeter;rounded=1;fontSize=15;position2=0.57;fillColor=#fff2cc;strokeColor=#d6b656;base=20;fontColor=#000000;size=20;position=0.38;direction=south;" parent="wCpGsoM7F04KCxqtBRDd-21" vertex="1">
                     <mxGeometry x="320" y="190" width="210" height="50" as="geometry"/>
                 </mxCell>
                 <mxCell id="wCpGsoM7F04KCxqtBRDd-31" value="&lt;span style=&quot;font-size: 22px&quot;&gt;&lt;b&gt;在庫TOP(棟情報)&lt;/b&gt;&lt;/span&gt;" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontSize=14;" parent="wCpGsoM7F04KCxqtBRDd-1" vertex="1">
                     <mxGeometry x="485" y="10" width="200" height="30" as="geometry"/>
                 </mxCell>
-                <mxCell id="Al-KzFWUEsVlSLGrZ1Te-64" value="期限&lt;font color=&quot;#ff0000&quot;&gt;*&lt;/font&gt;" style="strokeColor=none;fillColor=none;resizeWidth=1;align=left;verticalAlign=top;spacing=10;fontSize=14;whiteSpace=wrap;html=1;fontColor=#000000;" parent="wCpGsoM7F04KCxqtBRDd-1" vertex="1">
+                <mxCell id="Al-KzFWUEsVlSLGrZ1Te-64" value="出荷予定日&lt;font color=&quot;#ff0000&quot;&gt;*&lt;/font&gt;" style="strokeColor=none;fillColor=none;resizeWidth=1;align=left;verticalAlign=top;spacing=10;fontSize=14;whiteSpace=wrap;html=1;fontColor=#000000;" parent="wCpGsoM7F04KCxqtBRDd-1" vertex="1">
                     <mxGeometry x="190" y="310" width="90" height="40" as="geometry"/>
                 </mxCell>
                 <mxCell id="Al-KzFWUEsVlSLGrZ1Te-65" value="" style="rounded=1;arcSize=9;fillColor=#ffffff;strokeColor=#4C9AFF;html=1;strokeWidth=2;spacingLeft=30;fontColor=#000000;align=left" parent="wCpGsoM7F04KCxqtBRDd-1" vertex="1">
@@ -1285,7 +1285,7 @@
                         <mxRectangle width="285" height="40" as="alternateBounds"/>
                     </mxGeometry>
                 </mxCell>
-                <mxCell id="B88Gni0FNFmP7DQUzJve-28" value="期限" style="shape=partialRectangle;html=1;whiteSpace=wrap;connectable=0;fillColor=#dae8fc;top=0;left=0;bottom=0;right=0;overflow=hidden;pointerEvents=1;labelBorderColor=none;fontSize=15;strokeColor=#6c8ebf;fontStyle=1" parent="B88Gni0FNFmP7DQUzJve-25" vertex="1">
+                <mxCell id="B88Gni0FNFmP7DQUzJve-28" value="出荷予定日" style="shape=partialRectangle;html=1;whiteSpace=wrap;connectable=0;fillColor=#dae8fc;top=0;left=0;bottom=0;right=0;overflow=hidden;pointerEvents=1;labelBorderColor=none;fontSize=15;strokeColor=#6c8ebf;fontStyle=1" parent="B88Gni0FNFmP7DQUzJve-25" vertex="1">
                     <mxGeometry x="475" width="265" height="40" as="geometry">
                         <mxRectangle width="265" height="40" as="alternateBounds"/>
                     </mxGeometry>
@@ -1497,7 +1497,7 @@
                 <mxCell id="hRwBHypqZWaeGaKLlaJn-0" value="&lt;span style=&quot;font-size: 22px&quot;&gt;&lt;b&gt;棟情報一覧&lt;/b&gt;&lt;/span&gt;" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontSize=14;" parent="_MC_pkYyZISlr30PpVku-1" vertex="1">
                     <mxGeometry x="485" y="10" width="200" height="30" as="geometry"/>
                 </mxCell>
-                <mxCell id="cJUv2dvEqrwUfvv_Hunp-5" value="期限切れになった棟情報をどうするか" style="text;html=1;strokeColor=none;fillColor=#f8cecc;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;labelBorderColor=none;fontSize=15;" parent="_MC_pkYyZISlr30PpVku-1" vertex="1">
+                <mxCell id="cJUv2dvEqrwUfvv_Hunp-5" value="出荷予定日切れになった棟情報をどうするか" style="text;html=1;strokeColor=none;fillColor=#f8cecc;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;labelBorderColor=none;fontSize=15;" parent="_MC_pkYyZISlr30PpVku-1" vertex="1">
                     <mxGeometry x="415" y="780.99" width="340" height="30" as="geometry"/>
                 </mxCell>
                 <mxCell id="Glw3pXRzOS4yhb_NC7wg-0" value="在庫登録" style="html=1;shadow=0;dashed=0;shape=mxgraph.bootstrap.rrect;rSize=5;strokeColor=#006EAF;strokeWidth=1;fillColor=#1ba1e2;fontColor=#ffffff;whiteSpace=wrap;align=left;verticalAlign=middle;fontStyle=0;fontSize=14;spacingLeft=10;rounded=1;" vertex="1" parent="_MC_pkYyZISlr30PpVku-1">
@@ -1575,7 +1575,7 @@
                         <mxRectangle width="285" height="40" as="alternateBounds"/>
                     </mxGeometry>
                 </mxCell>
-                <mxCell id="hqSJcJFPmW1Ba_mFDLTR-13" value="期限" style="shape=partialRectangle;html=1;whiteSpace=wrap;connectable=0;fillColor=#dae8fc;top=0;left=0;bottom=0;right=0;overflow=hidden;pointerEvents=1;labelBorderColor=none;fontSize=15;strokeColor=#6c8ebf;fontStyle=1" parent="hqSJcJFPmW1Ba_mFDLTR-10" vertex="1">
+                <mxCell id="hqSJcJFPmW1Ba_mFDLTR-13" value="出荷予定日" style="shape=partialRectangle;html=1;whiteSpace=wrap;connectable=0;fillColor=#dae8fc;top=0;left=0;bottom=0;right=0;overflow=hidden;pointerEvents=1;labelBorderColor=none;fontSize=15;strokeColor=#6c8ebf;fontStyle=1" parent="hqSJcJFPmW1Ba_mFDLTR-10" vertex="1">
                     <mxGeometry x="475" width="265" height="40" as="geometry">
                         <mxRectangle width="265" height="40" as="alternateBounds"/>
                     </mxGeometry>
@@ -1937,7 +1937,7 @@
                         <mxPoint x="2" y="-11" as="offset"/>
                     </mxGeometry>
                 </mxCell>
-                <mxCell id="BGk0FQJXanL8aC5-_E_D-0" value="期限" style="strokeColor=none;fillColor=none;resizeWidth=1;align=left;verticalAlign=top;spacing=10;fontSize=14;whiteSpace=wrap;html=1;fontColor=#000000;" parent="qeRxpVMSz2zV5-eOEOQX-0" vertex="1">
+                <mxCell id="BGk0FQJXanL8aC5-_E_D-0" value="出荷予定日" style="strokeColor=none;fillColor=none;resizeWidth=1;align=left;verticalAlign=top;spacing=10;fontSize=14;whiteSpace=wrap;html=1;fontColor=#000000;" parent="qeRxpVMSz2zV5-eOEOQX-0" vertex="1">
                     <mxGeometry x="30" y="160" width="90" height="40" as="geometry"/>
                 </mxCell>
                 <mxCell id="BGk0FQJXanL8aC5-_E_D-1" value="&lt;font style=&quot;font-size: 14px&quot;&gt;2022-08-31&lt;/font&gt;" style="rounded=1;arcSize=9;fillColor=none;strokeColor=none;html=1;strokeWidth=2;spacingLeft=4;fontColor=#000000;align=left;fontSize=11" parent="qeRxpVMSz2zV5-eOEOQX-0" vertex="1">

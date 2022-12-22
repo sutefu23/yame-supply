@@ -66,11 +66,11 @@
         return new JsonResource(BuildingInfo::with(['user','building_info_details'])->where(function($query) use ($request){
             $id = $request->query('id');
             $beforeMonth = Carbon::today()->subMonth();
-            $query->whereDate('time_limit','>', $beforeMonth);
+            $query->whereDate('export_expected_date','>', $beforeMonth);
             if($id){
                 $query->whereId($id);
             }
-        })->orderBy("time_limit", "desc")->get());
+        })->orderBy("export_expected_date", "desc")->get());
     });
 
     Route::patch('/BuildingInfo/{id}', function (BuildingInfoRequest $request, int $id){

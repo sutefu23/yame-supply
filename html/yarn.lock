@@ -3444,6 +3444,11 @@ table@^6.0.9:
     string-width "^4.2.3"
     strip-ansi "^6.0.1"
 
+tailwind-merge@^1.8.0:
+  version "1.8.0"
+  resolved "https://registry.yarnpkg.com/tailwind-merge/-/tailwind-merge-1.8.0.tgz#41c4730b2a51ca7a905c6beebcbfe237bfb61f30"
+  integrity sha512-tER/2SbYRdfPYg6m4pDWZSlbymLTmDi+dx4iCsJmgmz4UDGzgnVelOvBe3GNtGCw9Bmc4MiObfJJbKeVL+KnMQ==
+
 tailwindcss@^3.1.0:
   version "3.2.0"
   resolved "https://registry.yarnpkg.com/tailwindcss/-/tailwindcss-3.2.0.tgz#0164a930645e7e1df301df1e9d434a52602c918d"
