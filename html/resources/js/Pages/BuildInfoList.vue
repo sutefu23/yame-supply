@@ -1,21 +1,19 @@
 <script setup lang="ts">
 import { ref, onBeforeMount, computed } from 'vue';
 import AuthenticatedLayout from '@/Layouts/AuthenticatedLayout.vue';
-import { Head } from '@inertiajs/inertia-vue3';
+import { Head, usePage } from '@inertiajs/inertia-vue3';
 import RegisterBuildingInfoStockModal from '../AppModules/Form/RegisterBuildInfoModal.vue';
 import useBuildingInfo, { GetBuilingInfoData } from '@/hooks/api/useBuildingInfo';
 import dayjs from 'dayjs';
-import isSameOrBefore from 'dayjs/plugin/isSameOrBefore';
-dayjs.extend(isSameOrBefore);
-
+import Pagenation from '@/Components/Navi/Pagenation.vue';
 const { fetch: fetchInfos } = useBuildingInfo()
 
-const buidingInfos = ref<GetBuilingInfoData[]>([])
-
+const page = usePage<{ BulidInfoList: Pagenate<GetBuilingInfoData[]> }>()
+const { data, to: last_page, total, current_page, per_page } = page.props.value.BulidInfoList
+const buidingInfos = ref(data)
 const selectedId = ref<GetBuilingInfoData["id"]>(0)
 
 const showModal = ref(false)
-
 const modalOpen = () => {
   if (!selectedId.value) {
     alert("明細を選択してください。")
@@ -23,6 +21,8 @@ const modalOpen = () => {
   }
   showModal.value = true
 }
+
+const pushRouter = (page: number) => window.location.href = route('BuildInfoList', page)
 
 const isDisable = computed(() => buidingInfos.value.find((info) => info.id === selectedId.value)?.is_exported)
 
@@ -99,6 +99,9 @@ const onSubmitSuccess = async () => {
                   </tr>
                 </tbody>
               </table>
+              <nav class="py-6 text-center">
+                <Pagenation :current="current_page" :page-range="10" :total="total" @page-changed="pushRouter" />
+              </nav>
             </div>
           </div>
         </div>

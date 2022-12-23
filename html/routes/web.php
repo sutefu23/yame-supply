@@ -2,6 +2,7 @@
 
     use App\Http\Requests\ItemRequest;
     use App\Http\Service\ItemService;
+    use App\Models\BuildingInfo;
     use App\Models\Item;
     use App\Models\User;
     use App\Models\UserCategory;
@@ -36,11 +37,12 @@ Route::get('/dashboard', function () {
     );
 })->middleware(['auth', 'verified'])->name('dashboard');
 
-Route::get('/BuildInfoList', function () {
+Route::get('/BuildInfoList/{page?}', function ($page = 1) {
     return Inertia::render('BuildInfoList',
         [
             "UserCategory"    =>  UserCategory::all(),
-            "Items" => Item::with(['wood_species','unit','warehouse'])->get()
+            "Items" => Item::with(['wood_species','unit','warehouse'])->get(),
+            "BulidInfoList" => BuildingInfo::with(['user', 'building_info_details'])->forPage($page, 15)->paginate()
         ]
     );
 })->middleware(['auth', 'verified'])->name('BuildInfoList');

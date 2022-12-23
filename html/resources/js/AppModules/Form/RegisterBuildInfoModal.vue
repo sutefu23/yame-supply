@@ -90,7 +90,7 @@ const submit = async () => {
             <td class="border-r border-gray-200">{{ item.thickness }}</td>
             <td class="border-r border-gray-200">
               <div class="flex items-center justify-center">
-                <TextInput :disabled="disable" name="quantity" class="w-12" v-if="form"
+                <TextInput :disabled="disable" name="quantity" type="number" class="w-16" v-if="form"
                   v-model="form.building_info_details[index].item_quantity">
                 </TextInput>
                 <div class="h-full">{{ item.unit.name }}</div>

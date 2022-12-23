@@ -11,8 +11,20 @@ declare global {
     export default component;
   }
 
-  declare function route(name?:string, params?: string|string[]);
+  declare function route(name?:string, params?: string|string[]|number);
 
+  
+  declare type Pagenate<DATA> = {
+    total: number,
+    per_page: number,
+    current_page: number,
+    last_page: number,
+    from: number,
+    to: number,
+    data: DATA
+  }
+
+  
   // Laravelのバリデーションメッセージ
   interface ValidationError<T> extends AxiosError["response"]{
     status: number

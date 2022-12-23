@@ -15,7 +15,8 @@ module.exports = {
   globals: {
     route: true,
     Ziggy: true,
-    ValidationError: true
+    ValidationError: true,
+    Pagenate: true
   },
   rules: {
     "no-console": process.env.NODE_ENV === "production" ? "warn" : "off",
