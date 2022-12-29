@@ -2,24 +2,27 @@
 import { ref, onBeforeMount, computed } from 'vue';
 import AuthenticatedLayout from '@/Layouts/AuthenticatedLayout.vue';
 import { Head, usePage } from '@inertiajs/inertia-vue3';
-import RegisterBuildingInfoStockModal from '../AppModules/Form/RegisterBuildInfoModal.vue';
+import RegisterBuildingInfoModal from '../AppModules/Form/RegisterBuildInfoModal.vue';
+import RegisterOutStockModal from '@/AppModules/Form/RegisterOutStockModal.vue';
 import useBuildingInfo, { GetBuilingInfoData } from '@/hooks/api/useBuildingInfo';
 import dayjs from 'dayjs';
 import Pagenation from '@/Components/Navi/Pagenation.vue';
 const { fetch: fetchInfos } = useBuildingInfo()
 
 const page = usePage<{ BulidInfoList: Pagenate<GetBuilingInfoData[]> }>()
-const { data, to: last_page, total, current_page, per_page } = page.props.value.BulidInfoList
+const { data, total, current_page, per_page } = page.props.value.BulidInfoList
 const buidingInfos = ref(data)
 const selectedId = ref<GetBuilingInfoData["id"]>(0)
 
-const showModal = ref(false)
+const showBuildInfoModal = ref(false)
+const showOutStockModal = ref(false)
+
 const modalOpen = () => {
   if (!selectedId.value) {
     alert("明細を選択してください。")
     return
   }
-  showModal.value = true
+  showBuildInfoModal.value = true
 }
 
 const pushRouter = (page: number) => window.location.href = route('BuildInfoList', page)
@@ -30,12 +33,27 @@ onBeforeMount(async () => {
   buidingInfos.value = await fetchInfos()
 })
 
-const onSubmitSuccess = async () => {
+const onBuildInfoSubmitSuccess = async () => {
   alert("登録しました。")
   buidingInfos.value = await fetchInfos()
-  showModal.value = false
+  showBuildInfoModal.value = false
   window.location.reload()
 }
+
+//出荷モーダル
+const transportId = ref<number | undefined>(undefined)
+const transportOutStock = () => {
+  transportId.value = selectedId.value
+  showBuildInfoModal.value = false
+  showOutStockModal.value = true
+}
+const onOutStockSuccessSubmit = async () => {
+  alert("登録しました。")
+  transportId.value = undefined
+  showOutStockModal.value = false
+  window.location.reload()
+}
+
 </script>
 <template>
   <div>
@@ -100,15 +118,18 @@ const onSubmitSuccess = async () => {
                 </tbody>
               </table>
               <nav class="py-6 text-center">
-                <Pagenation :current="current_page" :page-range="10" :total="total" @page-changed="pushRouter" />
+                <Pagenation :current="current_page" :per-page="per_page" :total="total" @page-changed="pushRouter" />
               </nav>
             </div>
           </div>
         </div>
       </div>
     </AuthenticatedLayout>
-    <RegisterBuildingInfoStockModal v-if="showModal" :edit-id="selectedId" :show="showModal" @close="showModal = false"
-      :disable="isDisable" @on-success="onSubmitSuccess" />
+    <RegisterBuildingInfoModal v-if="showBuildInfoModal" :edit-id="selectedId" :show="showBuildInfoModal"
+      @on-transport="transportOutStock" @close="showBuildInfoModal = false" :disable="isDisable"
+      @on-success="onBuildInfoSubmitSuccess" />
+    <RegisterOutStockModal v-if="showOutStockModal" :show="showOutStockModal" @close="showOutStockModal = false"
+      :build-info-id="transportId" @on-success="onOutStockSuccessSubmit" />
   </div>
 
 

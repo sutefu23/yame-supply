@@ -7,7 +7,7 @@
 
   class BuildingInfoService {
       static function done_export($id): JsonResource {
-          $build_info = BuildingInfo::with(['user','building_info_details'])::where($id);
+          $build_info = BuildingInfo::find($id);
           if(!$build_info) throw new \InvalidArgumentException("棟情報のIDが見つかりません。");
 
           \DB::beginTransaction();

@@ -33,6 +33,7 @@ class OutStockInfoRequest extends FormRequest
             'export_date'   =>  ['required', 'date'],
             'warehouse_id'   =>  ['required', 'numeric', 'exists:Warehouse,id'],
             'reason'   =>  ['string', 'nullable','max:255'],
+            'building_info_id'  => ['numeric', 'nullable', 'exists:BuildingInfo,id'],
             'out_stock_details' => ['required', 'array'],
             'out_stock_details.*.item_id' => ['required', 'numeric','exists:Item,id'],
             'out_stock_details.*.item_quantity' => ['required', 'numeric', 'min:0'],

@@ -70,6 +70,9 @@ const onSuccessSubmit = () => {
                       @click="showOutStock = true">
                       在庫出荷
                     </p>
+                    <DropdownLink :href="route('BuildInfoList')" as="button">
+                      棟情報から出荷登録
+                    </DropdownLink>
                   </template>
                 </Dropdown>
                 <Dropdown>

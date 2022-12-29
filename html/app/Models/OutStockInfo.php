@@ -18,6 +18,7 @@ use Illuminate\Database\Eloquent\Model;
  * @property int $warehouse_id
  * @property Carbon $export_date
  * @property string $reason
+ * @property int $building_info_id
  * @property int $create_user_id
  * @property int $update_user_id
  * @property Carbon|null $created_at
@@ -47,6 +48,7 @@ class OutStockInfo extends BaseModel
 	protected $casts = [
 		'builder_user_id' => 'int',
 		'warehouse_id' => 'int',
+		'building_info_id' => 'int',
 		'create_user_id' => 'int',
 		'update_user_id' => 'int'
 	];
@@ -58,6 +60,7 @@ class OutStockInfo extends BaseModel
 	protected $fillable = [
 		'builder_user_id',
 		'warehouse_id',
+		'building_info_id',
 		'export_date',
 		'reason',
 		'create_user_id',
@@ -73,7 +76,10 @@ class OutStockInfo extends BaseModel
 	{
 		return $this->belongsTo(Warehouse::class, 'warehouse_id');
 	}
-
+    public function building_info()
+    {
+        return $this->hasMany(BuildingInfo::class, 'building_info_id');
+    }
 	public function out_stock_details()
 	{
 		return $this->hasMany(OutStockDetail::class, 'out_stock_id');

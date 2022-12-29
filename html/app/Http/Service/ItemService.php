@@ -2,11 +2,8 @@
 
   namespace App\Http\Service;
 
-  use App\Http\Requests\ItemEssentialPatchRequest;
   use App\Models\Item;
-  use Carbon\Carbon;
   use DB;
-  use Illuminate\Database\Eloquent\Builder;
   use Illuminate\Http\Resources\Json\JsonResource;
   use LaravelIdea\Helper\App\Models\_IH_Item_C;
 
@@ -34,6 +31,10 @@
           DB::beginTransaction();
           foreach ($items as $item){
               if($item['offset_quantity']){
+                  $target = Item::find($item['id']);
+                  if($target->quantity + $item['offset_quantity'] < 0){
+                      throw new \InvalidArgumentException("在庫を0以下にする処理はできません。\n" . $target->length . "×". $target->width . "×" . $target->thickness . "\n現在庫数:" . $target->quantity);
+                  }
                   $updatedItems[] = Item::whereId($item['id'])->update(['quantity'    =>  DB::raw('quantity+'.$item['offset_quantity'])]);
               }
           }

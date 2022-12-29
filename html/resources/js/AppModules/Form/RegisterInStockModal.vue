@@ -7,7 +7,7 @@ import WarehouseSelect from '../Input/WarehouseSelect.vue';
 import useInStock from '@/hooks/api/useInStock'
 import { GetItemData } from '@/hooks/api/useItems';
 import { usePage } from '@inertiajs/inertia-vue3';
-const prop = defineProps<{ show: boolean }>()
+defineProps<{ show: boolean }>()
 const emit = defineEmits(["close", "onSuccess"])
 
 const { props } = usePage<{ Items: GetItemData[] }>()

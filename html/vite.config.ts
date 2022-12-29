@@ -20,6 +20,7 @@ export default defineConfig({
                     includeAbsolute: false,
                 },
             },
+            include:"resources/js/**/*.vue"
         }),
     ],
     resolve: {

@@ -1,19 +1,44 @@
 <script lang="ts" setup>
+import { onBeforeMount } from 'vue'
 import Modal from '@/Components/Alert/Modal.vue';
 import InputLabel from '@/Components/Input/InputLabel.vue';
 import TextInput from '@/Components/Input/TextInput.vue';
 import BuilderSelect from '@/AppModules/Input/BuilderSelect.vue';
 import WarehouseSelect from '../Input/WarehouseSelect.vue';
 import useOutStock from '@/hooks/api/useOutStock'
+import useBuildingInfoData from '@/hooks/api/useBuildingInfo';
 import { GetItemData } from '@/hooks/api/useItems';
 import { usePage } from '@inertiajs/inertia-vue3';
-defineProps<{ show: boolean }>()
+const props = defineProps<{ show: boolean, buildInfoId?: number }>()
 const emit = defineEmits(["close", "onSuccess"])
 
-const { props } = usePage<{ Items: GetItemData[] }>()
-const items = props.value.Items
+const { props: pageProps } = usePage<{ Items: GetItemData[] }>()
+const items = pageProps.value.Items
 
 const { form, post, InvalidError } = useOutStock()
+
+const { fetch } = useBuildingInfoData()
+
+// 棟情報から出荷情報を作る場合の処理
+onBeforeMount(async () => {
+  if (props.buildInfoId) {
+    form.reset()
+    const infoData = await fetch({ id: props.buildInfoId })
+    form.building_info_id = infoData[0].id
+    form.builder_user_id = infoData[0].builder_user_id
+    form.out_stock_details = infoData[0].building_info_details
+  }
+})
+
+const close = () => {
+  if (form.building_info_id) {
+    if (!confirm("棟情報から出荷情報を作成中です。\n処理をキャンセルしますか？")) {
+      return
+    }
+  }
+  emit('close')
+}
+
 const submit = async () => {
   await post()
   form.reset()
@@ -22,8 +47,9 @@ const submit = async () => {
 
 </script>
 <template>
-  <Modal button-ok="確定" :show="show" modal-title="在庫出荷" :is-over-screen-height="true" @emit:close="$emit('close')"
+  <Modal button-ok="確定" :show="show" modal-title="在庫出荷" :is-over-screen-height="true" @emit:close="close"
     @emit:ok="submit">
+    <p v-show="buildInfoId">棟情報から出荷情報を登録中</p>
     <div class="container mx-auto grid sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-2 xl:grid-cols-2 pt-6 gap-8">
       <div class="h-full">
         <InputLabel for="producer">工務店</InputLabel>

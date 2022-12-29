@@ -24,7 +24,7 @@ export type QueryParam = {
 }
 
 export type GetBuilingInfoData = BuildingInfoData & { user: UserData} & { readonly created_at: Date }
-export type UpdateBuilingInfoData = Partial<Omit<BuildingInfoData, "id"|"is_exported">>
+export type UpdateBuilingInfoData = Partial<Omit<BuildingInfoData, "id">>
 export type InvalidError = ValidationError<BuildingInfoData>
 
 const useBuildingInfoData = () => {
@@ -70,6 +70,7 @@ const useBuildingInfoData = () => {
       throw e
     }
   }
+
   const InvalidError = defineComponent<{field: keyof BuildingInfoData}>(function InvalidError(props) {
     return () => h(DisplayError, {errors:error.value?.data.errors, field: props.field})
   })
