@@ -21,6 +21,7 @@ export type BuildingInfoData = {
 
 export type QueryParam = {
   id?: number,
+  is_exported?:boolean
 }
 
 export type GetBuilingInfoData = BuildingInfoData & { user: UserData} & { readonly created_at: Date }

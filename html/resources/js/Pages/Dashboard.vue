@@ -1,9 +1,10 @@
 <script setup lang="ts">
 import { ref, onBeforeMount } from 'vue';
 import AuthenticatedLayout from '@/Layouts/AuthenticatedLayout.vue';
-import { Head } from '@inertiajs/inertia-vue3';
+import { Head, Link } from '@inertiajs/inertia-vue3';
 import RegisterBuildingInfoStockModal from '../AppModules/Form/RegisterBuildInfoModal.vue';
 import useItems, { GetItemData } from '@/hooks/api/useItems';
+import useBuildingInfoData from '@/hooks/api/useBuildingInfo';
 import TextInput from '@/Components/Input/TextInput.vue';
 import { computed } from 'vue';
 const showModal = ref(false)
@@ -11,12 +12,17 @@ const modalOpen = () => {
   showModal.value = true
 }
 const { fetch: fetchItems } = useItems()
+const { fetch: fetchBuildinfo } = useBuildingInfoData()
 
-const essentialBuildNum = ref(10)
+const essentialBuildNum = ref(10)//必要最低棟数
 const items = ref<GetItemData[]>([])
+
+const buildInfoCount = ref(0)
 
 onBeforeMount(async () => {
   items.value = await fetchItems()
+  const buildInfos = await fetchBuildinfo({ is_exported: false })
+  buildInfoCount.value = buildInfos.length ?? 0
 })
 
 const onSubmitSuccess = async () => {
@@ -66,7 +72,8 @@ const computeItems = computed(() => (items.value.map((item) => ({
                     <th colspan="5">製材寸法</th>
                     <!-- <th>原木末口径(mm)</th> -->
                     <th>在庫本数<br />①</th>
-                    <th>必要見込本数<br />〇棟②
+                    <th>必要見込本数<br />
+                      <a class="underline text-blue-500" :href="route('BuildInfoList')">{{ buildInfoCount }}棟分</a>②
                     </th>
                     <th>
                       不足本数<br />
@@ -107,8 +114,8 @@ const computeItems = computed(() => (items.value.map((item) => ({
                     <td class="border-r border-gray-200">{{ item.build_quantity ?? 0 }}</td>
                     <td class="border-r border-gray-200 font-bold"
                       :class="item.shortage_count_for_producer < 0 ? 'text-red-500' : ''">{{
-                          item.shortage_count_for_producer
-                      }}</td>
+    item.shortage_count_for_producer
+}}</td>
                     <td class="border-r border-gray-200">{{ item.essential_quantity * Number(essentialBuildNum) }}
                     </td>
                     <td class="border-r border-gray-200 font-bold"
