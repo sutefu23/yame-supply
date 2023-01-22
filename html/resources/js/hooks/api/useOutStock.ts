@@ -10,7 +10,7 @@ export type OutStockData = {
   export_date: string
   warehouse_id: number
   reason: string
-  building_info_id: number
+  building_info_id: number|null,
   out_stock_details:
   {
     item_id: number
@@ -38,7 +38,7 @@ const useOutStockData = () => {
       export_date: dayjs().format('YYYY-MM-DD'),
       warehouse_id: 0,
       reason: "",
-      building_info_id: 0,
+      building_info_id: null,
       out_stock_details: items.map(item => ({
         item_id: item.id,
         item_quantity: 0
