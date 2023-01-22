@@ -14,7 +14,7 @@ return new class extends Migration
     public function up()
     {
         Schema::table('OutStockInfo', function (Blueprint $table) {
-            $table->foreignId("building_info_id")->nullable()->constrained()->after('reason')->comment("棟情報ID");
+            $table->foreignId("building_info_id")->nullable()->constrained('BuildingInfo')->after('reason')->comment("棟情報ID");
         });
     }
 
