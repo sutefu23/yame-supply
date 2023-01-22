@@ -61,7 +61,7 @@ class ItemSeeder extends Seeder
                 [
                     'length' => 3000,
                     'width' => 105,
-                    'thickness' => 0,
+                    'thickness' => 150,
                     'raw_wood_size' => 200,
                     'warehouse_id' => 1,
                     'memo' => '',
