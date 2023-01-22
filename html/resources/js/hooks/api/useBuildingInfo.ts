@@ -46,7 +46,7 @@ const useBuildingInfoData = () => {
       export_expected_date: "",
       building_info_details: items.map(item => ({
         item_id: item.id,
-        item_quantity: 0
+        item_quantity: item.essential_quantity
       }))
     })
   
