@@ -31,10 +31,6 @@
           DB::beginTransaction();
           foreach ($items as $item){
               if($item['offset_quantity']){
-                  $target = Item::find($item['id']);
-                  if($target->quantity + $item['offset_quantity'] < 0){
-                      throw new \InvalidArgumentException("在庫を0以下にする処理はできません。\n" . $target->length . "×". $target->width . "×" . $target->thickness . "\n現在庫数:" . $target->quantity);
-                  }
                   $updatedItems[] = Item::whereId($item['id'])->update(['quantity'    =>  DB::raw('quantity+'.$item['offset_quantity'])]);
               }
           }

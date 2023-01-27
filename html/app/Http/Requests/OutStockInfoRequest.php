@@ -2,6 +2,7 @@
 
 namespace App\Http\Requests;
 
+use App\Models\Item;
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Validation\Rule;
@@ -36,7 +37,16 @@ class OutStockInfoRequest extends FormRequest
             'building_info_id'  => ['exists_or_null:BuildingInfo,id'],
             'out_stock_details' => ['required', 'array'],
             'out_stock_details.*.item_id' => ['required', 'numeric','exists:Item,id'],
-            'out_stock_details.*.item_quantity' => ['required', 'numeric', 'min:0'],
+            'out_stock_details.*.item_quantity' => ['required', 'numeric', 'min:0',
+                function($attribute, $value, $fail) {
+                    [, $index, ] = explode(".", $attribute); // 例：out_stock_details.0.item_quantity
+                    $item_id = $this->input('out_stock_details.'. $index .'.item_id');
+                    $target = Item::find($item_id);
+                    if($target->quantity - $value < 0){
+                        return $fail("在庫を0以下にする処理はできません。\n" . $target->length . "×". $target->width . "×" . $target->thickness . "\n現在庫数:" . $target->quantity);
+                    }
+                },
+            ],
         ];
     }
 }
