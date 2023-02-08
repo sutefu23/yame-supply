@@ -53,14 +53,14 @@
 
             \App\Models\User::query()->create([
                 'id'    => 2,
-                'name' => '製材所1',
+                'name' => '八女林産協同組合',
                 'user_category_id' => 1,
                 'password' => bcrypt(env('DEFAULT_USER_PASS')),
                 'email' => 'test2@test.jp',
             ]);
             \App\Models\User::query()->create([
                 'id'    => 3,
-                'name' => '工務店1',
+                'name' => '健康住宅株式会社',
                 'user_category_id' => 2,
                 'password' => bcrypt(env('DEFAULT_USER_PASS')),
                 'email' => 'test3@test.jp',
