@@ -39,36 +39,36 @@ use Illuminate\Database\Eloquent\Model;
  */
 class InStockDetail extends BaseModel
 {
-	protected $table = 'InStockDetail';
+    protected $table = 'InStockDetail';
 
-	protected $casts = [
-		'in_stock_id' => 'int',
-		'item_id' => 'int',
-		'item_quantity' => 'int',
-		'create_user_id' => 'int',
-		'update_user_id' => 'int'
-	];
+    protected $casts = [
+        'in_stock_id' => 'int',
+        'item_id' => 'int',
+        'item_quantity' => 'int',
+        'create_user_id' => 'int',
+        'update_user_id' => 'int'
+    ];
 
-	protected $fillable = [
-		'in_stock_id',
-		'item_id',
-		'item_quantity',
-		'create_user_id',
-		'update_user_id'
-	];
+    protected $fillable = [
+        'in_stock_id',
+        'item_id',
+        'item_quantity',
+        'create_user_id',
+        'update_user_id'
+    ];
 
-	public function user()
-	{
-		return $this->belongsTo(User::class, 'update_user_id');
-	}
+    public function user()
+    {
+        return $this->belongsTo(User::class, 'update_user_id');
+    }
 
-	public function in_stock_info()
-	{
-		return $this->belongsTo(InStockInfo::class, 'in_stock_id');
-	}
+    public function in_stock_info()
+    {
+        return $this->belongsTo(InStockInfo::class, 'in_stock_id');
+    }
 
-	public function item()
-	{
-		return $this->belongsTo(Item::class, 'item_id');
-	}
+    public function item()
+    {
+        return $this->belongsTo(Item::class, 'item_id');
+    }
 }

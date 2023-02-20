@@ -13,6 +13,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Sanctum\HasApiTokens;
+
 /**
  * Class User
  *
@@ -59,60 +60,62 @@ use Laravel\Sanctum\HasApiTokens;
  */
 class User extends Authenticatable
 {
-    use HasApiTokens, HasFactory, Notifiable;
-	protected $table = 'users';
+    use HasApiTokens;
+    use HasFactory;
+    use Notifiable;
+    protected $table = 'users';
 
-	protected $dates = [
-		'email_verified_at'
-	];
+    protected $dates = [
+        'email_verified_at'
+    ];
 
     protected $casts = [
         'id' => 'int',
         'user_category_id' => 'int',
     ];
 
-	protected $hidden = [
-		'password',
-		'remember_token'
-	];
+    protected $hidden = [
+        'password',
+        'remember_token'
+    ];
 
-	protected $fillable = [
+    protected $fillable = [
         'id',
         'name',
-		'user_category_id',
-		'email',
-		'email_verified_at',
-		'password',
-		'remember_token'
-	];
+        'user_category_id',
+        'email',
+        'email_verified_at',
+        'password',
+        'remember_token'
+    ];
 
     public function user_category()
     {
         return $this->belongsTo(UserCategory::class, 'user_category_id');
     }
 
-	public function building_infos()
-	{
-		return $this->hasMany(BuildingInfo::class, 'builder_user_id');
-	}
+    public function building_infos()
+    {
+        return $this->hasMany(BuildingInfo::class, 'builder_user_id');
+    }
 
-	public function in_stock_details()
-	{
-		return $this->hasMany(InStockDetail::class, 'update_user_id');
-	}
+    public function in_stock_details()
+    {
+        return $this->hasMany(InStockDetail::class, 'update_user_id');
+    }
 
-	public function in_stock_infos()
-	{
-		return $this->hasMany(InStockInfo::class, 'produce_user_id');
-	}
+    public function in_stock_infos()
+    {
+        return $this->hasMany(InStockInfo::class, 'produce_user_id');
+    }
 
-	public function out_stock_details()
-	{
-		return $this->hasMany(OutStockDetail::class, 'update_user_id');
-	}
+    public function out_stock_details()
+    {
+        return $this->hasMany(OutStockDetail::class, 'update_user_id');
+    }
 
-	public function out_stock_infos()
-	{
-		return $this->hasMany(OutStockInfo::class, 'builder_user_id');
-	}
+    public function out_stock_infos()
+    {
+        return $this->hasMany(OutStockInfo::class, 'builder_user_id');
+    }
 }

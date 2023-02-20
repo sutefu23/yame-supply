@@ -31,19 +31,19 @@ use Illuminate\Database\Eloquent\Model;
  */
 class UserCategory extends Model
 {
-	protected $table = 'UserCategory';
-	public $incrementing = false;
+    protected $table = 'UserCategory';
+    public $incrementing = false;
 
-	protected $casts = [
-		'id' => 'int'
-	];
+    protected $casts = [
+        'id' => 'int'
+    ];
 
-	protected $fillable = [
-		'name'
-	];
+    protected $fillable = [
+        'name'
+    ];
 
-	public function users()
-	{
-		return $this->hasMany(User::class, 'user_category_id');
-	}
+    public function users()
+    {
+        return $this->hasMany(User::class, 'user_category_id');
+    }
 }

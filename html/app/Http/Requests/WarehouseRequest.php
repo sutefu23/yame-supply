@@ -29,7 +29,7 @@ class WarehouseRequest extends FormRequest
                 'id' => ['required', 'numeric', 'unique:Warehouse,id'],
                 'name' => ['required', 'string', 'unique:Warehouse,name'],
             ];
-        }else{
+        } else {
             return [
                 'name' => ['string'],
             ];

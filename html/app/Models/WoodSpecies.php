@@ -30,19 +30,19 @@ use Illuminate\Database\Eloquent\Model;
  */
 class WoodSpecies extends Model
 {
-	protected $table = 'WoodSpecies';
+    protected $table = 'WoodSpecies';
 
     protected $casts = [
         'id' => 'int',
     ];
 
-	protected $fillable = [
+    protected $fillable = [
         'id',
         'name'
-	];
+    ];
 
-	public function items()
-	{
-		return $this->hasMany(Item::class, 'wood_species_id');
-	}
+    public function items()
+    {
+        return $this->hasMany(Item::class, 'wood_species_id');
+    }
 }

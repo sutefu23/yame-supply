@@ -27,7 +27,7 @@ class InStockInfoRequest extends FormRequest
     {
         return [
             'produce_user_id'   =>  ['required', 'numeric',
-                Rule::exists('users','id')->where(function($query){
+                Rule::exists('users', 'id')->where(function ($query) {
                     return $query->where('user_category_id', 1);//製材所のみ
                 })],
             'reason'   =>  ['string', 'nullable', 'max:255'],

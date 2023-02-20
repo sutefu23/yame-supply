@@ -38,28 +38,28 @@ use Carbon\Carbon;
  */
 class PersonalAccessToken extends Model
 {
-	protected $table = 'personal_access_tokens';
+    protected $table = 'personal_access_tokens';
 
-	protected $casts = [
-		'tokenable_id' => 'int'
-	];
+    protected $casts = [
+        'tokenable_id' => 'int'
+    ];
 
-	protected $dates = [
-		'last_used_at',
-		'expires_at'
-	];
+    protected $dates = [
+        'last_used_at',
+        'expires_at'
+    ];
 
-	protected $hidden = [
-		'token'
-	];
+    protected $hidden = [
+        'token'
+    ];
 
-	protected $fillable = [
-		'tokenable_type',
-		'tokenable_id',
-		'name',
-		'token',
-		'abilities',
-		'last_used_at',
-		'expires_at'
-	];
+    protected $fillable = [
+        'tokenable_type',
+        'tokenable_id',
+        'name',
+        'token',
+        'abilities',
+        'last_used_at',
+        'expires_at'
+    ];
 }

@@ -35,7 +35,7 @@ class UserRequest extends FormRequest
                 'password' => ['required', 'confirmed', Rules\Password::defaults()],
                 'user_category_id' => ['required', 'numeric', 'exists:UserCategory,id'],
             ];
-        }else{
+        } else {
             return [
                 'id' => ['numeric', 'exists:users,id'],
                 'name'  => ['string'],

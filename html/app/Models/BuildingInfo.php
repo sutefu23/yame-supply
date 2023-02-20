@@ -38,32 +38,32 @@ use Illuminate\Database\Eloquent\Model;
  */
 class BuildingInfo extends BaseModel
 {
-	protected $table = 'BuildingInfo';
+    protected $table = 'BuildingInfo';
 
-	protected $casts = [
-		'builder_user_id' => 'int',
-		'is_exported' => 'boolean',
-		'create_user_id' => 'int',
-		'update_user_id' => 'int'
-	];
+    protected $casts = [
+        'builder_user_id' => 'int',
+        'is_exported' => 'boolean',
+        'create_user_id' => 'int',
+        'update_user_id' => 'int'
+    ];
 
-	protected $dates = [
-		'export_expected_date'
-	];
+    protected $dates = [
+        'export_expected_date'
+    ];
 
-	protected $fillable = [
-		'field_name',
-		'builder_user_id',
-		'export_expected_date',
-		'is_exported',
-		'create_user_id',
-		'update_user_id'
-	];
+    protected $fillable = [
+        'field_name',
+        'builder_user_id',
+        'export_expected_date',
+        'is_exported',
+        'create_user_id',
+        'update_user_id'
+    ];
 
-	public function user()
-	{
-		return $this->belongsTo(User::class, 'builder_user_id');
-	}
+    public function user()
+    {
+        return $this->belongsTo(User::class, 'builder_user_id');
+    }
 
     public function building_info_details()
     {

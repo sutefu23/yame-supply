@@ -33,29 +33,29 @@ use Illuminate\Database\Eloquent\Model;
  */
 class Warehouse extends Model
 {
-	protected $table = 'Warehouse';
-	public $incrementing = false;
+    protected $table = 'Warehouse';
+    public $incrementing = false;
 
-	protected $casts = [
-		'id' => 'int'
-	];
+    protected $casts = [
+        'id' => 'int'
+    ];
 
-	protected $fillable = [
-		'name'
-	];
+    protected $fillable = [
+        'name'
+    ];
 
-	public function in_stock_infos()
-	{
-		return $this->hasMany(InStockInfo::class, 'warehouse_id');
-	}
+    public function in_stock_infos()
+    {
+        return $this->hasMany(InStockInfo::class, 'warehouse_id');
+    }
 
-	public function items()
-	{
-		return $this->hasMany(Item::class, 'warehouse_id');
-	}
+    public function items()
+    {
+        return $this->hasMany(Item::class, 'warehouse_id');
+    }
 
-	public function out_stock_infos()
-	{
-		return $this->hasMany(OutStockInfo::class, 'warehouse_id');
-	}
+    public function out_stock_infos()
+    {
+        return $this->hasMany(OutStockInfo::class, 'warehouse_id');
+    }
 }

@@ -5,6 +5,7 @@
  */
 
 namespace App\Models;
+
 use Illuminate\Database\Eloquent\Model;
 use Carbon\Carbon;
 
@@ -33,19 +34,19 @@ use Carbon\Carbon;
  */
 class FailedJob extends Model
 {
-	protected $table = 'failed_jobs';
-	public $timestamps = false;
+    protected $table = 'failed_jobs';
+    public $timestamps = false;
 
-	protected $dates = [
-		'failed_at'
-	];
+    protected $dates = [
+        'failed_at'
+    ];
 
-	protected $fillable = [
-		'uuid',
-		'connection',
-		'queue',
-		'payload',
-		'exception',
-		'failed_at'
-	];
+    protected $fillable = [
+        'uuid',
+        'connection',
+        'queue',
+        'payload',
+        'exception',
+        'failed_at'
+    ];
 }

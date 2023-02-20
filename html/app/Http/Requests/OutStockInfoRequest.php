@@ -28,7 +28,7 @@ class OutStockInfoRequest extends FormRequest
     {
         return [
             'builder_user_id'   =>  ['numeric',
-                Rule::exists('users','id')->where(function($query){
+                Rule::exists('users', 'id')->where(function ($query) {
                     return $query->where('user_category_id', 2);//工務店のみ
                 })],
             'export_date'   =>  ['required', 'date'],
@@ -38,11 +38,11 @@ class OutStockInfoRequest extends FormRequest
             'out_stock_details' => ['required', 'array'],
             'out_stock_details.*.item_id' => ['required', 'numeric','exists:Item,id'],
             'out_stock_details.*.item_quantity' => ['required', 'numeric', 'min:0',
-                function($attribute, $value, $fail) {
+                function ($attribute, $value, $fail) {
                     [, $index, ] = explode(".", $attribute); // 例：out_stock_details.0.item_quantity
                     $item_id = $this->input('out_stock_details.'. $index .'.item_id');
                     $target = Item::find($item_id);
-                    if($target->quantity - $value < 0){
+                    if ($target->quantity - $value < 0) {
                         return $fail("在庫を0以下にする処理はできません。\n" . $target->length . "×". $target->width . "×" . $target->thickness . "\n現在庫数:" . $target->quantity);
                     }
                 },

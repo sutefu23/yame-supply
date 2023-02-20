@@ -37,12 +37,11 @@ class ItemRequest extends FormRequest
                 'unit_id' => ['required', 'numeric', 'exists:Unit,id'],
                 'wood_species_id' => ['required', 'numeric', 'exists:WoodSpecies,id'],
             ];
-        }else {
+        } else {
             return [
                 'items.*.id' => ['required','numeric', 'exists:Item,id'],
                 'items.*.essential_quantity' => ['required','numeric', 'min:0'],
             ];
         }
     }
-
 }

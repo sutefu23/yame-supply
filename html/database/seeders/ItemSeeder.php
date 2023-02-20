@@ -12,7 +12,8 @@ class ItemSeeder extends Seeder
      *
      * @return void
      */
-    public function run() {
+    public function run()
+    {
         \App\Models\Unit::create([
             'id'    => 1,
             'name' => '本',
@@ -277,7 +278,7 @@ class ItemSeeder extends Seeder
                 ],
             ];
         //一括登録
-        foreach($items as $item) {
+        foreach ($items as $item) {
             \App\Models\Item::create($item);
         }
     }

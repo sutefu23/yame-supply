@@ -4,8 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-return new class extends Migration
-{
+return new class () extends Migration {
     /**
      * Run the migrations.
      *
@@ -18,7 +17,7 @@ return new class extends Migration
             $table->foreignId("produce_user_id")->comment("製材所ユーザーID")->constrained('users');
             $table->date("import_date")->comment("入庫日");
             $table->foreignId('warehouse_id')->comment('倉庫ID')->constrained('Warehouse');
-            $table->string("reason",255)->comment("理由")->nullable();
+            $table->string("reason", 255)->comment("理由")->nullable();
             $table->foreignId("create_user_id")->comment("登録者")->constrained('users');
             $table->foreignId("update_user_id")->comment("変更者")->constrained('users');
             $table->timestamps();

@@ -4,8 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-return new class extends Migration
-{
+return new class () extends Migration {
     /**
      * Run the migrations.
      *
@@ -15,7 +14,7 @@ return new class extends Migration
     {
         Schema::create('BuildingInfo', function (Blueprint $table) {
             $table->id();
-            $table->string("field_name",255)->comment("現場名")->nullable();
+            $table->string("field_name", 255)->comment("現場名")->nullable();
             $table->foreignId("builder_user_id")->comment("工務店ユーザーID")->constrained('users');
             $table->date("export_expected_date")->comment("出荷予定日");
             $table->foreignId("create_user_id")->comment("登録者")->constrained('users');

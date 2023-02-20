@@ -24,16 +24,16 @@ use Carbon\Carbon;
  */
 class PasswordReset extends Model
 {
-	protected $table = 'password_resets';
-	public $incrementing = false;
-	public $timestamps = false;
+    protected $table = 'password_resets';
+    public $incrementing = false;
+    public $timestamps = false;
 
-	protected $hidden = [
-		'token'
-	];
+    protected $hidden = [
+        'token'
+    ];
 
-	protected $fillable = [
-		'email',
-		'token'
-	];
+    protected $fillable = [
+        'email',
+        'token'
+    ];
 }

@@ -29,7 +29,7 @@ class UnitRequest extends FormRequest
                 'id' => ['required', 'numeric', 'unique:Unit,id'],
                 'name' => ['required', 'string', 'unique:Unit,name'],
             ];
-        }else{
+        } else {
             return [
                 'name' => ['string'],
             ];

@@ -19,6 +19,8 @@ install-recommend-packages:
 	docker-compose exec laravel composer require --dev beyondcode/laravel-dump-server
 	docker-compose exec laravel composer require --dev barryvdh/laravel-debugbar
 	docker-compose exec laravel composer require --dev roave/security-advisories:dev-master
+	docker-compose exec laravel composer require --dev nunomaduro/larastan
+	docker-compose exec laravel composer require --dev stechstudio/laravel-php-cs-fixer
 	docker-compose exec laravel php artisan vendor:publish --provider="BeyondCode\DumpServer\DumpServerServiceProvider"
 	docker-compose exec laravel php artisan vendor:publish --provider="Barryvdh\Debugbar\ServiceProvider"
 breeze:
@@ -61,3 +63,5 @@ model:
 	docker-compose exec laravel php artisan vendor:publish --tag=reliese-models
 	docker-compose exec laravel php artisan config:clear
 	docker-compose exec laravel php artisan code:models
+analyse:
+	docker-compose exec laravel ./vendor/bin/phpstan analyse

@@ -28,7 +28,7 @@ class BuildingInfoRequest extends FormRequest
         return [
             'field_name'   =>  ['string', 'max:255'],
             'builder_user_id'   =>  ['numeric',
-                Rule::exists('users','id')->where(function($query){
+                Rule::exists('users', 'id')->where(function ($query) {
                     return $query->where('user_category_id', 2);//工務店のみ
                 })],
             'export_expected_date'   =>  ['required', 'date','after_or_equal:today'],

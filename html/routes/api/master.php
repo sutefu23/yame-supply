@@ -66,4 +66,3 @@
     Route::delete('/WoodSpecies/{id}', function ($id) {
         return new JsonResource(WoodSpecies::whereId($id)->delete());
     });
-

@@ -29,7 +29,7 @@ class WoodSpeciesRequest extends FormRequest
                 'id' => ['required', 'numeric', 'unique:WoodSpecies,id'],
                 'name' => ['required', 'string', 'unique:WoodSpecies,name'],
             ];
-        }else{
+        } else {
             return [
                 'name' => ['string'],
             ];

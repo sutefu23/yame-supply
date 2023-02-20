@@ -43,45 +43,45 @@ use Illuminate\Database\Eloquent\Model;
  */
 class OutStockInfo extends BaseModel
 {
-	protected $table = 'OutStockInfo';
+    protected $table = 'OutStockInfo';
 
-	protected $casts = [
-		'builder_user_id' => 'int',
-		'warehouse_id' => 'int',
-		'building_info_id' => 'int',
-		'create_user_id' => 'int',
-		'update_user_id' => 'int'
-	];
+    protected $casts = [
+        'builder_user_id' => 'int',
+        'warehouse_id' => 'int',
+        'building_info_id' => 'int',
+        'create_user_id' => 'int',
+        'update_user_id' => 'int'
+    ];
 
-	protected $dates = [
-		'export_date'
-	];
+    protected $dates = [
+        'export_date'
+    ];
 
-	protected $fillable = [
-		'builder_user_id',
-		'warehouse_id',
-		'building_info_id',
-		'export_date',
-		'reason',
-		'create_user_id',
-		'update_user_id'
-	];
+    protected $fillable = [
+        'builder_user_id',
+        'warehouse_id',
+        'building_info_id',
+        'export_date',
+        'reason',
+        'create_user_id',
+        'update_user_id'
+    ];
 
-	public function user()
-	{
-		return $this->belongsTo(User::class, 'builder_user_id');
-	}
+    public function user()
+    {
+        return $this->belongsTo(User::class, 'builder_user_id');
+    }
 
-	public function warehouse()
-	{
-		return $this->belongsTo(Warehouse::class, 'warehouse_id');
-	}
+    public function warehouse()
+    {
+        return $this->belongsTo(Warehouse::class, 'warehouse_id');
+    }
     public function building_info()
     {
         return $this->hasMany(BuildingInfo::class, 'building_info_id');
     }
-	public function out_stock_details()
-	{
-		return $this->hasMany(OutStockDetail::class, 'out_stock_id');
-	}
+    public function out_stock_details()
+    {
+        return $this->hasMany(OutStockDetail::class, 'out_stock_id');
+    }
 }

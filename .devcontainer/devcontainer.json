@@ -1,0 +1,6 @@
+{
+  "name": "Laravel Application",
+  "dockerComposeFile": "../docker-compose.yml",
+  "service": "laravel",
+  "workspaceFolder":"/var/www/html"
+}

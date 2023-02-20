@@ -31,19 +31,19 @@ use Illuminate\Database\Eloquent\Model;
  */
 class Unit extends Model
 {
-	protected $table = 'Unit';
-	public $incrementing = false;
+    protected $table = 'Unit';
+    public $incrementing = false;
 
-	protected $casts = [
-		'id' => 'int'
-	];
+    protected $casts = [
+        'id' => 'int'
+    ];
 
-	protected $fillable = [
-		'name'
-	];
+    protected $fillable = [
+        'name'
+    ];
 
-	public function items()
-	{
-		return $this->hasMany(Item::class, 'unit_id');
-	}
+    public function items()
+    {
+        return $this->hasMany(Item::class, 'unit_id');
+    }
 }

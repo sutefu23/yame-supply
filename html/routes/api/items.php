@@ -18,69 +18,69 @@
     use Illuminate\Support\Facades\Route;
     use Illuminate\Http\Request;
 
-    Route::get('/items', function (){
+    Route::get('/items', function () {
         return new JsonResource(ItemService::getItemWithActiveBuildInfo());
     });
 
-    Route::post('/items', function (ItemRequest $request){
+    Route::post('/items', function (ItemRequest $request) {
         return new JsonResource(Item::create($request->validated()));
     })->name('Items.post');
 
 
-    Route::patch('/items/essential', function (ItemEssentialPatchRequest $request){
+    Route::patch('/items/essential', function (ItemEssentialPatchRequest $request) {
         $data = $request->validated();
         ItemService::offsetQuentity($data['items']);
         return new JsonResource(Item::with(['wood_species','unit','warehouse'])->get());
     })->name('Items.post');
 
 
-    Route::patch('/items/quantity', function (ItemOffsetPatchRequest $request){
+    Route::patch('/items/quantity', function (ItemOffsetPatchRequest $request) {
         $data = $request->validated();
         ItemService::modifyEssential($data['items']);
         return new JsonResource(Item::with(['wood_species','unit','warehouse'])->get());
     })->name('Items.post');
 
-    Route::get('/InStockInfo', function (){
+    Route::get('/InStockInfo', function () {
         return new JsonResource(InStockInfo::with(['in_stock_details','user', 'warehouse'])->get());
     });
 
 
-    Route::post('/InStockInfo', function (InStockInfoRequest $request){
+    Route::post('/InStockInfo', function (InStockInfoRequest $request) {
         $data = $request->validated();
         $inStockInfo = StockService::inStock($data);
         return new JsonResource($inStockInfo);
     })->name('InStockInfo.post');
 
 
-    Route::get('/OutStockInfo', function (){
+    Route::get('/OutStockInfo', function () {
         return new JsonResource(OutStockInfo::with(['out_stock_details','user', 'warehouse'])->get());
     });
 
-    Route::post('/OutStockInfo', function (OutStockInfoRequest $request){
+    Route::post('/OutStockInfo', function (OutStockInfoRequest $request) {
         $data = $request->validated();
         $outStockInfo = StockService::outStock($data);
         return new JsonResource($outStockInfo);
     })->name('OutStockInfo.post');
 
-    Route::get('/BuildingInfo/', function (Request $request){
-        return new JsonResource(BuildingInfo::with(['user','building_info_details'])->where(function($query) use ($request){
+    Route::get('/BuildingInfo/', function (Request $request) {
+        return new JsonResource(BuildingInfo::with(['user','building_info_details'])->where(function ($query) use ($request) {
             $id = $request->query('id');
             $is_exported = $request->query('is_exported');
             $beforeMonth = Carbon::today()->subMonth();
-            $query->whereDate('export_expected_date','>', $beforeMonth);
-            if($id){
+            $query->whereDate('export_expected_date', '>', $beforeMonth);
+            if ($id) {
                 $query->whereId($id);
             }
-            if($is_exported){
+            if ($is_exported) {
                 $query->where('is_exported', '=', $is_exported === 'true');
             }
         })->orderBy("export_expected_date", "desc")->get());
     });
 
-    Route::patch('/BuildingInfo/{id}', function (BuildingInfoRequest $request, int $id){
+    Route::patch('/BuildingInfo/{id}', function (BuildingInfoRequest $request, int $id) {
         $data = $request->validated();
         DB::beginTransaction();
-        foreach ($data['building_info_details'] as $info_detail){
+        foreach ($data['building_info_details'] as $info_detail) {
             BuildingInfoDetail::where(['build_info_id' => $id, 'item_id' => $info_detail['item_id']])->update(['item_quantity' => $info_detail['item_quantity']]);
         }
         unset($data['building_info_details']);
@@ -90,7 +90,7 @@
     })->name('BuildingInfo.post');
 
 
-    Route::post('/BuildingInfo', function (BuildingInfoRequest $request){
+    Route::post('/BuildingInfo', function (BuildingInfoRequest $request) {
         $data = $request->validated();
         DB::beginTransaction();
         $buildingInfo = BuildingInfo::create($data);

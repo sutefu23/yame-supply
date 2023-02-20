@@ -39,7 +39,7 @@
 
                 ];
 
-            foreach($categories as $category) {
+            foreach ($categories as $category) {
                 \App\Models\UserCategory::create($category);
             }
 
@@ -65,6 +65,5 @@
                 'password' => bcrypt(env('DEFAULT_USER_PASS')),
                 'email' => 'test3@test.jp',
             ]);
-
         }
     }

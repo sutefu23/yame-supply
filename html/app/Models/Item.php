@@ -56,61 +56,61 @@ use Illuminate\Database\Eloquent\Model;
  */
 class Item extends Model
 {
-	protected $table = 'Item';
-	public $incrementing = false;
+    protected $table = 'Item';
+    public $incrementing = false;
 
-	protected $casts = [
-		'id' => 'int',
-		'length' => 'int',
-		'width' => 'int',
-		'thickness' => 'int',
-		'warehouse_id' => 'int',
-		'quantity' => 'int',
-		'essential_quantity' => 'int',
-		'unit_id' => 'int',
-		'wood_species_id' => 'int'
-	];
+    protected $casts = [
+        'id' => 'int',
+        'length' => 'int',
+        'width' => 'int',
+        'thickness' => 'int',
+        'warehouse_id' => 'int',
+        'quantity' => 'int',
+        'essential_quantity' => 'int',
+        'unit_id' => 'int',
+        'wood_species_id' => 'int'
+    ];
 
-	protected $fillable = [
-		'length',
-		'width',
-		'thickness',
-		'raw_wood_size',
-		'warehouse_id',
-		'memo',
-		'quantity',
-		'essential_quantity',
-		'unit_id',
-		'wood_species_id'
-	];
+    protected $fillable = [
+        'length',
+        'width',
+        'thickness',
+        'raw_wood_size',
+        'warehouse_id',
+        'memo',
+        'quantity',
+        'essential_quantity',
+        'unit_id',
+        'wood_species_id'
+    ];
 
-	public function unit()
-	{
-		return $this->belongsTo(Unit::class, 'unit_id');
-	}
+    public function unit()
+    {
+        return $this->belongsTo(Unit::class, 'unit_id');
+    }
 
-	public function warehouse()
-	{
-		return $this->belongsTo(Warehouse::class, 'warehouse_id');
-	}
+    public function warehouse()
+    {
+        return $this->belongsTo(Warehouse::class, 'warehouse_id');
+    }
 
-	public function wood_species()
-	{
-		return $this->belongsTo(WoodSpecies::class, 'wood_species_id');
-	}
+    public function wood_species()
+    {
+        return $this->belongsTo(WoodSpecies::class, 'wood_species_id');
+    }
 
-	public function building_info_details()
-	{
-		return $this->hasMany(BuildingInfoDetail::class, 'item_id');
-	}
+    public function building_info_details()
+    {
+        return $this->hasMany(BuildingInfoDetail::class, 'item_id');
+    }
 
-	public function in_stock_details()
-	{
-		return $this->hasMany(InStockDetail::class, 'item_id');
-	}
+    public function in_stock_details()
+    {
+        return $this->hasMany(InStockDetail::class, 'item_id');
+    }
 
-	public function out_stock_details()
-	{
-		return $this->hasMany(OutStockDetail::class, 'item_id');
-	}
+    public function out_stock_details()
+    {
+        return $this->hasMany(OutStockDetail::class, 'item_id');
+    }
 }
