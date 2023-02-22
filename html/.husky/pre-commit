@@ -1,5 +1,5 @@
 #!/bin/sh
-."$(dirmname "$0")/.husky/html/_/husky.sh"
+ . "$(dirname "$0")/_/husky.sh"
 
 # lint-stagedを実行
 yarn --cwd ./html lint-staged

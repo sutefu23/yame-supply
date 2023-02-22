@@ -1,5 +1,5 @@
 #!/bin/sh
-."$(dirname "$0")/.husky/_/husky.sh"
+ . "$(dirname "$0")/_/husky.sh"
 
 # yarn check-typesを実行
 yarn --cwd ./html build

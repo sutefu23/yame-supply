@@ -35,8 +35,8 @@ jobs:
             git reset --hard HEAD && \
             git pull origin master && \
             git checkout master && \
-            composer install && \
-            php81 artisan migrate && \
-            yarn && \
+            cd html && \
+            php81 /home/xs534980/bin/composer install && \
+            yarn install && \
             yarn build
           "
