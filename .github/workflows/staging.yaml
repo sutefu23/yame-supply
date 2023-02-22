@@ -1,0 +1,42 @@
+name: staging
+on:
+  push:
+    branches:
+      - staging
+jobs:
+  deploy:
+    runs-on: ubuntu-20.04
+    steps:
+      ######
+      ######
+      # SSH 設定
+      - name: yame-supply
+        uses: shimataro/ssh-key-action@v2
+        with:
+          key: ${{ secrets.SSH_PRIVATE_KEY }}
+          name: yame-supply.key
+          known_hosts: ${{ secrets.SSH_KNOWN_HOST }}
+          config: |
+            Host yame-supply
+              HostName ${{ secrets.SSH_HOST_NAME }}
+              User ${{ secrets.SSH_USER }}
+              IdentityFile ~/.ssh/yame-supply.key
+              Port 10022
+              StrictHostKeyChecking no
+      ######
+      ######
+      - name: Connect server to staging, Other ( pull, build etc... )
+        run: |
+          ssh yame-supply \
+          "\
+            pwd && \
+            ls && \
+            cd ./yame-supply.net/public_html/stg && \
+            git reset --hard HEAD && \
+            git pull origin staging && \
+            git checkout staging && \
+            cd html && \
+            php81 /home/xs534980/bin/composer install && \
+            yarn install && \
+            yarn build
+          "
