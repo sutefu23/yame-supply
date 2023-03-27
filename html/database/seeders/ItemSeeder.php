@@ -215,19 +215,19 @@ class ItemSeeder extends Seeder
                     'unit_id' => 1,
                     'wood_species_id' => 1,
                 ],
-                ///桧
                 [
-                    'length' => 3000,
-                    'width' => 105,
-                    'thickness' => 105,
+                    'length' => 4000,
+                    'width' => 120,
+                    'thickness' => 120,
                     'raw_wood_size' => 0,
                     'warehouse_id' => 1,
                     'memo' => '',
                     'quantity' => 0,
                     'essential_quantity' => 10,
                     'unit_id' => 1,
-                    'wood_species_id' => 2,
+                    'wood_species_id' => 1,
                 ],
+                ///桧
                 [
                     'length' => 3000,
                     'width' => 120,
