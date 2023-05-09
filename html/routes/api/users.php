@@ -21,7 +21,7 @@
         $hashed_password = (
             function () use ($id, $data) {
                 if (empty($data["password"])) {
-                    return User::find($id);
+                    return User::find($id)->password;
                 } else {
                     return Hash::make($data["password"]);
                 }
