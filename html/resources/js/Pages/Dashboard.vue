@@ -3,21 +3,22 @@ import { ref, onBeforeMount } from 'vue';
 import AuthenticatedLayout from '@/Layouts/AuthenticatedLayout.vue';
 import { Head, Link } from '@inertiajs/inertia-vue3';
 import RegisterBuildingInfoStockModal from '../AppModules/Form/RegisterBuildInfoModal.vue';
-import useItems, { GetItemData } from '@/hooks/api/useItems';
+import useItems, { GetItemData, ItemData } from '@/hooks/api/useItems';
 import useBuildingInfoData from '@/hooks/api/useBuildingInfo';
 import TextInput from '@/Components/Input/TextInput.vue';
+import useMe from '@/hooks/useMe';
 import { computed } from 'vue';
 const showModal = ref(false)
 const modalOpen = () => {
   showModal.value = true
 }
-const { fetch: fetchItems } = useItems()
+const { fetch: fetchItems, update: updateItems } = useItems()
 const { fetch: fetchBuildinfo } = useBuildingInfoData()
-
 const essentialBuildNum = ref(10)//必要最低棟数
 const items = ref<GetItemData[]>([])
 
 const buildInfoCount = ref(0)
+const { isManufacturer } = useMe()
 
 onBeforeMount(async () => {
   items.value = await fetchItems()
@@ -31,6 +32,9 @@ const onSubmitSuccess = async () => {
   window.location.reload()
 }
 
+const handleUpdateItem = async (item: ItemData, id: number) => {
+  await updateItems(item, id)
+}
 const computeItems = computed(() => (items.value.map((item) => ({
   ...item,
   required_count: 0 + item.essential_quantity * essentialBuildNum.value,
@@ -58,6 +62,9 @@ const computeItems = computed(() => (items.value.map((item) => ({
               <button
                 class="mx-2 my-2 bg-green-700 transition duration-150 ease-in-out hover:bg-green-600 rounded text-white px-8 py-3 text-sm focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-green-600"
                 @click="modalOpen">棟情報登録</button>
+              <div v-if="isManufacturer()" class="text-right">
+                <p class="text-sm">※直接編集したデータはカーソルを外したタイミングで保存されます。</p>
+              </div>
               <table class="w-full whitespace-nowrap">
                 <thead>
                   <tr tabindex="0" class="
@@ -91,6 +98,10 @@ const computeItems = computed(() => (items.value.map((item) => ({
                     <th>不足本数<br />
                       ①-③
                     </th>
+                    <th>不良品</th>
+                    <th>乾燥中<br>製材中</th>
+                    <th>原木入荷</th>
+                    <th>原木手配</th>
                   </tr>
                 </thead>
                 <tbody class="w-full">
@@ -114,14 +125,47 @@ const computeItems = computed(() => (items.value.map((item) => ({
                     <td class="border-r border-gray-200">{{ item.build_quantity ?? 0 }}</td>
                     <td class="border-r border-gray-200 font-bold"
                       :class="item.shortage_count_for_producer < 0 ? 'text-red-500' : ''">{{
-    item.shortage_count_for_producer
-}}</td>
+                        item.shortage_count_for_producer
+                      }}</td>
                     <td class="border-r border-gray-200">{{ item.essential_quantity * Number(essentialBuildNum) }}
                     </td>
                     <td class="border-r border-gray-200 font-bold"
                       :class="item.shortage_count_for_builder < 0 ? 'text-red-500' : ''">
                       {{ item.shortage_count_for_builder }}
                     </td>
+                    <td class="border-r border-gray-200" v-if="isManufacturer()">
+                      <TextInput name="defective_quantity" type="number" class="w-16 mb-0 text-right inline-block p-1"
+                        v-model="item.defective_quantity" @blur="handleUpdateItem(item, item.id)"></TextInput>
+                    </td>
+                    <td class="border-r border-gray-200" v-else>
+                      {{ item.defective_quantity }}
+                    </td>
+                    <td class="border-r border-gray-200" v-if="isManufacturer()">
+                      <TextInput name="manufacturing_quantity" type="number" class="w-16 mb-0 text-right inline-block p-1"
+                        v-model="item.manufacturing_quantity" @blur="handleUpdateItem(item, item.id)"></TextInput>
+                    </td>
+                    <td class="border-r border-gray-200" v-else>
+                      {{ item.manufacturing_quantity }}
+                    </td>
+                    <td class="border-r border-gray-200" v-if="isManufacturer()">
+                      <TextInput name="raw_wood_arrival_quantity" type="number"
+                        class="w-16 mb-0 text-right inline-block p-1" v-model="item.raw_wood_arrival_quantity"
+                        @blur="handleUpdateItem(item, item.id)">
+                      </TextInput>
+                    </td>
+                    <td class="border-r border-gray-200" v-else>
+                      {{ item.raw_wood_arrival_quantity }}
+                    </td>
+                    <td class="border-r border-gray-200" v-if="isManufacturer()">
+                      <TextInput name="raw_wood_arrangement_quantity" type="number"
+                        class="w-16 mb-0 text-right inline-block p-1" v-model="item.raw_wood_arrangement_quantity"
+                        @blur="handleUpdateItem(item, item.id)">
+                      </TextInput>
+                    </td>
+                    <td class="border-r border-gray-200" v-else>
+                      {{ item.raw_wood_arrangement_quantity }}
+                    </td>
+
                   </tr>
                 </tbody>
               </table>
@@ -132,6 +176,4 @@ const computeItems = computed(() => (items.value.map((item) => ({
     </AuthenticatedLayout>
     <RegisterBuildingInfoStockModal :show="showModal" @close="showModal = false" @on-success="onSubmitSuccess" />
   </div>
-
-
 </template>

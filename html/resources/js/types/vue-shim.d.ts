@@ -48,7 +48,8 @@ declare module '@inertiajs/inertia' {
     auth:{
       user:{
         name: string,
-        email: string,  
+        email: string,
+        user_category_id: number,
       }
     }
     UserCategory:[{

@@ -13,7 +13,11 @@ export type ItemData = {
   essential_quantity: number,
   build_quantity: number,
   unit_id: number
-  wood_species_id: number
+  wood_species_id: number,
+  defective_quantity: number,
+  manufacturing_quantity: number,
+  raw_wood_arrival_quantity: number,
+  raw_wood_arrangement_quantity: number,
 }
 
 export type GetItemData = ItemData & { wood_species: WoodSpeciesType } & { unit: UnitType } & { warehouse: WarehouseType }

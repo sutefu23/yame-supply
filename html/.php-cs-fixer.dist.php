@@ -8,7 +8,6 @@
             '/var/www/html/database/factories',
             '/var/www/html/database/seeders',
             '/var/www/html/routes',
-            '/var/www/html/packages',
             '/var/www/html/tests',
         ]);
 
