@@ -68,7 +68,12 @@ class Item extends Model
         'quantity' => 'int',
         'essential_quantity' => 'int',
         'unit_id' => 'int',
-        'wood_species_id' => 'int'
+        'wood_species_id' => 'int',
+        'defective_quantity' => 'int',
+        'manufacturing_quantity' => 'int',
+        'raw_wood_arrival_quantity' => 'int',
+        'raw_wood_arrangement_quantity' => 'int',
+
     ];
 
     protected $fillable = [
@@ -81,7 +86,11 @@ class Item extends Model
         'quantity',
         'essential_quantity',
         'unit_id',
-        'wood_species_id'
+        'wood_species_id',
+        'defective_quantity',
+        'manufacturing_quantity',
+        'raw_wood_arrival_quantity',
+        'raw_wood_arrangement_quantity',
     ];
 
     public function unit()

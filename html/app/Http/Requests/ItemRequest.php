@@ -24,8 +24,8 @@ class ItemRequest extends FormRequest
      */
     public function rules()
     {
-        if ($this->method() == 'POST') {
-            return [
+        return match ($this->method()) {
+            "POST" => [
                 'length' => ['required', 'numeric'],
                 'width' => ['required', 'numeric'],
                 'thickness' => ['required', 'numeric'],
@@ -36,12 +36,17 @@ class ItemRequest extends FormRequest
                 'essential_quantity' => ['required', 'numeric', 'min:0'],
                 'unit_id' => ['required', 'numeric', 'exists:Unit,id'],
                 'wood_species_id' => ['required', 'numeric', 'exists:WoodSpecies,id'],
-            ];
-        } else {
-            return [
-                'items.*.id' => ['required','numeric', 'exists:Item,id'],
-                'items.*.essential_quantity' => ['required','numeric', 'min:0'],
-            ];
-        }
+            ],
+            "PUT", "PATCH" => [
+                'defective_quantity' => ['required', 'numeric', 'min:0'],
+                'manufacturing_quantity' => ['required', 'numeric', 'min:0'],
+                'raw_wood_arrival_quantity' => ['required', 'numeric', 'min:0'],
+                'raw_wood_arrangement_quantity' => ['required', 'numeric', 'min:0']
+            ],
+            default => [
+                'items.*.id' => ['required', 'numeric', 'exists:Item,id'],
+                'items.*.essential_quantity' => ['required', 'numeric', 'min:0'],
+            ],
+        };
     }
 }
