@@ -29,12 +29,14 @@ onBeforeMount(async () => {
       field_name: editData[0].field_name,
       is_exported: editData[0].is_exported,
       export_expected_date: dayjs(editData[0].export_expected_date).format('YYYY-MM-DD'),
+      export_fix_date: dayjs(editData[0].export_fix_date).format('YYYY-MM-DD'),
       building_info_details: editData[0].building_info_details
     }
     form.builder_user_id = formData.builder_user_id
     form.field_name = formData.field_name
     form.is_exported = formData.is_exported
     form.export_expected_date = formData.export_expected_date
+    form.export_fix_date = formData.export_fix_date
     form.building_info_details = formData.building_info_details
   }
 })
@@ -67,8 +69,11 @@ const submit = async () => {
       <div class="h-full">
         <InputLabel>出荷予定日</InputLabel>
         <InvalidError field="export_expected_date" />
-        <TextInput :disabled="disable" type="date" id="importDate" v-model="form.export_expected_date" />
-        <div v-if="editId" class="text-center pt-8">
+        <TextInput :disabled="disable" type="date" id="exportDate" v-model="form.export_expected_date" />
+        <InputLabel>出荷確定日</InputLabel>
+        <InvalidError field="export_fix_date" />
+        <TextInput :disabled="disable" type="date" id="fixDate" v-model="form.export_fix_date" />
+        <div v-if="editId" class="text-center pt-2 pb-2">
           <button v-if="!form.is_exported"
             class="focus:outline-none transition duration-150 ease-in-out hover:bg-red-400 bg-red-500 rounded text-white px-8 py-2 text-sm"
             @click="transport">出荷登録</button>
@@ -124,5 +129,4 @@ const submit = async () => {
       </table>
     </div>
   </Modal>
-
 </template>

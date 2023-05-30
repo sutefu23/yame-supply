@@ -70,8 +70,8 @@
         return new JsonResource(BuildingInfo::with(['user','building_info_details'])->where(function ($query) use ($request) {
             $id = $request->query('id');
             $is_exported = $request->query('is_exported');
-            $beforeMonth = Carbon::today()->subMonth();
-            $query->whereDate('export_expected_date', '>', $beforeMonth);
+//            $beforeMonth = Carbon::today()->subMonth();
+//            $query->whereDate('export_expected_date', '>', $beforeMonth);
             if ($id) {
                 $query->whereId($id);
             }
@@ -79,7 +79,7 @@
                 $query->where('is_exported', '=', $is_exported === 'true');
             }
         })->orderBy("export_expected_date", "desc")->get());
-    });
+    })->name('BuildingInfo');
 
     Route::patch('/BuildingInfo/{id}', function (BuildingInfoRequest $request, int $id) {
         $data = $request->validated();

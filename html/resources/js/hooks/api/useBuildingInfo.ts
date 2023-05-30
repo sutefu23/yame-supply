@@ -10,6 +10,7 @@ export type BuildingInfoData = {
   field_name: string
   builder_user_id: number
   export_expected_date: string
+  export_fix_date: string
   is_exported: boolean
   building_info_details:
   {
@@ -44,6 +45,7 @@ const useBuildingInfoData = () => {
       field_name: "",
       builder_user_id: 0,
       export_expected_date: "",
+      export_fix_date: "",
       building_info_details: items.map(item => ({
         item_id: item.id,
         item_quantity: item.essential_quantity

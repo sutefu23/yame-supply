@@ -16,6 +16,7 @@ use Illuminate\Database\Eloquent\Model;
  * @property string $field_name
  * @property int $builder_user_id
  * @property Carbon $export_expected_date
+ * @property Carbon $export_fix_date
  * @property boolean $is_exported
  * @property int $create_user_id
  * @property int $update_user_id
@@ -48,13 +49,15 @@ class BuildingInfo extends BaseModel
     ];
 
     protected $dates = [
-        'export_expected_date'
+        'export_expected_date',
+        'export_fix_date'
     ];
 
     protected $fillable = [
         'field_name',
         'builder_user_id',
         'export_expected_date',
+        'export_fix_date',
         'is_exported',
         'create_user_id',
         'update_user_id'

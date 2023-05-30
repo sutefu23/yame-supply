@@ -1,13 +1,12 @@
 <script setup lang="ts">
-import { ref, onBeforeMount, computed } from 'vue';
+import { ref, computed } from 'vue';
 import AuthenticatedLayout from '@/Layouts/AuthenticatedLayout.vue';
 import { Head, usePage } from '@inertiajs/inertia-vue3';
 import RegisterBuildingInfoModal from '../AppModules/Form/RegisterBuildInfoModal.vue';
 import RegisterOutStockModal from '@/AppModules/Form/RegisterOutStockModal.vue';
-import useBuildingInfo, { GetBuilingInfoData } from '@/hooks/api/useBuildingInfo';
+import { GetBuilingInfoData } from '@/hooks/api/useBuildingInfo';
 import dayjs from 'dayjs';
 import Pagenation from '@/Components/Navi/Pagenation.vue';
-const { fetch: fetchInfos } = useBuildingInfo()
 
 const page = usePage<{ BulidInfoList: Pagenate<GetBuilingInfoData[]> }>()
 const { data, total, current_page, per_page } = page.props.value.BulidInfoList
@@ -29,13 +28,8 @@ const pushRouter = (page: number) => window.location.href = route('BuildInfoList
 
 const isDisable = computed(() => buidingInfos.value.find((info) => info.id === selectedId.value)?.is_exported)
 
-onBeforeMount(async () => {
-  buidingInfos.value = await fetchInfos()
-})
-
 const onBuildInfoSubmitSuccess = async () => {
   alert("登録しました。")
-  buidingInfos.value = await fetchInfos()
   showBuildInfoModal.value = false
   window.location.reload()
 }
@@ -89,6 +83,7 @@ const onOutStockSuccessSubmit = async () => {
                     <th>現場名</th>
                     <th>工務店</th>
                     <th>出荷予定日</th>
+                    <th>出荷確定日</th>
                     <th>登録日</th>
                   </tr>
                 </thead>
@@ -103,8 +98,7 @@ const onOutStockSuccessSubmit = async () => {
                           cursor-pointer
                       " :class="info.is_exported ? 'text-gray-400' : 'text-gray-800'" @click="(selectedId = info.id)">
                     <td class="border-r border-l border-gray-200">
-                      <label
-                        class="text-center w-full h-full cursor-pointer transition-all opacity-75 hover:opacity-50">
+                      <label class="text-center w-full h-full cursor-pointer transition-all opacity-75 hover:opacity-50">
                         <input :class="info.is_exported ? 'opacity-40' : ''" type="radio" name="infoId"
                           :checked="(info.id === selectedId)">
                       </label>
@@ -112,6 +106,8 @@ const onOutStockSuccessSubmit = async () => {
                     <td class="border-r border-gray-200">{{ info.field_name }}</td>
                     <td class="border-r border-gray-200">{{ info.user.name }}</td>
                     <td class="border-r border-gray-200">{{ dayjs(info.export_expected_date).format('YYYY-MM-DD') }}
+                    </td>
+                    <td class="border-r border-gray-200">{{ dayjs(info.export_fix_date).format('YYYY-MM-DD') }}
                     </td>
                     <td class="border-r border-gray-200">{{ dayjs(info.created_at).format('YYYY-MM-DD') }}</td>
                   </tr>
@@ -131,6 +127,4 @@ const onOutStockSuccessSubmit = async () => {
     <RegisterOutStockModal v-if="showOutStockModal" :show="showOutStockModal" @close="showOutStockModal = false"
       :build-info-id="transportId" @on-success="onOutStockSuccessSubmit" />
   </div>
-
-
 </template>
