@@ -31,18 +31,12 @@
         return new JsonResource(Item::whereId($id)->get());
     })->name('Items.patch');
 
-    Route::patch('/items/essential', function (ItemEssentialPatchRequest $request) {
-        $data = $request->validated();
-        ItemService::offsetQuentity($data['items']);
-        return new JsonResource(Item::with(['wood_species','unit','warehouse'])->get());
-    })->name('Items.post.essential');
 
-
-    Route::patch('/items/quantity', function (ItemOffsetPatchRequest $request) {
-        $data = $request->validated();
-        ItemService::modifyEssential($data['items']);
-        return new JsonResource(Item::with(['wood_species','unit','warehouse'])->get());
-    })->name('Items.post.quantity');
+//    Route::patch('/items/quantity', function (ItemOffsetPatchRequest $request) {
+//        $data = $request->validated();
+//        ItemService::modifyEssential($data['items']);
+//        return new JsonResource(Item::with(['wood_species','unit','warehouse'])->get());
+//    })->name('Items.post.quantity');
 
     Route::get('/InStockInfo', function () {
         return new JsonResource(InStockInfo::with(['in_stock_details','user', 'warehouse'])->get());

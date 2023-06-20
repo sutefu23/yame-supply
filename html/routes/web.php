@@ -1,5 +1,6 @@
 <?php
 
+    use App\Http\Requests\ItemEssentialPatchRequest;
     use App\Http\Requests\ItemRequest;
     use App\Http\Service\ItemService;
     use App\Models\BuildingInfo;
@@ -7,6 +8,7 @@
     use App\Models\User;
     use App\Models\UserCategory;
     use App\Models\Warehouse;
+    use Illuminate\Http\Resources\Json\JsonResource;
     use Illuminate\Support\Facades\Route;
     use Inertia\Inertia;
 
@@ -78,6 +80,13 @@
             DB::commit();
             return redirect()->route('ItemsMaster');
         })->name('ItemsMaster.patch');
+
+        Route::patch('/Items/essential', function (ItemEssentialPatchRequest $request) {
+            $data = $request->validated();
+            ItemService::modifyEssential($data['items']);
+            return redirect()->route('ItemsMaster');
+        })->name('ItemsMaster.essential.patch');
+
 
         Route::get('/Warehouse', function () {
             return Inertia::render(

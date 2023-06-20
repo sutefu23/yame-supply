@@ -25,7 +25,7 @@
         public function rules()
         {
             return [
-                'items.*.item_id' => ['required', 'numeric','exists:Item,id'],
+                'items.*.id' => ['required', 'numeric','exists:Item,id'],
                 'items.*.essential_quantity' => ['required', 'numeric', 'min:0'],
             ];
         }

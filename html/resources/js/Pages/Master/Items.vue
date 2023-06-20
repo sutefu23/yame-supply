@@ -10,7 +10,7 @@ const form = useForm({
   items
 })
 const onSubmit = async () => {
-  await form.patch('/master/Items', {
+  await form.patch('/master/Items/essential', {
     onSuccess: () => {
       alert('登録しました。')
     },
@@ -70,7 +70,9 @@ const onSubmit = async () => {
                     <td class="border-r border-gray-200">{{ item.thickness }}</td>
                     <td class="border-r border-gray-200">
                       <div class="flex items-center justify-center">
-                        <TextInput name="quantity" type="number" class="w-16"
+                        <TextInput name="id" type="hidden" class="w-16" v-model="form.items[index].id">
+                        </TextInput>
+                        <TextInput name="essential_quantity" type="number" class="w-16"
                           v-model="form.items[index].essential_quantity">
                         </TextInput>
                         <div class="h-full">{{ item.unit.name }}</div>
@@ -90,6 +92,4 @@ const onSubmit = async () => {
       </div>
     </AuthenticatedLayout>
   </div>
-
-
 </template>
