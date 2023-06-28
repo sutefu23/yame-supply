@@ -9,9 +9,9 @@
     use App\Models\UserCategory;
     use App\Models\Warehouse;
     use Illuminate\Http\Resources\Json\JsonResource;
+    use Illuminate\Pagination\Paginator;
     use Illuminate\Support\Facades\Route;
     use Inertia\Inertia;
-
     /*
     |--------------------------------------------------------------------------
     | Web Routes
@@ -41,12 +41,16 @@
     })->middleware(['auth', 'verified'])->name('dashboard');
 
     Route::get('/BuildInfoList/{page?}', function ($page = 1) {
+        // ページネーションが利かないのでリゾルバで解決
+        Paginator::currentPageResolver(function() use ($page){
+            return $page;
+        });
         return Inertia::render(
             'BuildInfoList',
             [
                 "UserCategory"    =>  UserCategory::all(),
                 "Items" => Item::with(['wood_species','unit','warehouse'])->get(),
-                "BulidInfoList" => BuildingInfo::with(['user', 'building_info_details'])->forPage($page, 15)->paginate()
+                "BulidInfoList" => BuildingInfo::with(['user', 'building_info_details'])->forPage($page)->paginate()
             ]
         );
     })->middleware(['auth', 'verified'])->name('BuildInfoList');
