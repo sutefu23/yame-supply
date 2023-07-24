@@ -37,7 +37,7 @@ jobs:
             git checkout master && \
             cd html && \
             php81 /home/xs534980/bin/composer install && \
-            php81 artisan migrate && \
+            php81 artisan migrate --force && \
             yarn install && \
             yarn build
           "
