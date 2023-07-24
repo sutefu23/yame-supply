@@ -56,7 +56,7 @@ const computeItems = computed(() => (items.value.map((item) => ({
       </template>
       <div class="py-5">
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
-          <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
+          <div class="bg-white shadow-sm sm:rounded-lg">
 
             <div class="p-6 bg-white border-b border-gray-200">
               <button
@@ -66,7 +66,10 @@ const computeItems = computed(() => (items.value.map((item) => ({
                 <p class="text-sm">※直接編集したデータはカーソルを外したタイミングで保存されます。</p>
               </div>
               <table class="w-full whitespace-nowrap">
-                <thead>
+                <thead class="sticky top-0
+                      z-1
+                      bg-white
+                      tracking-wider">
                   <tr tabindex="0" class="
                       focus:outline-none
                       h-16
