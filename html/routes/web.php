@@ -50,7 +50,7 @@
             [
                 "UserCategory"    =>  UserCategory::all(),
                 "Items" => Item::with(['wood_species','unit','warehouse'])->get(),
-                "BulidInfoList" => BuildingInfo::with(['user', 'building_info_details'])->forPage($page)->paginate()
+                "BulidInfoList" => BuildingInfo::with(['user', 'building_info_details'])->orderBy("is_exported")->orderBy("export_expected_date")->forPage($page)->paginate()
             ]
         );
     })->middleware(['auth', 'verified'])->name('BuildInfoList');

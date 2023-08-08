@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { ref, onBeforeMount } from 'vue';
 import AuthenticatedLayout from '@/Layouts/AuthenticatedLayout.vue';
-import { Head, Link } from '@inertiajs/inertia-vue3';
+import { Head } from '@inertiajs/inertia-vue3';
 import RegisterBuildingInfoStockModal from '../AppModules/Form/RegisterBuildInfoModal.vue';
 import useItems, { GetItemData, ItemData } from '@/hooks/api/useItems';
 import useBuildingInfoData from '@/hooks/api/useBuildingInfo';
@@ -14,7 +14,6 @@ const modalOpen = () => {
 }
 const { fetch: fetchItems, update: updateItems } = useItems()
 const { fetch: fetchBuildinfo } = useBuildingInfoData()
-const essentialBuildNum = ref(10)//必要最低棟数
 const items = ref<GetItemData[]>([])
 
 const buildInfoCount = ref(0)
@@ -37,9 +36,7 @@ const handleUpdateItem = async (item: ItemData, id: number) => {
 }
 const computeItems = computed(() => (items.value.map((item) => ({
   ...item,
-  required_count: 0 + item.essential_quantity * essentialBuildNum.value,
-  shortage_count_for_producer: Number(item.quantity ?? 0) - Number(item.build_quantity ?? 0),
-  shortage_count_for_builder: item.quantity - (0 + item.essential_quantity * essentialBuildNum.value)
+  shortage_count_for_producer: Number(item.quantity ?? 0) - Number(item.current_month_quantity ?? 0) - Number(item.next_month_quantity ?? 0),
 }))))
 
 </script>
@@ -82,24 +79,11 @@ const computeItems = computed(() => (items.value.map((item) => ({
                     <th colspan="5">製材寸法</th>
                     <!-- <th>原木末口径(mm)</th> -->
                     <th>在庫本数<br />①</th>
-                    <th>必要見込本数<br />
-                      <a class="underline text-blue-500" :href="route('BuildInfoList')">{{ buildInfoCount }}棟分</a>②
-                    </th>
+                    <th>当月棟分<br />②</th>
+                    <th>来月棟分<br />③</th>
                     <th>
                       不足本数<br />
-                      ①-②
-                    </th>
-                    <th>
-                      <div class="flex items-center justify-center flex-col">
-                        <div>
-                          <TextInput name="quantity" type="number" class="w-16 mb-0" v-model="essentialBuildNum">
-                          </TextInput>棟分
-                        </div>
-                        <div>必要本数③</div>
-                      </div>
-                    </th>
-                    <th>不足本数<br />
-                      ①-③
+                      ①-(②+③)
                     </th>
                     <th>不良品</th>
                     <th>乾燥中<br>製材中</th>
@@ -125,17 +109,12 @@ const computeItems = computed(() => (items.value.map((item) => ({
                     <td class="border-r border-gray-200 pr-2">{{ item.thickness }}</td>
                     <!-- <td class="border-r border-gray-200">{{ item.raw_wood_size }}</td> -->
                     <td class="border-r border-gray-200 bg-gray-100 font-bold">{{ item.quantity }}</td>
-                    <td class="border-r border-gray-200">{{ item.build_quantity ?? 0 }}</td>
+                    <td class="border-r border-gray-200 font-bold">{{ item.current_month_quantity }}</td>
+                    <td class="border-r border-gray-200 font-bold">{{ item.next_month_quantity }}</td>
                     <td class="border-r border-gray-200 font-bold"
                       :class="item.shortage_count_for_producer < 0 ? 'text-red-500' : ''">{{
                         item.shortage_count_for_producer
                       }}</td>
-                    <td class="border-r border-gray-200">{{ item.essential_quantity * Number(essentialBuildNum) }}
-                    </td>
-                    <td class="border-r border-gray-200 font-bold"
-                      :class="item.shortage_count_for_builder < 0 ? 'text-red-500' : ''">
-                      {{ item.shortage_count_for_builder }}
-                    </td>
                     <td class="border-r border-gray-200" v-if="isManufacturer()">
                       <TextInput name="defective_quantity" type="number" class="w-16 mb-0 text-right inline-block p-1"
                         v-model="item.defective_quantity" @blur="handleUpdateItem(item, item.id)"></TextInput>

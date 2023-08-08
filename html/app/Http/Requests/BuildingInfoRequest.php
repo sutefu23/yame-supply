@@ -32,7 +32,7 @@ class BuildingInfoRequest extends FormRequest
                     return $query->where('user_category_id', 2);//工務店のみ
                 })],
             'export_expected_date'   =>  ['required', 'date','after_or_equal:today'],
-            'export_fix_date'   =>  ['required', 'date','after_or_equal:today'],
+            'export_fix_date'   =>  ['required', 'date'],
             'building_info_details' => ['required', 'array'],
             'building_info_details.*.item_id' => ['required', 'numeric','exists:Item,id'],
             'building_info_details.*.item_quantity' => ['required', 'numeric', 'min:0'],
