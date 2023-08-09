@@ -31,7 +31,7 @@ class BuildingInfoRequest extends FormRequest
                 Rule::exists('users', 'id')->where(function ($query) {
                     return $query->where('user_category_id', 2);//工務店のみ
                 })],
-            'export_expected_date'   =>  ['required', 'date','after_or_equal:today'],
+            'export_expected_date'   =>  ['required', 'date'],
             'export_fix_date'   =>  ['required', 'date'],
             'building_info_details' => ['required', 'array'],
             'building_info_details.*.item_id' => ['required', 'numeric','exists:Item,id'],
