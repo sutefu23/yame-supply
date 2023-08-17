@@ -21,6 +21,7 @@ const onSuccessSubmit = () => {
   showBuildInfo.value = false
   window.location.reload()
 }
+
 </script>
 
 <template>

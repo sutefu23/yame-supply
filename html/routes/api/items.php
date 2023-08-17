@@ -87,6 +87,13 @@
         return true;
     })->name('BuildingInfo.post');
 
+    Route::delete('/BuildingInfo/{id}', function (Request $request, int $id) {
+        DB::beginTransaction();
+        BuildingInfoDetail::where(['build_info_id' => $id])->delete();
+        BuildingInfo::whereId($id)->delete();
+        DB::commit();
+        return true;
+    })->name('BuildingInfo.post');
 
     Route::post('/BuildingInfo', function (BuildingInfoRequest $request) {
         $data = $request->validated();

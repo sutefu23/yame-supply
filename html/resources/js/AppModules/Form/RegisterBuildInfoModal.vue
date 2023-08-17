@@ -11,12 +11,12 @@ import dayjs from 'dayjs';
 
 const props = defineProps<{ show: boolean, editId?: GetBuilingInfoData["id"], disable?: boolean }>()
 
-const emit = defineEmits(["close", "onSuccess", "onTransport"])
+const emit = defineEmits(["close", "onSuccess", "onTransport", "onSuccessDelete"])
 
 const page = usePage<{ Items: GetItemData[] }>()
 const items = page.props.value.Items
 
-const { form, fetch, update, post, InvalidError } = useBuildingInfo()
+const { form, fetch, update, post, destoroy, InvalidError } = useBuildingInfo()
 
 const title = !props.editId ? "現場情報登録" : "現場情報確認編集"
 
@@ -41,6 +41,13 @@ onBeforeMount(async () => {
   }
 })
 
+const deleteAll = async () => {
+  if (confirm("この棟情報を削除します。\n（二度と戻せません。）")) {
+    if (!props.editId) return;
+    await destoroy(props.editId)
+    emit('onSuccessDelete')
+  }
+}
 const transport = () => {
   if (confirm("この棟情報を出荷情報にコピーします。\n（出荷確定後は棟情報を編集できなくなります）")) {
     emit('onTransport')
@@ -127,6 +134,12 @@ const submit = async () => {
           </tr>
         </tbody>
       </table>
+      <div v-if="editId && !form.is_exported" class="text-center pt-4 pb-2">
+        <button
+          class="focus:outline-none transition duration-150 ease-in-out hover:bg-red-400 bg-red-500 rounded text-white px-8 py-2 text-sm"
+          @click="deleteAll">この明細を削除
+        </button>
+      </div>
     </div>
   </Modal>
 </template>

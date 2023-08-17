@@ -33,7 +33,11 @@ const onBuildInfoSubmitSuccess = async () => {
   showBuildInfoModal.value = false
   window.location.reload()
 }
-
+const onSuccessDelete = () => {
+  alert("削除しました。")
+  showBuildInfoModal.value = false
+  window.location.reload()
+}
 //出荷モーダル
 const transportId = ref<number | undefined>(undefined)
 const transportOutStock = () => {
@@ -123,7 +127,7 @@ const onOutStockSuccessSubmit = async () => {
     </AuthenticatedLayout>
     <RegisterBuildingInfoModal v-if="showBuildInfoModal" :edit-id="selectedId" :show="showBuildInfoModal"
       @on-transport="transportOutStock" @close="showBuildInfoModal = false" :disable="isDisable"
-      @on-success="onBuildInfoSubmitSuccess" />
+      @on-success-delete="onSuccessDelete" @on-success="onBuildInfoSubmitSuccess" />
     <RegisterOutStockModal v-if="showOutStockModal" :show="showOutStockModal" @close="showOutStockModal = false"
       :build-info-id="transportId" @on-success="onOutStockSuccessSubmit" />
   </div>
